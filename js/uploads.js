@@ -10,8 +10,9 @@ $(document).ready(function(){
     },
     done: function (e, data) {
       if(data.result.error != undefined){
-        $('#error').html('<b class="float">Ошибка: </b>'+data.result.error);
-        $('#error').fadeIn('slow');
+        var $error = $('#error');
+        $error.html('<b class="float">Ошибка: </b>'+data.result.error);
+        $error.fadeIn('slow');
       } else {
         console.log(data);
         $('#error').hide();
@@ -54,11 +55,12 @@ $(document).ready(function(){
     $(this).parent().prev().find('.status-field-edit').hide();
     var $save = $(this).parent().prev().find('.status-field-save');
     $save.show();
-    $('.drop').find('li').removeClass('active');
+    var $drop = $('.drop');
+    $drop.find('li').removeClass('active');
     $(this).addClass('active');
     var selectResult = $(this).html();
     $(this).parent().parent().find('.slct').removeClass('active').html(selectResult+'<i class="flaticon-chevron8"></i>');
-    $('.drop').slideUp(200);
+    $drop.slideUp(200);
 
     var $id = $(this).parent().attr('data-id');
     var $categoryLink = $(this).text();
@@ -151,7 +153,8 @@ $(document).ready(function(){
     $_this.parent().remove();
   });
 
-  $( "#cat-list" ).sortable({
+  var $catList = $("#cat-list");
+  $catList.sortable({
     placeholder: "ui-state-highlight",
     stop: function(){
       var $li = $(this).find('li');
@@ -172,5 +175,5 @@ $(document).ready(function(){
       });
     }
   });
-  $( "#cat-list" ).disableSelection();
+  $catList.disableSelection();
 });
