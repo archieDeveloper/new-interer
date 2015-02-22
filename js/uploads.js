@@ -163,11 +163,12 @@ $(document).ready(function(){
       $li.each(function(){
         arrayMenu.push($(this).attr('data-link'));
       });
-      console.log(arrayMenu.join(','));
       $.ajax({
         dataType : "html",
         type     : "POST",
-        data     : 'data_links='+arrayMenu.join(','),
+        data     : {
+          'data_links': arrayMenu
+        },
         url      : '/nimyadmin/portfolio.html',
         success  : function(data){
           console.log(data);
