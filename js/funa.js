@@ -1,7 +1,7 @@
 $(document).ready(function(){
 
-	$top = ($(document).height()/2)-($('#login').height()/2);
-	$left = ($(document).width()/2)-($('#login').width()/2);
+	var $top = ($(document).height()/2)-($('#login').height()/2);
+	var $left = ($(document).width()/2)-($('#login').width()/2);
 
 	$('#login').css({'top': $top, 'left': $left});	
 	
@@ -9,44 +9,43 @@ $(document).ready(function(){
 		$top = ($(document).height()/2)-($('#login').height()/2);
 		$left = ($(document).width()/2)-($('#login').width()/2);
 
-		$('#login').css({'top': $top, 'left': $left});		
+		$('#login').css({'top': $top, 'left': $left});
 	});
 
-	$width = $('.mini_post').outerWidth(true);
+	var $width = $('.mini_post').outerWidth(true);
 
 	$('.post .post_ober').each(function(){
 		$(this).attr('pos',0);
-		$widthall = ($(this).children().children('.mini_post').length) * $width;
+		var $widthall = ($(this).children().children('.mini_post').length) * $width;
 		$(this).width($widthall);
 		
 	});
 
 	$('.right_post').click(function(){
-		$elem = $(this).prev();
-		$pos = parseInt($($elem).attr('pos'));
-		$max = $($elem).children().children('.mini_post').length-3;
+		var $elem = $(this).prev();
+		var $pos = parseInt($($elem).attr('pos'));
+		var $max = $($elem).children().children('.mini_post').length-3;
 		
 		if ($pos<=$max) {
 			$($elem).stop();
 			$pos += 1;
 			$($elem).attr('pos',$pos);
 
-			$sdvig = $width*$pos*(-1);
+			var $sdvig = $width*$pos*(-1);
 			$($elem).animate({marginLeft: $sdvig});
 		};
 	});
 
 	$('.left_post').click(function(){
-
-		$elem = $(this).next();
-		$pos = parseInt($($elem).attr('pos'));
+		var $elem = $(this).next();
+		var $pos = parseInt($($elem).attr('pos'));
 
 		if ($pos>=1) {
 			$($elem).stop();
 			$pos -= 1;
 			$($elem).attr('pos',$pos);
 
-			$sdvig = $width*$pos*(-1);
+			var $sdvig = $width*$pos*(-1);
 			$($elem).animate({marginLeft: $sdvig});
 		};
 	});
@@ -68,8 +67,8 @@ $(document).ready(function(){
 	});
 
 	$('.delete').click(function(){
-		$elem = $(this).prev();
-		$src = $($elem).attr('src');
+		var $elem = $(this).prev();
+		var $src = $($elem).attr('src');
 
 		$.ajax({
 			dataType : "html",
@@ -78,7 +77,7 @@ $(document).ready(function(){
 			url      : '/admin/portfolio',
 			success  : function(data){
 				$($elem).parent().fadeOut('fast', function(){
-					$col_miot = $elem.parent().parent().children('.miot').length;
+					var $col_miot = $elem.parent().parent().children('.miot').length;
 					if ($col_miot <= 1) {$($elem).parent().parent().parent().parent().slideUp(700);};
 					$($elem).parent().remove();
 				});
@@ -89,8 +88,8 @@ $(document).ready(function(){
 	});
 
 	$('.deletes').click(function(){
-		$id = $(this).parent().attr('id');
-		$elem = $(this).parent();
+		var $id = $(this).parent().attr('id');
+		var $elem = $(this).parent();
 
 		console.log($elem);
 
@@ -105,8 +104,6 @@ $(document).ready(function(){
 
 		});
 	});
-
-
 
 });
 
