@@ -1,16 +1,5 @@
 <?php if (isset($page_title)) { echo '<h2>'.$page_title.'</h2>'; } ?>
-<?php if ($_GET['page'] == 1) : ?>
-<div class="add-block">
-    <?php echo form_open_multipart('/nimyadmin/portfolio', array('id' => 'fileupload')); ?>
-    <span class="fileinput-button button green">
-        <span><i class="flaticon-plus13"></i> Добавить работу</span>
-        <input id="input-file" type="file" name="userfile" multiple>
-    </span>
-    <?php echo form_close(); ?>
-    <div id="error"></div>
-    <ul id="files" class="list-page"></ul>
-</div>
-<?php endif; ?>
+
 <ul class="list-page">
     <li>
         <div class="title-group">Список категорий</div>
@@ -30,6 +19,23 @@
     </li>
 </ul>
 
+<div>
+  <span>Скрипт для обновления структуры БД</span>
+  <span>UPDATE `portfolio`,`category_portfolio` SET `portfolio`.`category_id` = `category_portfolio`.`id` WHERE `portfolio`.`category_link` = `category_portfolio`.`link`</span>
+</div>
+
+<?php if ($_GET['page'] == 1) : ?>
+  <div class="add-block">
+    <?php echo form_open_multipart('/nimyadmin/portfolio', array('id' => 'fileupload')); ?>
+    <span class="fileinput-button button green">
+        <span><i class="flaticon-plus13"></i> Добавить работу</span>
+        <input id="input-file" type="file" name="userfile" multiple>
+    </span>
+    <?php echo form_close(); ?>
+    <div id="error"></div>
+    <ul id="files" class="list-page"></ul>
+  </div>
+<?php endif; ?>
 <ul class="pagenation">
     <?php pagination($_GET['page'], $num_pages, '<i class="flaticon-thin6"></i>', '<i class="flaticon-thin2"></i>'); ?>
     <div class="cleaner"></div>
