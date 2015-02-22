@@ -54,35 +54,35 @@ class Page_model extends CI_Model {
     $start = ($num_page * $num_rows) - $num_rows;
     if(is_null($link)){
       $sql = "SELECT
-      `portfolio`.`id`,
-      `portfolio`.`category_id`,
-      `portfolio`.`img`,
-      `portfolio`.`title`,
-      `portfolio`.`trash`,
-      `category_portfolio`.`link`,
-      `category_portfolio`.`name`,
-      `category_portfolio`.`position`
-      FROM `portfolio` LEFT JOIN `category_portfolio`
-      ON `portfolio`.`category_id` = `category_portfolio`.`id`
-      WHERE `trash` = 0 ORDER BY `portfolio`.`id` DESC LIMIT ?,?";
+              `portfolio`.`id`,
+              `portfolio`.`category_id`,
+              `portfolio`.`img`,
+              `portfolio`.`title`,
+              `portfolio`.`trash`,
+              `category_portfolio`.`link`,
+              `category_portfolio`.`name`,
+              `category_portfolio`.`position`
+              FROM `portfolio` LEFT JOIN `category_portfolio`
+              ON `portfolio`.`category_id` = `category_portfolio`.`id`
+              WHERE `trash` = 0 ORDER BY `portfolio`.`id` DESC LIMIT ?,?";
       $data = array($start, $num_rows);
       $query = $this->db->query($sql, $data);
       if (!$query) { return false; }
       return $query->result();
     }
     $sql = "SELECT
-    `portfolio`.`id`,
-    `portfolio`.`category_id`,
-    `portfolio`.`img`,
-    `portfolio`.`title`,
-    `portfolio`.`trash`,
-    `category_portfolio`.`link`,
-    `category_portfolio`.`name`,
-    `category_portfolio`.`position`
-    FROM `portfolio` LEFT JOIN `category_portfolio`
-    ON `portfolio`.`category_id` = `category_portfolio`.`id`
-    WHERE `category_portfolio`.`link` = ? AND `trash` = 0
-    ORDER BY `portfolio`.`id` DESC LIMIT ?,?";
+            `portfolio`.`id`,
+            `portfolio`.`category_id`,
+            `portfolio`.`img`,
+            `portfolio`.`title`,
+            `portfolio`.`trash`,
+            `category_portfolio`.`link`,
+            `category_portfolio`.`name`,
+            `category_portfolio`.`position`
+            FROM `portfolio` LEFT JOIN `category_portfolio`
+            ON `portfolio`.`category_id` = `category_portfolio`.`id`
+            WHERE `category_portfolio`.`link` = ? AND `trash` = 0
+            ORDER BY `portfolio`.`id` DESC LIMIT ?,?";
     $data = array($link, $start, $num_rows);
     $query = $this->db->query($sql, $data);
     if (!$query) { return false; }
@@ -96,7 +96,9 @@ class Page_model extends CI_Model {
       $num_news = ceil($query->num_rows()/$num_rows);
       return $num_news;
     }
-    $sql = "SELECT * FROM `portfolio`,`category_portfolio` WHERE `portfolio`.`category_id` = `category_portfolio`.`id` = ? AND `trash` = 0";
+    $sql = "SELECT * FROM `portfolio`
+            WHERE `category_id` = (SELECT `id` FROM `category_portfolio` WHERE `link` = ?)
+            AND `trash` = 0";
     $data = array($link);
     $query = $this->db->query($sql, $data);
     $num_news = ceil($query->num_rows()/$num_rows);
