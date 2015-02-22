@@ -58,7 +58,6 @@ class Page_model extends CI_Model {
       `portfolio`.`category_id`,
       `portfolio`.`img`,
       `portfolio`.`title`,
-      `portfolio`.`type`,
       `portfolio`.`trash`,
       `category_portfolio`.`link`,
       `category_portfolio`.`name`,
@@ -76,7 +75,6 @@ class Page_model extends CI_Model {
     `portfolio`.`category_id`,
     `portfolio`.`img`,
     `portfolio`.`title`,
-    `portfolio`.`type`,
     `portfolio`.`trash`,
     `category_portfolio`.`link`,
     `category_portfolio`.`name`,
@@ -122,20 +120,6 @@ class Page_model extends CI_Model {
     return $result[0];
   }
 
-  /*public function get_portfolio_category($type) {
-    $sql = "SELECT * FROM `portfolio` WHERE `type` = ? ORDER BY `id` DESC";
-    $data = array($type);
-    return $this->db->query($sql, $data);
-  }
-
-  public function get_portfolio($type_array = array()) {
-    $data = array();
-    foreach ($type_array as $current_type) {
-      $data[] = $this->get_portfolio_category($current_type);
-    }
-    return $data;
-  }*/
-
   public function del($name){
     $sql = "DELETE FROM `portfolio` WHERE `name` = ?";
     $data = array($name);
@@ -144,7 +128,7 @@ class Page_model extends CI_Model {
 
   public function position_rewrite($data_links) {
     $sql = "UPDATE `category_portfolio` SET `position` =  ? WHERE `link` = ?";
-    foreach($data_links as $position => $link){
+    foreach($data_links as $position => $link) {
       $data = array($position, $link);
       $this->db->query($sql, $data);
     }
