@@ -37,7 +37,7 @@
 		</div>
 	</footer>
 </div>
-<div class="copyrigth">Новый Интерьер 2014г. Все права защищены.</div>
+<div class="copyrigth">Новый Интерьер <?php echo date('Y'); ?>г. Все права защищены.</div>
 </div>
 </body>
 </html>

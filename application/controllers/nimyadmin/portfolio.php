@@ -16,12 +16,11 @@ class Portfolio extends CI_Controller {
 
   function __construct(){
     parent::__construct();
-    $this->controller = $this->uri->segment(1);
-    $this->action = $this->uri->segment(2);
+    $this->controller = $this->uri->segment(2);
+    $this->action = $this->uri->segment(3);
   }
 
-  public function index()
-  {
+  public function index() {
     if (!empty($_FILES)) $this->_upload();
     if (isset($_POST['id']) && isset($_POST['title'])) $this->_update_title_portfolio($_POST['id'], $_POST['title']);
     if (isset($_POST['id']) && isset($_POST['category_link'])) $this->_update_category_portfolio($_POST['id'], $_POST['category_link']);
@@ -30,6 +29,8 @@ class Portfolio extends CI_Controller {
     if (isset($_POST['data_links'])) $this->_position_rewrite($_POST['data_links']);
 
     $this->data['page_title'] = $this->page_title;
+    $this->data['page_controller'] = $this->controller;
+    $this->data['page_action'] = $this->action;
     $this->data['include_js'] = $this->include_js;
     $this->data['include_css'] = $this->include_css;
 
@@ -43,7 +44,63 @@ class Portfolio extends CI_Controller {
     $this->data['list_category_portfolio'] = $this->page_model->get_list_category_portfolio();
 
     $this->load->view('admin/templates/up', $this->data);
-    $this->load->view('admin/portfolio', $this->data);
+    $this->load->view('admin/portfolio/index', $this->data);
+    $this->load->view('admin/templates/down', $this->data);
+  }
+
+  public function add() {
+    if (!empty($_FILES)) $this->_upload();
+    if (isset($_POST['id']) && isset($_POST['title'])) $this->_update_title_portfolio($_POST['id'], $_POST['title']);
+    if (isset($_POST['id']) && isset($_POST['category_link'])) $this->_update_category_portfolio($_POST['id'], $_POST['category_link']);
+    if (isset($_POST['id']) && isset($_POST['trash'])) $this->_trash_portfolio($_POST['id']);
+    if (isset($_POST['id']) && isset($_POST['no_trash'])) $this->_no_trash_portfolio($_POST['id']);
+    if (isset($_POST['data_links'])) $this->_position_rewrite($_POST['data_links']);
+
+    $this->data['page_title'] = $this->page_title;
+    $this->data['page_controller'] = $this->controller;
+    $this->data['page_action'] = $this->action;
+    $this->data['include_js'] = $this->include_js;
+    $this->data['include_css'] = $this->include_css;
+
+    $this->load->model('page_model');
+    if (!isset($_GET['page'])) { $_GET['page'] = 1; }
+    $page = (integer) $_GET['page'];
+    if (!$page) { show_404(); }
+    $this->data['portfolio'] = $this->page_model->get_portfolio(null, $page);
+
+    $this->data['num_pages'] = $this->page_model->get_num_portfolio();
+    $this->data['list_category_portfolio'] = $this->page_model->get_list_category_portfolio();
+
+    $this->load->view('admin/templates/up', $this->data);
+    $this->load->view('admin/portfolio/add', $this->data);
+    $this->load->view('admin/templates/down', $this->data);
+  }
+
+  public function categories() {
+    if (!empty($_FILES)) $this->_upload();
+    if (isset($_POST['id']) && isset($_POST['title'])) $this->_update_title_portfolio($_POST['id'], $_POST['title']);
+    if (isset($_POST['id']) && isset($_POST['category_link'])) $this->_update_category_portfolio($_POST['id'], $_POST['category_link']);
+    if (isset($_POST['id']) && isset($_POST['trash'])) $this->_trash_portfolio($_POST['id']);
+    if (isset($_POST['id']) && isset($_POST['no_trash'])) $this->_no_trash_portfolio($_POST['id']);
+    if (isset($_POST['data_links'])) $this->_position_rewrite($_POST['data_links']);
+
+    $this->data['page_title'] = $this->page_title;
+    $this->data['page_controller'] = $this->controller;
+    $this->data['page_action'] = $this->action;
+    $this->data['include_js'] = $this->include_js;
+    $this->data['include_css'] = $this->include_css;
+
+    $this->load->model('page_model');
+    if (!isset($_GET['page'])) { $_GET['page'] = 1; }
+    $page = (integer) $_GET['page'];
+    if (!$page) { show_404(); }
+    $this->data['portfolio'] = $this->page_model->get_portfolio(null, $page);
+
+    $this->data['num_pages'] = $this->page_model->get_num_portfolio();
+    $this->data['list_category_portfolio'] = $this->page_model->get_list_category_portfolio();
+
+    $this->load->view('admin/templates/up', $this->data);
+    $this->load->view('admin/portfolio/categories', $this->data);
     $this->load->view('admin/templates/down', $this->data);
   }
 

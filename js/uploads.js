@@ -17,7 +17,7 @@ $(document).ready(function(){
         console.log(data);
         $('#error').hide();
         var $newFileListPage = $($listPageLi).clone().prependTo('#files').removeAttr('id');
-        $newFileListPage.find('span.img img').attr('src','/img/portfolio/'+data.result.file_name);
+        $newFileListPage.find('span.img img').attr('src','/img/portfolio/small/'+data.result.file_name);
         $newFileListPage.find('span.img .trash').attr('data-id',data.result.current_row_id);
         $newFileListPage.find('.input-edit').attr('data-id',data.result.current_row_id);
         $newFileListPage.find('.select .drop').attr('data-id',data.result.current_row_id);
@@ -92,8 +92,9 @@ $(document).ready(function(){
   var $inputBlur = function($this_i){
     if (text !== $this_i.val()) {
       $this_i.prop('disabled', true);
-      $this_i.next().find('.status-field-edit').hide();
-      $this_i.next().find('.status-field-save').show();
+      var $next = $this_i.next();
+      $next.find('.status-field-edit').hide();
+      $next.find('.status-field-save').show();
       var $id = $this_i.attr('data-id');
       var $title = $this_i.val();
       var $ajax_this = $this_i;
@@ -122,8 +123,9 @@ $(document).ready(function(){
       url      : '/nimyadmin/portfolio.html',
       success  : function(data){
         $_this.prop('disabled', false);
-        $_this.parent().parent().before('<li class="portfolio-trash">Работа удалена. <a href="#" class="no-trash" data-id="'+$id+'">Восстановить</a><a class="button close-no-trash" href="javascript:void(0);"><i class="flaticon-cross5"></i></a></li>');
-        $_this.parent().parent().slideUp(200);
+        var $secondParent = $_this.parent().parent();
+        $secondParent.before('<li class="portfolio-trash">Работа удалена. <a href="#" class="no-trash" data-id="'+$id+'">Восстановить</a><a class="button close-no-trash" href="javascript:void(0);"><i class="flaticon-cross5"></i></a></li>');
+        $secondParent.slideUp(200);
       }
     });
   });
