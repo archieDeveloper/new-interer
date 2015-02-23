@@ -1,18 +1,4 @@
 $(document).ready(function(){
-  var $newArtBox = $('#new-articles-box');
-  var $btnAddP;
-  $(document).on('click', '.btn-new-art', function(e){
-    e.preventDefault();
-    $btnAddP = $(this);
-    $btnAddP.hide();
-    $newArtBox.slideDown(200);
-  });
-
-  $(document).on('click', '.btn-no-new-art', function(e){
-    e.preventDefault();
-    $btnAddP.show();
-    $newArtBox.slideUp(200);
-  });
 
   $(document).on('click', '.edit-art', function(e){
     e.preventDefault();
