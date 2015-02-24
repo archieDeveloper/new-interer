@@ -1,20 +1,29 @@
 <?php if (isset($page_title)) { echo '<h2>'.$page_title.'</h2>'; } ?>
 
-<ul class="list-page">
-    <li>
-        <div class="title-group">Список категорий</div>
-        <ul id="cat-list">
-            <?php foreach ($list_category_portfolio as $current_field) : ?>
-                <li data-position="<?=$current_field->position?>" data-link="<?=$current_field->link?>">
-                    <div class="row-tools">
-                        <a class="button blue" href="?edit=1"><i class="flaticon-edit4"></i></a>
-                        <a class="button" href="?del=1"><i class="flaticon-trash3"></i></a>
-                    </div>
-                    <span><?=$current_field->name?> / <?=$current_field->link?></span>
-                    <div class="clr"></div>
-                </li>
-            <?php endforeach;?>
-        </ul>
-        <a class="button green" href="#"><i class="flaticon-plus13"></i> Добавить пункт меню</a>
-    </li>
-</ul>
+<table class="tg">
+  <thead>
+    <tr>
+      <th style="border-radius: 5px 0 0 0">Название</th>
+      <th>Описание</th>
+      <th>Ярлык</th>
+      <th>Кол-во работ</th>
+      <th style="border-radius: 0 5px 0 0"></th>
+    </tr>
+  </thead>
+  <tbody id="cat-list-tb">
+    <?php $trKey = false; $trClass = array("tg-4eph","tg-031e");
+    foreach ($list_category_portfolio as $current_field) :
+      $trKey = !$trKey; ?>
+      <tr class="<?=$trClass[$trKey]?>" data-id="<?=$current_field->id?>">
+        <td class="tg-name"><?=$current_field->name?></td>
+        <td class="tg-desc"><?=$current_field->description?></td>
+        <td class="tg-slug"><?=$current_field->link?></td>
+        <td class="tg-num"><?=$current_field->amount?></td>
+        <td class="tg-tools">
+          <a class="button blue" href="?edit=1"><i class="flaticon-edit4"></i></a>
+          <a class="button" href="?del=1"><i class="flaticon-trash3"></i></a>
+        </td>
+      </tr>
+    <?php endforeach;?>
+  </tbody>
+</table>

@@ -155,21 +155,32 @@ $(document).ready(function(){
     $_this.parent().remove();
   });
 
-  var $catList = $("#cat-list");
-  $catList.sortable({
+  var $catListTb = $("#cat-list-tb");
+  $catListTb.sortable({
     placeholder: "ui-state-highlight",
-    stop: function(){
-      var $li = $(this).find('li');
-      var dataPosition = 0;
+    start: function(e,elem){
+      var $item = $(elem.item);
+      $item.css({'display':'inline-table'});
+    },
+    stop: function(e,elem){
+      var $item = $(elem.item);
+      $item.removeAttr('style');
+      var $tr = $(this).find('tr');
       var arrayMenu = [];
-      $li.each(function(){
-        arrayMenu.push($(this).attr('data-link'));
+      var trClass = ['tg-4eph','tg-031e'];
+      var trKey = false;
+      $tr.each(function(){
+        trKey = !trKey;
+        $(this).removeClass();
+        $(this).addClass(trClass[trKey ? 1 : 0]);
+        arrayMenu.push($(this).attr('data-id'));
       });
+      console.log(arrayMenu);
       $.ajax({
         dataType : "html",
         type     : "POST",
         data     : {
-          'data_links': arrayMenu
+          'data_id': arrayMenu
         },
         url      : '/nimyadmin/portfolio.html',
         success  : function(data){
@@ -178,5 +189,5 @@ $(document).ready(function(){
       });
     }
   });
-  $catList.disableSelection();
+  $catListTb.disableSelection();
 });

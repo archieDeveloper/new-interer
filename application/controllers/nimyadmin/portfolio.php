@@ -26,7 +26,7 @@ class Portfolio extends CI_Controller {
     if (isset($_POST['id']) && isset($_POST['category_link'])) $this->_update_category_portfolio($_POST['id'], $_POST['category_link']);
     if (isset($_POST['id']) && isset($_POST['trash'])) $this->_trash_portfolio($_POST['id']);
     if (isset($_POST['id']) && isset($_POST['no_trash'])) $this->_no_trash_portfolio($_POST['id']);
-    if (isset($_POST['data_links'])) $this->_position_rewrite($_POST['data_links']);
+    if (isset($_POST['data_id'])) $this->_position_rewrite($_POST['data_id']);
 
     $this->data['page_title'] = $this->page_title;
     $this->data['page_controller'] = $this->controller;
@@ -49,26 +49,13 @@ class Portfolio extends CI_Controller {
   }
 
   public function add() {
-    if (!empty($_FILES)) $this->_upload();
-    if (isset($_POST['id']) && isset($_POST['title'])) $this->_update_title_portfolio($_POST['id'], $_POST['title']);
-    if (isset($_POST['id']) && isset($_POST['category_link'])) $this->_update_category_portfolio($_POST['id'], $_POST['category_link']);
-    if (isset($_POST['id']) && isset($_POST['trash'])) $this->_trash_portfolio($_POST['id']);
-    if (isset($_POST['id']) && isset($_POST['no_trash'])) $this->_no_trash_portfolio($_POST['id']);
-    if (isset($_POST['data_links'])) $this->_position_rewrite($_POST['data_links']);
-
-    $this->data['page_title'] = $this->page_title;
+    $this->data['page_title'] = 'Добавить работу';
     $this->data['page_controller'] = $this->controller;
     $this->data['page_action'] = $this->action;
     $this->data['include_js'] = $this->include_js;
     $this->data['include_css'] = $this->include_css;
 
     $this->load->model('page_model');
-    if (!isset($_GET['page'])) { $_GET['page'] = 1; }
-    $page = (integer) $_GET['page'];
-    if (!$page) { show_404(); }
-    $this->data['portfolio'] = $this->page_model->get_portfolio(null, $page);
-
-    $this->data['num_pages'] = $this->page_model->get_num_portfolio();
     $this->data['list_category_portfolio'] = $this->page_model->get_list_category_portfolio();
 
     $this->load->view('admin/templates/up', $this->data);
@@ -77,26 +64,13 @@ class Portfolio extends CI_Controller {
   }
 
   public function categories() {
-    if (!empty($_FILES)) $this->_upload();
-    if (isset($_POST['id']) && isset($_POST['title'])) $this->_update_title_portfolio($_POST['id'], $_POST['title']);
-    if (isset($_POST['id']) && isset($_POST['category_link'])) $this->_update_category_portfolio($_POST['id'], $_POST['category_link']);
-    if (isset($_POST['id']) && isset($_POST['trash'])) $this->_trash_portfolio($_POST['id']);
-    if (isset($_POST['id']) && isset($_POST['no_trash'])) $this->_no_trash_portfolio($_POST['id']);
-    if (isset($_POST['data_links'])) $this->_position_rewrite($_POST['data_links']);
-
-    $this->data['page_title'] = $this->page_title;
+    $this->data['page_title'] = 'Категории';
     $this->data['page_controller'] = $this->controller;
     $this->data['page_action'] = $this->action;
     $this->data['include_js'] = $this->include_js;
     $this->data['include_css'] = $this->include_css;
 
     $this->load->model('page_model');
-    if (!isset($_GET['page'])) { $_GET['page'] = 1; }
-    $page = (integer) $_GET['page'];
-    if (!$page) { show_404(); }
-    $this->data['portfolio'] = $this->page_model->get_portfolio(null, $page);
-
-    $this->data['num_pages'] = $this->page_model->get_num_portfolio();
     $this->data['list_category_portfolio'] = $this->page_model->get_list_category_portfolio();
 
     $this->load->view('admin/templates/up', $this->data);

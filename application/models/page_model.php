@@ -106,7 +106,15 @@ class Page_model extends CI_Model {
   }
 
   public function get_list_category_portfolio() {
-    $sql = "SELECT * FROM `category_portfolio` ORDER BY `position`";
+    $sql = "SELECT *
+            FROM `category_portfolio`
+            ORDER BY `position`";
+    $sql = "SELECT `category_portfolio`.*, COUNT(`portfolio`.`id`) AS `amount`
+            FROM `category_portfolio` LEFT JOIN `portfolio`
+            ON (`portfolio`.`category_id`=`category_portfolio`.`id` AND `portfolio`.`trash` = 0)
+            GROUP BY `category_portfolio`.`id`
+            ORDER BY `category_portfolio`.`position`";
+
     $query = $this->db->query($sql);
     $result = $query->result();
     return $result;
@@ -128,10 +136,10 @@ class Page_model extends CI_Model {
     $this->db->query($sql, $data);
   }
 
-  public function position_rewrite($data_links) {
-    $sql = "UPDATE `category_portfolio` SET `position` =  ? WHERE `link` = ?";
-    foreach($data_links as $position => $link) {
-      $data = array($position, $link);
+  public function position_rewrite($data_id) {
+    $sql = "UPDATE `category_portfolio` SET `position` =  ? WHERE `id` = ?";
+    foreach($data_id as $position => $id) {
+      $data = array($position, $id);
       $this->db->query($sql, $data);
     }
   }

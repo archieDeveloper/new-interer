@@ -1,17 +1,15 @@
 <?php if (isset($page_title)) { echo '<h2>'.$page_title.'</h2>'; } ?>
 
-<?php if ($_GET['page'] == 1) : ?>
-  <div class="add-block">
-    <?php echo form_open_multipart('/nimyadmin/portfolio', array('id' => 'fileupload')); ?>
-    <span class="fileinput-button button green">
-        <span><i class="flaticon-plus13"></i> Добавить работу</span>
-        <input id="input-file" type="file" name="userfile" multiple>
-    </span>
-    <?php echo form_close(); ?>
-    <div id="error"></div>
-    <ul id="files" class="list-page"></ul>
-  </div>
-<?php endif; ?>
+<div class="add-block">
+  <?php echo form_open_multipart('/nimyadmin/portfolio', array('id' => 'fileupload')); ?>
+  <span class="fileinput-button button green">
+      <span><i class="flaticon-plus13"></i> Добавить работу</span>
+      <input id="input-file" type="file" name="userfile" multiple>
+  </span>
+  <?php echo form_close(); ?>
+  <div id="error"></div>
+  <ul id="files" class="list-page"></ul>
+</div>
 <ul class="list-page">
   <li id="js-list-page">
     <span class="img">

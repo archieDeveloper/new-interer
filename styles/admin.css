@@ -134,7 +134,7 @@ body {
 }
 
 .left-aside {
-  width: 180px;
+  width: 200px;
   background: #eee;
   padding: 20px 0;
   float: left
@@ -261,7 +261,7 @@ body {
   left: 0px;
   top: 0;
   background: #FFF;
-  width: 180px;
+  width: 200px;
   box-shadow: none
 }
 
@@ -648,3 +648,53 @@ body {
   height: 38px;
   line-height: 38px
 }
+
+.ui-state-highlight {
+  background: #ddd;
+  border: 1px dashed #ccc;
+  height: 58px;
+  padding: 0;
+  margin: 0;
+}
+
+table.tg {width: 100%}
+.tg  {border-collapse:collapse;border-spacing:0;border: 0;}
+.tg td{padding:10px 15px;border-style:solid;border-width:0px;word-break:normal;border-color:#ccc;/*background-color:#fff;*/}
+.tg tr {
+  height: 60px;
+}
+.tg thead tr {
+  height: 45px;
+}
+.tg tr:hover {
+  color: #83AF1B;
+  background-color: #F6F6F6;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+.tg tr:hover td.tg-tools .button {
+  display: inline;
+}
+.tg th{text-align:left;padding:10px 15px;text-transform: uppercase;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;border-color:#ccc;color:#eee;background-color:#2C3E50;}
+.tg .tg-4eph{background-color:#e5e5e5}
+.tg .tg-031e{background-color:#eee}
+
+.tg td.tg-tools {
+  width: 12%;
+}
+
+.tg td.tg-tools .button{
+  display: none;
+}
+
+.tg td.tg-name {
+  width: 15%;
+}
+.tg td.tg-desc {
+  width: 43%;
+}
+.tg td.tg-slug {
+  width: 15%;
+}
+.tg td.tg-num {
+  width: 15%;
+ }
