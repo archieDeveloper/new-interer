@@ -658,43 +658,69 @@ body {
 }
 
 table.tg {width: 100%}
-.tg  {border-collapse:collapse;border-spacing:0;border: 0;}
-.tg td{padding:10px 15px;border-style:solid;border-width:0px;word-break:normal;border-color:#ccc;/*background-color:#fff;*/}
-.tg tr {
-  height: 60px;
-}
-.tg thead tr {
-  height: 45px;
-}
-.tg tr:hover {
-  color: #83AF1B;
-  background-color: #F6F6F6;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-}
-.tg tr:hover td.tg-tools .button {
-  display: inline;
-}
+.tg  {border-collapse:collapse;border-spacing:0;border: 0}
+.tg td{padding:10px 15px;border-style:solid;border-width:0px;word-break:normal;border-color:#ccc}
+.tg tr {height: 60px}
+.tg thead tr {height: 45px}
+.tg tr:hover {box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1)}
+.tg tr:hover td.tg-tools .button {display: inline}
 .tg th{text-align:left;padding:10px 15px;text-transform: uppercase;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;border-color:#ccc;color:#eee;background-color:#2C3E50;}
 .tg .tg-4eph{background-color:#e5e5e5}
 .tg .tg-031e{background-color:#eee}
+.tg .tg-jh46{background-color: #F9F9F9;border: 2px solid #C3E27A;}
+.tg td.tg-tools {width: 12%}
+.tg td.tg-tools .button{display: none}
+.tg td.tg-name {width: 15%}
+.tg td.tg-desc {width: 43%}
+.tg td.tg-slug {width: 15%}
+.tg td.tg-num {width: 15%}
 
-.tg td.tg-tools {
-  width: 12%;
+.tg td.colspanchange {}
+
+.tg td.colspanchange .inline-edit-save {
+  margin-top: 10px;
 }
 
-.tg td.tg-tools .button{
-  display: none;
+.tg td.colspanchange fieldset {
+  border: 0;
 }
 
-.tg td.tg-name {
-  width: 15%;
+.tg td.colspanchange fieldset .inline-edit-col h4 {
+  text-transform: uppercase;
 }
-.tg td.tg-desc {
-  width: 43%;
+.tg td.colspanchange fieldset .inline-edit-col label {
+  display: block;
+  margin: 2px 0;
 }
-.tg td.tg-slug {
-  width: 15%;
+.tg td.colspanchange fieldset .inline-edit-col label .title {
+  display: block;
+  float: left;
+  width: 8em;
+  font-size: 10px;
+  font-style: italic;
+  text-transform: uppercase;
+  line-height: 33px;
 }
-.tg td.tg-num {
-  width: 15%;
- }
+
+.tg td.colspanchange fieldset .inline-edit-col label .input-text-wrap {
+  display: block;
+  position: relative;
+  margin-left: 8em;
+}
+
+.tg td.colspanchange fieldset .inline-edit-col label .input-text-wrap .ptitle {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.left {
+  float: left;
+  line-height: 17px;
+  height: 17px;
+}
+
+.right {
+  float: right;
+  line-height: 17px;
+  height: 17px;
+}

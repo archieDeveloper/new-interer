@@ -196,4 +196,56 @@ $(document).ready(function(){
       });
     }
   });
+
+  //редактирование категорий
+  $(document).on('click','.edit-category',function(e){
+    e.preventDefault();
+
+    $catListTb.find('.cancel-edit-category').click();
+    $catListTb.sortable('disable');
+
+    var $secondParent = $(this).parent().parent();
+
+    var $id = $secondParent.attr('data-id'),
+      $name = $secondParent.find('.tg-name').text(),
+      $desc = $secondParent.find('.tg-desc').text(),
+      $slug = $secondParent.find('.tg-slug').text();
+    $secondParent.hide();
+    $secondParent.after(
+      '<tr class="tg-jh46" data-id="'+$id+'">'+
+        '<td colspan="5" class="colspanchange">'+
+          '<fieldset>'+
+            '<div class="inline-edit-col">'+
+              '<h4>Свойства</h4>'+
+              '<label>'+
+                '<span class="title">Название</span>'+
+                '<span class="input-text-wrap"><input type="text" name="name" class="ptitle input-edit" value="'+$name+'"></span>'+
+              '</label>'+
+              '<label>'+
+                '<span class="title">Описание</span>'+
+                '<span class="input-text-wrap"><input type="text" name="desc" class="ptitle input-edit" value="'+$desc+'"></span>'+
+              '</label>'+
+              '<label>'+
+                '<span class="title">Ярлык</span>'+
+                '<span class="input-text-wrap"><input type="text" name="slug" class="ptitle input-edit" value="'+$slug+'"></span>'+
+              '</label>'+
+            '</div>'+
+          '</fieldset>'+
+          '<p class="inline-edit-save submit">'+
+            '<a href="#inline-edit" class="button cancel-edit-category right green">Отмена</a>'+
+            '<a href="#inline-edit" class="button left blue">Обновить категорию</a>'+
+            '<span class="error" style="display:none;"></span>'+
+          '</p>'+
+        '</td>'+
+      '</tr>');
+  });
+
+  //отмена редактирования категории
+  $(document).on('click','.cancel-edit-category',function(e){
+    e.preventDefault();
+    $catListTb.sortable('enable');
+    var $editForm = $(this).parent().parent().parent();
+    $editForm.prev().show();
+    $editForm.remove();
+  });
 });

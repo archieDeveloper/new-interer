@@ -20,8 +20,8 @@
         <td class="tg-slug"><?=$current_field->link?></td>
         <td class="tg-num"><?=$current_field->amount?></td>
         <td class="tg-tools">
-          <a class="button blue" href="?edit=1"><i class="flaticon-edit4"></i></a>
-          <a class="button" href="?del=1"><i class="flaticon-trash3"></i></a>
+          <a class="button blue edit-category" href="#" data-id="<?=$current_field->id?>"><i class="flaticon-edit4"></i></a>
+          <a class="button" href="#"><i class="flaticon-trash3"></i></a>
         </td>
       </tr>
     <?php endforeach;?>
