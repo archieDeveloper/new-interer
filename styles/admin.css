@@ -248,10 +248,10 @@ body {
 .left-aside ul li:hover ul {
   display: block;
   position: absolute;
-  left: 180px;
+  left: 200px;
   top: 0;
   background: #FFF;
-  width: 180px;
+  width: 200px;
   box-shadow: 0 0 10px rgba(0,0,0,0.2)
 }
 
@@ -291,24 +291,30 @@ body {
 }
 
 .pagenation li {
-  float: left
+  float: left;
+  margin: 2px 0;
 }
 
 .pagenation li a {
   display: block;
   padding: 10px;
-  background: #F27669;
-  color: #FFF;
-  border: 0;
-  border-bottom: 2px solid #D35849;
+  background: #fff;
+  border: 1px solid #D2D2D2;
+  color: #F27669;
   font-weight: bold;
   font-size: 13px;
-  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
   padding: 1px 8px;
   cursor: pointer;
   text-decoration: none;
   border-radius: 5px;
-  margin-right: 10px
+  margin-right: 10px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.2s;
+}
+
+.pagenation li a:hover {
+  background: #EDEDED;
+  border: 1px solid #D3D3D3;
 }
 
 .pagenation li a.active {
@@ -317,26 +323,29 @@ body {
   border: 0;
   border-bottom: 0;
   padding: 2px 8px;
-  text-shadow: none
+  box-shadow: none;
+  margin-top: 1px;
 }
 
 .button {
-  background: #F27669;
-  color: #FFF;
-  border: 0;
-  border-bottom: 2px solid #D35849;
+  background: #FFf;
+  color: #F27669;
+  border: 1px solid #D2D2D2;
   font-weight: bold;
   font-size: 13px;
-  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
   padding: 5px 10px;
   cursor: pointer;
   text-decoration: none;
   border-radius: 5px;
-  line-height: 40px
+  line-height: 40px;
+
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.2s;
 }
 
 .button:hover {
-  background: #FC7E6F
+  background: #EDEDED;
+  border: 1px solid #D3D3D3;
 }
 
 .button.fr {
@@ -349,21 +358,11 @@ body {
 }
 
 .button.blue {
-  background: #2980B9;
-  border-bottom: 2px solid #19608F
-}
-
-.button.blue:hover {
-  background: #3498DB
+  color: #2980B9;
 }
 
 .button.green {
-  background: #C3E27A;
-  border-bottom: 2px solid #8FAD46
-}
-
-.button.green:hover {
-  background: #D7F395
+  color: #9DC04C;
 }
 
 .list-page {

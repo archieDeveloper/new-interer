@@ -129,7 +129,7 @@ $(document).ready(function(){
       url      : '/nimyadmin/portfolio.html',
       success  : function(data){
         $this.prop('disabled', false);
-        var $secondParent = $_this.parent().parent();
+        var $secondParent = $this.parent().parent();
         $secondParent.before('<li class="portfolio-trash">Работа удалена. <a href="#" class="no-trash" data-id="'+$id+'">Восстановить</a><a class="button close-no-trash" href="javascript:void(0);"><i class="flaticon-cross5"></i></a></li>');
         $secondParent.slideUp(200);
       }
@@ -219,21 +219,21 @@ $(document).ready(function(){
               '<h4>Свойства</h4>'+
               '<label>'+
                 '<span class="title">Название</span>'+
-                '<span class="input-text-wrap"><input type="text" name="name" class="ptitle input-edit" value="'+$name+'"></span>'+
+                '<span class="input-text-wrap"><input type="text" name="name" class="ptitle input-edit tg-name" value="'+$name+'"></span>'+
               '</label>'+
               '<label>'+
                 '<span class="title">Описание</span>'+
-                '<span class="input-text-wrap"><input type="text" name="desc" class="ptitle input-edit" value="'+$desc+'"></span>'+
+                '<span class="input-text-wrap"><input type="text" name="desc" class="ptitle input-edit tg-desc" value="'+$desc+'"></span>'+
               '</label>'+
               '<label>'+
                 '<span class="title">Ярлык</span>'+
-                '<span class="input-text-wrap"><input type="text" name="slug" class="ptitle input-edit" value="'+$slug+'"></span>'+
+                '<span class="input-text-wrap"><input type="text" name="slug" class="ptitle input-edit tg-slug" value="'+$slug+'"></span>'+
               '</label>'+
             '</div>'+
           '</fieldset>'+
           '<p class="inline-edit-save submit">'+
             '<a href="#inline-edit" class="button cancel-edit-category right green">Отмена</a>'+
-            '<a href="#inline-edit" class="button left blue">Обновить категорию</a>'+
+            '<a href="#inline-edit" class="button save-edit-category left blue">Обновить категорию</a>'+
             '<span class="error" style="display:none;"></span>'+
           '</p>'+
         '</td>'+
@@ -247,5 +247,38 @@ $(document).ready(function(){
     var $editForm = $(this).parent().parent().parent();
     $editForm.prev().show();
     $editForm.remove();
+  });
+
+  //сохранение редактирования категории
+  $(document).on('click','.save-edit-category',function(){
+    var $this = $(this);
+    var $parent = $this.parent();
+    var $editForm = $parent.parent().parent();
+
+    var $secondParent = $parent.prev();
+
+    var $id = $editForm.attr('data-id'),
+      $name = $secondParent.find('.tg-name').val(),
+      $desc = $secondParent.find('.tg-desc').val(),
+      $slug = $secondParent.find('.tg-slug').val();
+    console.log($id+', '+$name+', '+$desc+', '+$slug);
+    $.ajax({
+      dataType : "html",
+      type     : "POST",
+      data     : {
+        id: $id,
+        name: $name,
+        desc: $desc,
+        slug: $slug,
+        update_category_portfolio: true
+      },
+      url      : '/nimyadmin/portfolio.html',
+      success  : function(data){
+        console.log(data);
+      },
+      error    : function(data) {
+        console.log(data.responseText);
+      }
+    });
   });
 });

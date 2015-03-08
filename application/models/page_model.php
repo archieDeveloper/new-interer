@@ -143,4 +143,12 @@ class Page_model extends CI_Model {
       $this->db->query($sql, $data);
     }
   }
+
+  public function update_category_portfolio($id,$name,$desc,$slug){
+    $sql = "UPDATE `category_portfolio` SET `name` =  ?, `description` = ?, `link` = ? WHERE `id` = ?";
+    $data = array($name,$desc,$slug,$id);
+    $result = $this->db->query($sql, $data);
+
+    print_r($this->db->affected_rows());
+  }
 }

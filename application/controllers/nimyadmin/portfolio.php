@@ -26,6 +26,7 @@ class Portfolio extends CI_Controller {
     if (isset($_POST['id']) && isset($_POST['category_link'])) $this->_update_category_portfolio($_POST['id'], $_POST['category_link']);
     if (isset($_POST['id']) && isset($_POST['trash'])) $this->_trash_portfolio($_POST['id']);
     if (isset($_POST['id']) && isset($_POST['no_trash'])) $this->_no_trash_portfolio($_POST['id']);
+    if (isset($_POST['id']) && isset($_POST['update_category_portfolio'])) $this->_update_category_portfolio_date($_POST['id'], $_POST['name'], $_POST['desc'], $_POST['slug']);
     if (isset($_POST['data_id'])) $this->_position_rewrite($_POST['data_id']);
 
     $this->data['page_title'] = $this->page_title;
@@ -163,6 +164,12 @@ class Portfolio extends CI_Controller {
   {
     $this->load->model('page_model');
     $this->page_model->edit_category_portfolio($id,$link);
+    exit();
+  }
+
+  public function _update_category_portfolio_date($id, $name, $desc, $slug) {
+    $this->load->model('page_model');
+    $this->page_model->update_category_portfolio($id, $name, $desc, $slug);
     exit();
   }
 
