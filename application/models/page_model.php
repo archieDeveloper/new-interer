@@ -137,7 +137,7 @@ class Page_model extends CI_Model {
   }
 
   public function position_rewrite($data_id) {
-    $sql = "UPDATE `category_portfolio` SET `position` =  ? WHERE `id` = ?";
+    $sql = "UPDATE `category_portfolio` SET `position` = ? WHERE `id` = ?";
     foreach($data_id as $position => $id) {
       $data = array($position, $id);
       $this->db->query($sql, $data);
@@ -145,10 +145,25 @@ class Page_model extends CI_Model {
   }
 
   public function update_category_portfolio($id,$name,$desc,$slug){
-    $sql = "UPDATE `category_portfolio` SET `name` =  ?, `description` = ?, `link` = ? WHERE `id` = ?";
-    $data = array($name,$desc,$slug,$id);
-    $result = $this->db->query($sql, $data);
+    $sql = "SELECT `id`, `name`, `description`, `link` FROM `category_portfolio` WHERE (`link` = ? OR `name` = ?) AND (`id` != ?) LIMIT 1";
+    $data = array($slug, $name, $id);
+    $query = $this->db->query($sql, $data);
 
-    print_r($this->db->affected_rows());
+    if(!$query->num_rows()){
+      $sql = "UPDATE `category_portfolio` SET `name` =  ?, `description` = ?, `link` = ? WHERE `id` = ? LIMIT 1";
+      $data = array($name,$desc,$slug,$id);
+      if ($this->db->query($sql, $data)){
+        return 0; //нет ошибок
+      }
+      return 1; //неизвесная ошибка
+    }
+
+    $row = $query->row();
+    if ($row->name == $name){
+      return 2; //ошибка совпадает имя
+    } elseif ($row->link == $slug) {
+      return 3; //ошибка совпадает ярлык
+    }
+    return 1; //неизвесная ошибка
   }
 }

@@ -250,7 +250,8 @@ $(document).ready(function(){
   });
 
   //сохранение редактирования категории
-  $(document).on('click','.save-edit-category',function(){
+  $(document).on('click','.save-edit-category',function(e){
+    e.preventDefault();
     var $this = $(this);
     var $parent = $this.parent();
     var $editForm = $parent.parent().parent();
@@ -258,12 +259,15 @@ $(document).ready(function(){
     var $secondParent = $parent.prev();
 
     var $id = $editForm.attr('data-id'),
-      $name = $secondParent.find('.tg-name').val(),
-      $desc = $secondParent.find('.tg-desc').val(),
-      $slug = $secondParent.find('.tg-slug').val();
-    console.log($id+', '+$name+', '+$desc+', '+$slug);
+      $nameElem = $secondParent.find('.tg-name'),
+      $descElem = $secondParent.find('.tg-desc'),
+      $slugElem = $secondParent.find('.tg-slug');
+
+    var $name = $nameElem.val(),
+      $desc = $descElem.val(),
+      $slug = $slugElem.val();
     $.ajax({
-      dataType : "html",
+      dataType : "json",
       type     : "POST",
       data     : {
         id: $id,
@@ -274,10 +278,30 @@ $(document).ready(function(){
       },
       url      : '/nimyadmin/portfolio.html',
       success  : function(data){
+        switch (data.error) {
+          case 0:
+            var $row = $editForm.prev();
+            $row.find('.tg-name').text($name);
+            $row.find('.tg-desc').text($desc);
+            $row.find('.tg-slug').text($slug);
+
+            $row.fadeIn(300);
+            $editForm.remove();
+            break;
+          case 1:
+            $editForm.find('.error').show().text('Неизвестная ошибка, попробуйте повторить попытку позже!');
+            break;
+          case 2:
+            $editForm.find('.error').show().text('Название «'+$name+'» уже используется другой категорией');
+            break;
+          case 3:
+            $editForm.find('.error').show().text('Ярлык «'+$slug+'» уже используется другой категорией');
+            break;
+        }
         console.log(data);
       },
       error    : function(data) {
-        console.log(data.responseText);
+        console.log(data);
       }
     });
   });

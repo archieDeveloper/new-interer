@@ -712,6 +712,16 @@ table.tg {width: 100%}
   box-sizing: border-box;
 }
 
+.tg td.colspanchange .inline-edit-save .error {
+  color: #9E4242;
+  font-weight: bold;
+  margin-left: 15px;
+  padding: 6px 0;
+  float: left;
+  line-height: 17px;
+  height: 17px;
+}
+
 .left {
   float: left;
   line-height: 17px;

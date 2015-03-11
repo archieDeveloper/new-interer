@@ -168,8 +168,11 @@ class Portfolio extends CI_Controller {
   }
 
   public function _update_category_portfolio_date($id, $name, $desc, $slug) {
+    header('Content-type: application/json');
+    $data = array();
     $this->load->model('page_model');
-    $this->page_model->update_category_portfolio($id, $name, $desc, $slug);
+    $data['error'] = $this->page_model->update_category_portfolio($id, $name, $desc, $slug);
+    echo json_encode($data);
     exit();
   }
 
