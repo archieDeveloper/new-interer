@@ -64,19 +64,39 @@ class Portfolio extends CI_Controller {
     $this->load->view('admin/templates/down', $this->data);
   }
 
-  public function categories() {
-    $this->data['page_title'] = 'Категории';
-    $this->data['page_controller'] = $this->controller;
-    $this->data['page_action'] = $this->action;
-    $this->data['include_js'] = $this->include_js;
-    $this->data['include_css'] = $this->include_css;
+  public function categories($action = null) {
+    switch ($action) {
+      case null:
+        $this->data['page_title'] = 'Категории';
+        $this->data['page_controller'] = $this->controller;
+        $this->data['page_action'] = $this->action;
+        $this->data['include_js'] = $this->include_js;
+        $this->data['include_css'] = $this->include_css;
 
-    $this->load->model('page_model');
-    $this->data['list_category_portfolio'] = $this->page_model->get_list_category_portfolio();
+        $this->load->model('page_model');
+        $this->data['list_category_portfolio'] = $this->page_model->get_list_category_portfolio();
 
-    $this->load->view('admin/templates/up', $this->data);
-    $this->load->view('admin/portfolio/categories', $this->data);
-    $this->load->view('admin/templates/down', $this->data);
+        $this->load->view('admin/templates/up', $this->data);
+        $this->load->view('admin/portfolio/categories/index', $this->data);
+        $this->load->view('admin/templates/down', $this->data);
+        break;
+      case 'add':
+        $this->data['page_title'] = 'Добавить новую категорию';
+        $this->data['page_controller'] = $this->controller;
+        $this->data['page_action'] = $this->action;
+        $this->data['include_js'] = $this->include_js;
+        $this->data['include_css'] = $this->include_css;
+
+        $this->load->model('page_model');
+        $this->data['list_category_portfolio'] = $this->page_model->get_list_category_portfolio();
+
+        $this->load->view('admin/templates/up', $this->data);
+        $this->load->view('admin/portfolio/categories/add', $this->data);
+        $this->load->view('admin/templates/down', $this->data);
+        break;
+      default:
+        show_404();
+    }
   }
 
   public function _upload() {

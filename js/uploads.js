@@ -232,8 +232,8 @@ $(document).ready(function(){
             '</div>'+
           '</fieldset>'+
           '<p class="inline-edit-save submit">'+
-            '<a href="#inline-edit" class="button cancel-edit-category right green">Отмена</a>'+
-            '<a href="#inline-edit" class="button save-edit-category left blue">Обновить категорию</a>'+
+            '<a href="#inline-edit" class="button cancel-edit-category right green"><i class="flaticon-cross5"></i> Отменить</a>'+
+            '<a href="#inline-edit" class="button save-edit-category left blue"><i class="flaticon-checkmark2"></i> Обновить категорию</a>'+
             '<span class="error" style="display:none;"></span>'+
           '</p>'+
         '</td>'+
