@@ -2,12 +2,12 @@
 
 class Home extends CI_Controller {
 
-    var $data = array();
+  var $data = array();
 
-    public function index()
-    {
-        if(!$this->auth->root()){ header("Location: /admin/login"); exit(); }
-        
-        $this->templates->view($this->data, array('welcome_message'));
-    }
+  public function index()
+  {
+    if(!$this->auth->root()){ header("Location: /admin/login"); exit(); }
+
+    $this->templates->view($this->data, array('welcome_message'));
+  }
 }

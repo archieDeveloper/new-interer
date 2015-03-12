@@ -6,14 +6,13 @@ class Portfolio extends CI_Controller {
     $controller,
     $action;
 
-  function __construct(){
+  function __construct() {
     parent::__construct();
     $this->controller = $this->uri->segment(1);
     $this->action = $this->uri->segment(2);
   }
 
-  public function index()
-  {
+  public function index() {
     $this->load->model('page_model');
     $this->data['page_list'] = $this->page_model->get_pages_list();
     $this->data['page_info'] = $this->page_model->get_page($this->controller);
