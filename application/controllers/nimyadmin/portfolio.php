@@ -36,13 +36,13 @@ class Portfolio extends CI_Controller {
     $this->data['include_js'] = $this->include_js;
     $this->data['include_css'] = $this->include_css;
 
-    $this->load->model('page_model');
+    $this->load->model('portfolio_model');
     if (!isset($_GET['page'])) { $_GET['page'] = 1; }
     $page = (integer) $_GET['page'];
     if (!$page) { show_404(); }
-    $this->data['portfolio'] = $this->page_model->get_portfolio(null, $page);
+    $this->data['portfolio'] = $this->portfolio_model->get(null, $page);
 
-    $this->data['num_pages'] = $this->page_model->get_num_portfolio();
+    $this->data['num_pages'] = $this->portfolio_model->get_num();
 
     $this->load->model('category_model');
     $this->data['list_category_portfolio'] = $this->category_model->get_list();
@@ -99,8 +99,8 @@ class Portfolio extends CI_Controller {
       echo json_encode($error);
     } else {
       $data = $this->upload->data();
-      $this->load->model('page_model');
-      $data['current_row_id'] = $this->page_model->add_portfolio($data['file_name']);
+      $this->load->model('portfolio_model');
+      $data['current_row_id'] = $this->portfolio_model->add($data['file_name']);
 
       $config['image_library'] = 'gd2'; // выбираем библиотеку
       $config['source_image'] = $data['full_path'];
@@ -157,16 +157,16 @@ class Portfolio extends CI_Controller {
   public function _update_title_portfolio($id,$title) {
     // header('Content-type: application/json');
 
-    $this->load->model('page_model');
-    $this->page_model->edit_title_portfolio($id,$title);
+    $this->load->model('portfolio_model');
+    $this->portfolio_model->edit_title($id,$title);
 
     exit();
   }
 
   public function _update_category_portfolio($id,$link)
   {
-    $this->load->model('page_model');
-    $this->page_model->edit_category_portfolio($id,$link);
+    $this->load->model('portfolio_model');
+    $this->portfolio_model->edit_category($id,$link);
     exit();
   }
 
@@ -189,15 +189,15 @@ class Portfolio extends CI_Controller {
   }
   public function _trash_portfolio($id)
   {
-    $this->load->model('page_model');
-    $this->page_model->trash_portfolio($id);
+    $this->load->model('portfolio_model');
+    $this->portfolio_model->trash($id);
     exit();
   }
 
   public function _no_trash_portfolio($id)
   {
-    $this->load->model('page_model');
-    $this->page_model->no_trash_portfolio($id);
+    $this->load->model('portfolio_model');
+    $this->portfolio_model->no_trash($id);
     exit();
   }
 
