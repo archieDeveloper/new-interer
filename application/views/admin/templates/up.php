@@ -34,6 +34,8 @@
       <div class="left-aside">
         <span><i class="flaticon-menu10"></i> Меню</span>
         <ul>
+          <li><a href="/nimyadmin.html">Консоль</a></li>
+          <li class="separator"></li>
           <li><a href="/nimyadmin/pages.html">Страницы</a></li>
           <li <?php echo !empty($page_controller) && $page_controller == 'portfolio' ? 'class="active"' : ''; ?>>
             <a href="/nimyadmin/portfolio.html">Выполненные работы</a>
@@ -52,6 +54,9 @@
           </li>
           <li><a href="/nimyadmin/contacts.html">Контакты</a></li>
           <li><a href="/nimyadmin/feedback.html">Обратная связь</a></li>
+          <li class="separator"></li>
+          <li><a href="/nimyadmin/feedback.html">Модераторы</a></li>
+          <li><a href="/nimyadmin/feedback.html">Настройки</a></li>
         </ul>
       </div>
       <div class="content">

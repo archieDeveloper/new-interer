@@ -35,10 +35,9 @@ body {
 }
 
 .wrap-container {
-  width: 1200px;
+  width: 100%;
   background: #fff;
-  margin: 20px auto 0 auto;
-  border-radius: 5px;
+  margin: 0 auto;
   box-shadow: 0 3px 10px rgba(0,0,0,.2);
   overflow: hidden;
   border-bottom: 4px solid #F7F7F7
@@ -138,6 +137,10 @@ body {
   background: #eee;
   padding: 20px 0;
   float: left
+}
+
+.left-aside ul li.separator {
+  height: 10px;
 }
 
 .left-aside ul li.active a {
@@ -266,9 +269,11 @@ body {
 }
 
 .content {
-  width: 960px;
-  padding: 20px;
-  float: left
+  width: 100%;
+  padding: 30px 240px 30px 40px;
+  float: left;
+  margin-right: -200px;
+  box-sizing: border-box
 }
 
 .content h2 {
@@ -660,12 +665,22 @@ body {
   padding: 0;
   margin: 0;
 }
+.table-wrap {float: right; width: 70%}
+.table-wrap p {
+  color: #999;
+  margin-top: 10px;
+}
 
+.table-wrap ul {
+  margin-left: 20px;
+  color: #999;
+}
 table.tg {width: 100%}
-.tg  {border-collapse:collapse;border-spacing:0;border: 0}
+.tg {border-collapse:collapse;border-spacing:0;border: 0}
 .tg td{padding:10px 15px;border-style:solid;border-width:0px;word-break:normal;border-color:#ccc}
 .tg tr {height: 60px}
 .tg thead tr {height: 45px}
+.tg tfoot tr {height: 45px}
 .tg tr:hover {box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1)}
 .tg tr:hover td.tg-tools .button {display: inline}
 .tg th{text-align:left;padding:10px 15px;text-transform: uppercase;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;border-color:#ccc;color:#eee;background-color:#2C3E50;}
@@ -673,7 +688,7 @@ table.tg {width: 100%}
 .tg .tg-031e{background-color:#eee}
 .tg .tg-jh46{background-color: #F9F9F9;border: 2px solid #C3E27A;}
 .tg td.tg-checkbox {width: 4%; text-align: center}
-.tg td.tg-tools {width: 10%}
+.tg td.tg-tools {width: 14%}
 .tg td.tg-tools .button{display: none}
 .tg td.tg-name {width: 15%}
 .tg td.tg-desc {width: 35%}
@@ -741,10 +756,16 @@ table.tg {width: 100%}
 }
 
 .form-wrap {
+  width: 28%;
+  float: left;
+}
+
+.form-wrap h3 {
+  margin-bottom: 20px;
 }
 
 #addcat .form-field {
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 
 #addcat .form-field label{

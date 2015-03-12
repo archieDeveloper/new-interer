@@ -213,7 +213,7 @@ $(document).ready(function(){
     $secondParent.hide();
     $secondParent.after(
       '<tr class="tg-jh46" data-id="'+$id+'">'+
-        '<td colspan="5" class="colspanchange">'+
+        '<td colspan="6" class="colspanchange">'+
           '<fieldset>'+
             '<div class="inline-edit-col">'+
               '<h4>Свойства</h4>'+
@@ -301,6 +301,49 @@ $(document).ready(function(){
         console.log(data);
       },
       error    : function(data) {
+        console.log(data);
+      }
+    });
+  });
+
+  //добавление категории
+  $(document).on('click','#add-category-portfolio',function(e){
+    e.preventDefault();
+    var $this = $(this);
+    $this.prop('disabled', true);
+
+    var $form = $('#addcat');
+
+    var $inputName = $form.find('#tag-name'),
+      $inputDesc = $form.find('#tag-description'),
+      $inputSlug = $form.find('#tag-slug');
+
+    var $name = $inputName.val(),
+      $desc = $inputDesc.val(),
+      $slug = $inputSlug.val();
+
+    $.ajax({
+      dataType : "json",
+      type     : "POST",
+      data     : {
+        name: $name,
+        desc: $desc,
+        slug: $slug,
+        add_category_portfolio: true
+      },
+      url      : '/nimyadmin/portfolio.html',
+      success  : function(data){
+        $this.prop('disabled', false);
+        switch (data.error) {
+          case 0:
+            break;
+          case 1:
+            break;
+          case 2:
+            break;
+          case 3:
+            break;
+        }
         console.log(data);
       }
     });
