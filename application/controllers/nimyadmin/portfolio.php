@@ -43,7 +43,9 @@ class Portfolio extends CI_Controller {
     $this->data['portfolio'] = $this->page_model->get_portfolio(null, $page);
 
     $this->data['num_pages'] = $this->page_model->get_num_portfolio();
-    $this->data['list_category_portfolio'] = $this->page_model->get_list_category_portfolio();
+
+    $this->load->model('category_model');
+    $this->data['list_category_portfolio'] = $this->category_model->get_list();
 
     $this->load->view('admin/templates/up', $this->data);
     $this->load->view('admin/portfolio/index', $this->data);
@@ -57,8 +59,8 @@ class Portfolio extends CI_Controller {
     $this->data['include_js'] = $this->include_js;
     $this->data['include_css'] = $this->include_css;
 
-    $this->load->model('page_model');
-    $this->data['list_category_portfolio'] = $this->page_model->get_list_category_portfolio();
+    $this->load->model('category_model');
+    $this->data['list_category_portfolio'] = $this->category_model->get_list();
 
     $this->load->view('admin/templates/up', $this->data);
     $this->load->view('admin/portfolio/add', $this->data);
@@ -72,8 +74,8 @@ class Portfolio extends CI_Controller {
     $this->data['include_js'] = $this->include_js;
     $this->data['include_css'] = $this->include_css;
 
-    $this->load->model('page_model');
-    $this->data['list_category_portfolio'] = $this->page_model->get_list_category_portfolio();
+    $this->load->model('category_model');
+    $this->data['list_category_portfolio'] = $this->category_model->get_list();
 
     $this->load->view('admin/templates/up', $this->data);
     $this->load->view('admin/portfolio/categories', $this->data);
@@ -171,8 +173,8 @@ class Portfolio extends CI_Controller {
   public function _update_category_portfolio_date($id, $name, $desc, $slug) {
     header('Content-type: application/json');
     $data = array();
-    $this->load->model('page_model');
-    $data['error'] = $this->page_model->update_category_portfolio($id, $name, $desc, $slug);
+    $this->load->model('category_model');
+    $data['error'] = $this->category_model->update($id, $name, $desc, $slug);
     echo json_encode($data);
     exit();
   }
@@ -180,8 +182,8 @@ class Portfolio extends CI_Controller {
   public function _add_category_portfolio($name, $desc, $slug) {
     header('Content-type: application/json');
     $data = array();
-    $this->load->model('page_model');
-    $data['error'] = $this->page_model->add_category_portfolio($name, $desc, $slug);
+    $this->load->model('category_model');
+    $data['error'] = $this->category_model->add($name, $desc, $slug);
     echo json_encode($data);
     exit();
   }
@@ -201,8 +203,8 @@ class Portfolio extends CI_Controller {
 
   public function _position_rewrite($data_links)
   {
-    $this->load->model('page_model');
-    $this->page_model->position_rewrite($data_links);
+    $this->load->model('category_model');
+    $this->category_model->position_rewrite($data_links);
     exit();
   }
 }
