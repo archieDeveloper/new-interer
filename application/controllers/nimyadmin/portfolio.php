@@ -71,7 +71,7 @@ class Portfolio extends CI_Controller {
     $this->data['page_title'] = 'Категории';
     $this->data['page_controller'] = $this->controller;
     $this->data['page_action'] = $this->action;
-    $this->data['include_js'] = $this->include_js;
+    $this->data['include_js'] = array('admin/category');
     $this->data['include_css'] = $this->include_css;
 
     $this->load->model('category_model');
@@ -143,8 +143,7 @@ class Portfolio extends CI_Controller {
 
       $this->image_lib->initialize($config);
 
-      if ( ! $this->image_lib->resize())
-      {
+      if ( ! $this->image_lib->resize()) {
         $data['resize_error'] = $this->image_lib->display_errors();
       }
 
@@ -183,7 +182,7 @@ class Portfolio extends CI_Controller {
     header('Content-type: application/json');
     $data = array();
     $this->load->model('category_model');
-    $data['error'] = $this->category_model->add($name, $desc, $slug);
+    $data = $this->category_model->add($name, $desc, $slug);
     echo json_encode($data);
     exit();
   }

@@ -15,11 +15,12 @@ class Category_model extends CI_Model {
   }
 
   public function position_rewrite($data_id) {
-    $sql = "UPDATE `category_portfolio` SET `position` = ? WHERE `id` = ?";
+    $strArr = array();
     foreach($data_id as $position => $id) {
-      $data = array($position, $id);
-      $this->db->query($sql, $data);
+      $strArr[] = '('.$id.','.$position.')';
     }
+    $sql = "INSERT INTO `category_portfolio` (`id`, `position`) VALUES ".implode(',',$strArr)." ON DUPLICATE KEY UPDATE `position` = VALUES(`position`)";
+    $this->db->query($sql);
   }
 
   public function update($id,$name,$desc,$slug){
@@ -46,6 +47,7 @@ class Category_model extends CI_Model {
   }
 
   public function add($name,$desc,$slug){
+    $data_result = array('error' => 0, 'result' => null);
     $sql = "SELECT `id`, `name`, `description`, `link` FROM `category_portfolio` WHERE `link` = ? OR `name` = ? LIMIT 1";
     $data = array($slug, $name);
     $query = $this->db->query($sql, $data);
@@ -57,18 +59,24 @@ class Category_model extends CI_Model {
 
       $sql = "INSERT INTO `category_portfolio` (`link`, `name`, `description`, `position`) VALUES (?, ?, ?, 0)";
       $data = array($name,$desc,$slug);
-      if ($this->db->query($sql, $data)){
-        return 0; //нет ошибок
+      $query = $this->db->query($sql, $data);
+      if ($query){
+        $data_result['result'] = $this->db->insert_id();
+        return $data_result; //нет ошибок
       }
-      return 1; //неизвесная ошибка
+      $data_result['error'] = 1;
+      return $data_result; //неизвесная ошибка
     }
 
     $row = $query->row();
     if ($row->name == $name){
-      return 2; //ошибка совпадает имя
+      $data_result['error'] = 2;
+      return $data_result; //ошибка совпадает имя
     } elseif ($row->link == $slug) {
-      return 3; //ошибка совпадает ярлык
+      $data_result['error'] = 3;
+      return $data_result; //ошибка совпадает ярлык
     }
-    return 1; //неизвесная ошибка
+    $data_result['error'] = 1;
+    return $data_result; //неизвесная ошибка
   }
 }
