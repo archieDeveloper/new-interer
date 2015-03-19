@@ -58,7 +58,7 @@ class Category_model extends CI_Model {
       $this->db->query($sql, $data);
 
       $sql = "INSERT INTO `category_portfolio` (`link`, `name`, `description`, `position`) VALUES (?, ?, ?, 0)";
-      $data = array($name,$desc,$slug);
+      $data = array($slug,$name,$desc);
       $query = $this->db->query($sql, $data);
       if ($query){
         $data_result['result'] = $this->db->insert_id();
@@ -78,5 +78,11 @@ class Category_model extends CI_Model {
     }
     $data_result['error'] = 1;
     return $data_result; //неизвесная ошибка
+  }
+
+  public function delete($id) {
+    $sql = "DELETE FROM `category_portfolio` WHERE `id` = ?";
+    $data = array($id);
+    return $this->db->query($sql, $data);
   }
 }

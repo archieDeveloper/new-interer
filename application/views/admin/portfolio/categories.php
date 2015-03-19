@@ -84,6 +84,7 @@
   <form id="delete-category" method="post" action="/nimyadmin/portfolio.html" class="validate">
     <div class="form-field addcat-name">
       <input class="input-edit" name="tag-name" id="tag-name" type="text" size="30" aria-required="true" required>
+      <input id="tag-id" name="tag-id" type="hidden" aria-required="true" required value="">
       <p class="error"></p>
     </div>
     <p class="submit">

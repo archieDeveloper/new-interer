@@ -28,6 +28,7 @@ class Portfolio extends CI_Controller {
     if (isset($_POST['id']) && isset($_POST['no_trash'])) $this->_no_trash_portfolio($_POST['id']);
     if (isset($_POST['id']) && isset($_POST['update_category_portfolio'])) $this->_update_category_portfolio_date($_POST['id'], $_POST['name'], $_POST['desc'], $_POST['slug']);
     if (isset($_POST['add_category_portfolio'])) $this->_add_category_portfolio($_POST['name'], $_POST['desc'], $_POST['slug']);
+    if (isset($_POST['delete_category_portfolio'])) $this->_delete_category_portfolio($_POST['id']);
     if (isset($_POST['data_id'])) $this->_position_rewrite($_POST['data_id']);
 
     $this->data['page_title'] = $this->page_title;
@@ -186,6 +187,16 @@ class Portfolio extends CI_Controller {
     echo json_encode($data);
     exit();
   }
+
+  public function _delete_category_portfolio($id) {
+    header('Content-type: application/json');
+    $data = array();
+    $this->load->model('category_model');
+    $data = $this->category_model->delete($id);
+    echo json_encode($data);
+    exit();
+  }
+
   public function _trash_portfolio($id)
   {
     $this->load->model('portfolio_model');

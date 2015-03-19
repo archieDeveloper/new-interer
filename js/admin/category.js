@@ -164,7 +164,7 @@ $(document).ready(function(){
     $modelWindow.dialog( "close" );
   });
 
-  //удаление категории
+  //открытие модального окна удаления категории
   $(document).on('click','.delete-category',function(e){
     e.preventDefault();
     var $deleteCategoryPortfolio = $('#delete-category-portfolio');
@@ -172,13 +172,15 @@ $(document).ready(function(){
     var $this = $(this),
       $row = $this.parent().parent();
 
-    var name = $row.find('td.tg-name').text();
+    var name = $row.find('td.tg-name').text(),
+      id = $this.attr('data-id');
 
-    var $modelWindowSpan = $modelWindow.find('span.tg-name');
+    var $modelWindowSpan = $modelWindow.find('span.tg-name'),
+      $modelWindowInput = $modelWindow.find('#tag-id');
     $modelWindowSpan.text(name);
+    $modelWindowInput.val(id);
 
-
-    var $input = $('#delete-category .input-edit');
+    var $input = $('#delete-category #tag-name');
     $input.focus().val('');
     $modelWindow.dialog( "open" );
 
@@ -187,6 +189,51 @@ $(document).ready(function(){
       $deleteCategoryPortfolio.prop('disabled', true);
       if ($this.val() === name) {
         $deleteCategoryPortfolio.prop('disabled', false);
+      }
+    });
+  });
+
+  //удаление категории
+  $(document).on('click','#delete-category-portfolio',function(e){
+    e.preventDefault();
+
+    var $this = $(this),
+      $form = $this.parent().parent(),
+      $inputId = $form.find('#tag-id');
+
+    $this.prop('disabled', true);
+
+    var id = $inputId.val();
+
+    $.ajax({
+      dataType : "json",
+      type     : "POST",
+      data     : {
+        id: id,
+        delete_category_portfolio: true
+      },
+      url      : '/nimyadmin/portfolio.html',
+      success  : function(data){
+        $this.prop('disabled', false);
+
+        var $table = $('#cat-list-tb');
+
+        var $trDelete = $table.find('tr[data-id='+id+']');
+        $trDelete.remove();
+
+        var $tr = $table.find('tr');
+        var trClass = ['tg-4eph','tg-031e'],
+          trKey = false;
+        $tr.each(function(){
+          trKey = !trKey;
+          var $this = $(this);
+          $this.removeClass();
+          $this.addClass(trClass[trKey ? 1 : 0]);
+        });
+        $modelWindow.dialog( "close" );
+      },
+      error: function(data) {
+        console.log(data);
       }
     });
   });
@@ -235,7 +282,7 @@ $(document).ready(function(){
                                 '<td class="tg-num">0</td>'+
                                 '<td class="tg-tools">'+
                                 '<a class="button blue edit-category" href="#" data-id="'+data.result+'"><i class="flaticon-edit4"></i></a>'+
-                                '<a class="button" href="#"><i class="flaticon-trash3"></i></a>'+
+                                '<a class="button delete-category" href="#" data-id="'+data.result+'"><i class="flaticon-trash3"></i></a>'+
                                 '</td>'+
                               '</tr>');
 
