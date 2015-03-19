@@ -13,6 +13,11 @@ class Pages extends CI_Controller {
     parent::__construct();
     $this->controller = $this->uri->segment(1);
     $this->action = $this->uri->segment(2);
+
+    $this->load->library('auth');
+    if (!$this->auth->root()) {
+      header("Location: /nimyadmin/login.html"); exit();
+    }
   }
 
   public function index() {

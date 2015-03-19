@@ -89,7 +89,8 @@ body {
   text-align: left;
   font-family: 'Clear Sans Thin';
   font-weight: normal;
-  padding-left: 20px
+  padding-left: 20px;
+  display: inline-block
 }
 
 .login-form {

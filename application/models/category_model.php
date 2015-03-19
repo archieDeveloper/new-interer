@@ -81,6 +81,7 @@ class Category_model extends CI_Model {
   }
 
   public function delete($id) {
+    if ($id == 1) return;
     $sql = "DELETE FROM `category_portfolio` WHERE `id` = ?";
     $data = array($id);
     return $this->db->query($sql, $data);

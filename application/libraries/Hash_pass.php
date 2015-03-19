@@ -28,21 +28,21 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Hash_pass {
 
-    public function enhash($pass, $salt = null) {
-        if (is_null($salt) || empty($salt)) {
-            $salt = '$2a$10$'.md5(crypt(time().time()*2)).'$';
-            $data['salt'] = $salt;
-        }
-        $hash_pass = crypt($pass, $salt);
-        $data['hash_pass'] = $hash_pass;
-        return $data;
+  public function enhash($pass, $salt = null) {
+    if (is_null($salt) || empty($salt)) {
+      $salt = '$2a$10$'.md5(crypt(time().time()*2)).'$';
+      $data['salt'] = $salt;
     }
+    $hash_pass = crypt($pass, $salt);
+    $data['hash_pass'] = $hash_pass;
+    return $data;
+  }
 
-    public function genRandStr($length = 8){
-        $chars = 'abdefhiknrstyzABDEFGHKNQRSTYZ23456789';
-        $numChars = strlen($chars);
-        $string = '';
-        for ($i = 0; $i < $length; $i++) { $string .= substr($chars, rand(1, $numChars) - 1, 1); }
-        return $string;
-    }
+  public function genRandStr($length = 8){
+    $chars = 'abdefhiknrstyzABDEFGHKNQRSTYZ23456789';
+    $numChars = strlen($chars);
+    $string = '';
+    for ($i = 0; $i < $length; $i++) { $string .= substr($chars, rand(1, $numChars) - 1, 1); }
+    return $string;
+  }
 }

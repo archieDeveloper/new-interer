@@ -29,6 +29,8 @@
     </div>
     <div class="header">
       <h1>Админ панель</h1>
+      <a href="/" target="_blank" class="button blue">Просмотреть сайт</a>
+      <a href="/nimyadmin/logout.html" class="button">Выйти</a>
     </div>
     <div class="wrap-content">
       <div class="left-aside">
