@@ -1,4 +1,5 @@
 $(document).ready(function(){
+  "use strict";
   //таблица категорий
   var $catListTb = $("#cat-list-tb");
 
