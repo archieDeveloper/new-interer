@@ -16,7 +16,7 @@
         <label for="name">Сообщение:</label>
         <textarea class="obr_input" name="text" required></textarea>
         <p style="font-size:10px; color:#727272; margin:0 0 15px 0; text-transform: uppercase;">Все поля обязательны для заполнения!</p>
-        <input class="buttom" name="submit" type="submit" value="Отправить">
+        <input class="button" name="submit" type="submit" value="Отправить">
       </form>
     </div>
 

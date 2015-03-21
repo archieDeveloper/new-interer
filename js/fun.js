@@ -36,7 +36,7 @@ $(document).ready(function(){
     $form_obr.fadeOut('fast');
   });
 
-  $(document).on('click','#form_obr button.buttom',function(){
+  $(document).on('click','#form_obr button.button',function(){
     var $button = $(this);
     var $name = $('#form_obr #name').val();
     var $number = $('#form_obr #number').val();
@@ -190,7 +190,7 @@ $(window).load(function() {
         searchStr += '?id_product='+id_product;
       }
       history.pushState({foo: 'bar'}, 'Title', window.location.pathname+searchStr);
-      this.title = '<b class="title-product">' + (this.title ? this.title : '') + ' / </b><span class="pos-product">Кутузова д.48 кв.39</span><br>Поделись с друзьями в социальных сетях<br><script type="text/javascript" src="//yandex.st/share/share.js" charset="utf-8"></script><div class="yashare-auto-init" data-yashareL10n="ru" data-yashareQuickServices="vkontakte,facebook,twitter,odnoklassniki,moimir,gplus" data-yashareTheme="counter"></div><button class="buttom think">Записаться на бесплатный замер</button>';
+      this.title = '<b class="title-product">' + (this.title ? this.title : '') + ' / </b><span class="pos-product">Кутузова д.48 кв.39</span><br>Поделись с друзьями в социальных сетях<br><script type="text/javascript" src="//yandex.st/share/share.js" charset="utf-8"></script><div class="yashare-auto-init" data-yashareL10n="ru" data-yashareQuickServices="vkontakte,facebook,twitter,odnoklassniki,moimir,gplus" data-yashareTheme="counter"></div><button class="button think">Записаться на бесплатный замер</button>';
     },
     helpers		: {
       title	: { type : 'inside' }
@@ -207,7 +207,7 @@ $(window).load(function() {
     $.fancybox.open([{
       titleShow	: true,
       href:'/img/portfolio/big/'+$curImg,
-      title: '<b class="title-product">' + ($curTitle ? $curTitle : '') + ' / </b><span class="pos-product">Кутузова д.48 кв.39</span><br>Поделись с друзьями в социальных сетях<br><script type="text/javascript" src="//yandex.st/share/share.js" charset="utf-8"></script><div class="yashare-auto-init" data-yashareL10n="ru" data-yashareQuickServices="vkontakte,facebook,twitter,odnoklassniki,moimir,gplus" data-yashareTheme="counter"></div><button class="buttom think">Записаться на бесплатный замер</button>',
+      title: '<b class="title-product">' + ($curTitle ? $curTitle : '') + ' / </b><span class="pos-product">Кутузова д.48 кв.39</span><br>Поделись с друзьями в социальных сетях<br><script type="text/javascript" src="//yandex.st/share/share.js" charset="utf-8"></script><div class="yashare-auto-init" data-yashareL10n="ru" data-yashareQuickServices="vkontakte,facebook,twitter,odnoklassniki,moimir,gplus" data-yashareTheme="counter"></div><button class="button think">Записаться на бесплатный замер</button>',
       afterClose	: function() {
         var id_product = $(this.element).attr('data-id');
 

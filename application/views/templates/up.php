@@ -61,7 +61,7 @@
         <div class="cleaner"></div>
       </span>
     </div>
-    <button style="float:right;" class="buttom" name="add_feedback">Записаться</button>
+    <button style="float:right;" class="button" name="add_feedback">Записаться</button>
   </form>
 </div>
 
