@@ -5,15 +5,15 @@
       <p>Связаться с нами, вы можете по телефону или заполнив форму ниже.</p>
 
       <form method="post" id="obr_sva">
-        <label>Ваше имя:</label>
+        <label for="author">Ваше имя:</label>
         <input class="obr_input" name="author" type="text" required><br>
-        <label>Email:</label>
+        <label for="email">Email:</label>
         <input class="obr_input" name="email" type="text" required><br>
-        <label>Телефон:</label>
+        <label for="number">Телефон:</label>
         <input class="obr_input" name="number" type="text" required><br>
-        <label>Тема письма:</label>
+        <label for="theme">Тема письма:</label>
         <input class="obr_input" name="theme" type="text" required><br>
-        <label>Сообщение:</label>
+        <label for="name">Сообщение:</label>
         <textarea class="obr_input" name="text" required></textarea>
         <p style="font-size:10px; color:#727272; margin:0 0 15px 0; text-transform: uppercase;">Все поля обязательны для заполнения!</p>
         <input class="buttom" name="submit" type="submit" value="Отправить">

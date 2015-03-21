@@ -40,9 +40,9 @@
   <div id="order_form_title"><h2>Запись на замер</h2></div>
   <div id="bobo"><div style='display:none;' id='status'></div></div>
   <form id="order_form" method="post">
-    <div><label>Ваше имя:</label> <input style="float:right; width: 380px;" type="text" name="name" id="name" required><div class="cleaner"></div></div>
-    <div><label>Телефон:</label> <input style="float:right; width: 380px;" type="text" name="number" id="number" required><div class="cleaner"></div></div>
-    <div><label>Адрес:</label> <input style="float:right; width: 380px;" type="text" name="address" id="address" required><div class="cleaner"></div></div>
+    <div><label for="name">Ваше имя:</label> <input style="float:right; width: 380px;" type="text" name="name" id="name" required><div class="cleaner"></div></div>
+    <div><label for="number">Телефон:</label> <input style="float:right; width: 380px;" type="text" name="number" id="number" required><div class="cleaner"></div></div>
+    <div><label for="address">Адрес:</label> <input style="float:right; width: 380px;" type="text" name="address" id="address" required><div class="cleaner"></div></div>
     <div><label style="width: 121px;">Желаемое время:</label>
       <span class="select-prev">с</span>
       <span class="select" id="start_time">
