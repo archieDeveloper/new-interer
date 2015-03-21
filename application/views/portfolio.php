@@ -1,6 +1,5 @@
 <div class="wrap">
   <div class="wrap-center">
-    <h2>Выполненые работы</h2>
     <div class="left-aside">
       <span>Категории</span>
       <ul>

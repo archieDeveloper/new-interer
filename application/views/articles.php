@@ -1,6 +1,5 @@
 <div class="wrap">
   <div class="wrap-center">
-    <h2><?=$page_info->title?></h2>
     <ul class="pagenation">
         <?php pagination($_GET['page'], $num_pages); ?>
         <div class="cleaner"></div>

@@ -68,7 +68,7 @@ a {
 
 .pagenation li a {
   display: block;
-  padding: 0 10px;
+  padding: 0 12px;
   color: #fff;
   font-weight: bold;
   border-radius: 3px;
@@ -80,6 +80,7 @@ a {
   text-decoration: none;
   text-transform: uppercase;
   font-size: 12px;
+  font-family: 'Boblic';
 }
 
 .pagenation li a:hover {
@@ -97,55 +98,51 @@ a {
 .left-aside {
   float: left;
   width: 180px;
-
-  margin-top: 10px;
 }
 
 .wrap-products {
   float: right;
-  width: 750px;
+  width: 820px;
   margin-right: -30px;
-  margin-top: 10px;
 }
 
 .wrap-product {
   float: left;
-  width: 218px;
-  height: 250px;
+  width: 237px;
   text-align: center;
   margin-bottom: 30px;
   margin-right: 30px;
-  border: 1px solid #EEE;
-  border-radius: 3px;
+  border: 3px solid #EEE;
   background: #fff;
+  border-radius: 3px;
 }
 
 .wrap-product:hover {
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-color: #E92253;
 }
 
 .wrap-product img {
   display: block;
-  margin: 0 auto;
-  margin-bottom: 10px;
-  margin-top: 10px;
-  width: 200px;
+  margin: 10px auto;
+  width: 217px;
 }
 
 .wrap-product a {
   color: #444;
   text-decoration: none;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: bold;
 }
 
 .wrap-product a:hover {
   color: #860D2E;
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 .wrap-product span {
   display: block;
+  margin: 15px;
+  font-family: 'Boblic';
 }
 
 #page-up {
@@ -461,7 +458,7 @@ a {
 .title_news a{
   color: #444;
   text-decoration: none;
-  font-size: 18px;
+  font-size: 20px;
   font-weight: bold;
 }
 
@@ -723,15 +720,15 @@ a {
 }
 
 .left-aside span {
-  font-size: 16px;
+  font-size: 20px;
   font-weight: bold;
   text-transform: uppercase;
+  font-family: 'Boblic';
 }
 
 .left-aside ul {
   list-style-type: none;
   margin-top: 10px;
-  border-top: 1px solid #eee;
   display: block;
 }
 
@@ -739,8 +736,8 @@ a {
   display: block;
   text-decoration: none;
   color: #CC1558;
-  padding: 5px;
-  border-bottom: 1px solid #eee;
+  padding: 5px 10px;
+  font-family: 'Boblic';
 }
 
 .left-aside ul li a:hover {
