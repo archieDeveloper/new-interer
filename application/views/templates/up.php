@@ -2,6 +2,7 @@
 <html>
 <head>
   <link rel="stylesheet" type="text/css" href="/styles/style.css">
+  <link rel="stylesheet" type="text/css" href="/fonts/boblic/boblic.css">
   <link rel="stylesheet" type="text/css" href="/styles/flaticon.css">
   <link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700,400italic,700italic&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
 
@@ -21,6 +22,7 @@
   <?php endif; ?>
 
   <script type="text/javascript" src="/js/fun.js"></script>
+  <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon">
   <meta content="/img/soclogo.jpg" property="og:image">
   <meta charset = "utf-8">
 
@@ -122,6 +124,9 @@
         </div>
       </div>
       <div class="swiper-pagination"></div>
+      <!-- If we need navigation buttons -->
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
     </div>
   <?php endif; ?>
 </div>
