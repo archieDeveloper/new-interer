@@ -8,7 +8,6 @@
 
   <script type="text/javascript" src="/js/lib/jquery-1.10.2.min.js"></script>
   <script type="text/javascript" src="/js/lib/jquery-ui-1.10.4.custom.min.js"></script>
-  <script type="text/javascript" src="/js/admin.js"></script>
   <?php foreach ($include_js as $js_path) :?>
     <script type="text/javascript" src="/js/<?=$js_path?>.js"></script>
   <?php endforeach; ?>

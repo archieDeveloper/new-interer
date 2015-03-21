@@ -1,19 +1,5 @@
 $(document).ready(function(){
   "use strict";
-	$('#slides').slidesjs({
-    width: 940,
-    height: 380,
-    navigation: false,
-    play: {
-      active: false,
-      effect: "slide",
-      interval: 10000,
-      auto: true,
-      swap: true,
-      pauseOnHover: true,
-      restartDelay: 2500
-    }
-  });
 
   $(document).scroll(function(){
     if($(document).scrollTop() <= 320) $('#page-up').fadeOut(); else $('#page-up').fadeIn();
@@ -154,7 +140,7 @@ $(window).load(function() {
 
       var arrGetLength = arrGet.length;
       for (var i = 0; i < arrGetLength; i++) {
-          arrGet[i] = arrGet[i].split('=');
+        arrGet[i] = arrGet[i].split('=');
       }
 
       var newArrGet = [];
@@ -182,7 +168,7 @@ $(window).load(function() {
 
         var arrGetLength = arrGet.length;
         for (var i = 0; i < arrGetLength; i++) {
-            arrGet[i] = arrGet[i].split('=');
+          arrGet[i] = arrGet[i].split('=');
         }
 
         var newArrGet = [];
@@ -230,7 +216,7 @@ $(window).load(function() {
 
         var arrGetLength = arrGet.length;
         for (var i = 0; i < arrGetLength; i++) {
-            arrGet[i] = arrGet[i].split('=');
+          arrGet[i] = arrGet[i].split('=');
         }
 
         var newArrGet = [];

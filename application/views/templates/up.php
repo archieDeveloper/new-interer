@@ -7,7 +7,6 @@
 
   <script type="text/javascript" src="/js/lib/jquery-1.10.2.min.js"></script>
   <script type="text/javascript" src="/js/lib/jquery-ui-1.10.4.custom.min.js"></script>
-  <script type="text/javascript" src="/js/lib/jquery.slides.min.js"></script>
 
   <script type="text/javascript" src="/js/lib/jquery.mousewheel-3.0.6.pack.js"></script>
 
@@ -17,6 +16,8 @@
   <?php if (isset($slider_boolean)) : ?>
     <link rel="stylesheet" type="text/css" href="/styles/lib/swiper.min.css" />
     <script type="text/javascript" src="/js/lib/swiper.min.js"></script>
+
+    <script type="text/javascript" src="/js/swiper.js"></script>
   <?php endif; ?>
 
   <script type="text/javascript" src="/js/fun.js"></script>
@@ -47,17 +48,7 @@
       <span class="select" id="start_time">
         <a href="javascript:void(0);" class="slct"><span>10</span><i class="flaticon-chevron8"></i></a>
         <ul class="drop" data-id="1">
-          <li>10</li>
-          <li>11</li>
-          <li>12</li>
-          <li>13</li>
-          <li>14</li>
-          <li>15</li>
-          <li>16</li>
-          <li>17</li>
-          <li>18</li>
-          <li>19</li>
-          <li>20</li>
+          <li>10</li><li>11</li><li>12</li><li>13</li><li>14</li><li>15</li><li>16</li><li>17</li><li>18</li><li>19</li><li>20</li>
         </ul>
         <div class="cleaner"></div>
       </span>
@@ -65,17 +56,7 @@
       <span class="select" id="end_time">
         <a href="javascript:void(0);" class="slct"><span>11</span><i class="flaticon-chevron8"></i></a>
         <ul class="drop" data-id="1">
-          <li>11</li>
-          <li>12</li>
-          <li>13</li>
-          <li>14</li>
-          <li>15</li>
-          <li>16</li>
-          <li>17</li>
-          <li>18</li>
-          <li>19</li>
-          <li>20</li>
-          <li>21</li>
+          <li>11</li><li>12</li><li>13</li><li>14</li><li>15</li><li>16</li><li>17</li><li>18</li><li>19</li><li>20</li><li>21</li>
         </ul>
         <div class="cleaner"></div>
       </span>
@@ -110,16 +91,38 @@
     <div class="cleaner"></div>
   </nav>
   <?php if (isset($slider_boolean)) : ?>
-  <div id="slides">
-    <img src="/img/portfolio/big/0e2e631a.jpg" alt="Покупка в один клик">
-    <img src="/img/portfolio/big/8b1303c5.jpg" alt="С нами безопасно">
-    <img src="/img/portfolio/big/6d0a90bb.jpg" alt="Лучшее качество">
-    <a href="#" class="slidesjs-previous slidesjs-navigation"><i class="icon-chevron-left icon-large"></i></a>
-    <a href="#" class="slidesjs-next slidesjs-navigation"><i class="icon-chevron-right icon-large"></i></a>
-  </div>
+    <div class="swiper-container" id="slides">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <div class="wrap-center absolute">
+            <div class="desc-slide">
+              <span class="pink">Мастерство <b>качества</b></span><br>
+              <span class="gray">С нами качество перестает быть мифом</span>
+            </div>
+          </div>
+          <img src="/img/234.jpg" alt="Покупка в один клик">
+        </div>
+        <div class="swiper-slide">
+          <div class="wrap-center absolute">
+            <div class="desc-slide">
+              <span class="pink">Дом <b>перфекционизма</b></span><br>
+              <span class="gray">Идеальные формы, все что нужно для идеального дома</span>
+            </div>
+          </div>
+          <img src="/img/123.jpg" alt="С нами безопасно">
+        </div>
+        <div class="swiper-slide">
+          <div class="wrap-center absolute">
+            <div class="desc-slide">
+              <span class="pink">Превосходство <b>ожиданий</b></span><br>
+              <span class="gray">Мы делаем интерьер лучше, чем сами ожидаем того</span>
+            </div>
+          </div>
+          <img src="/img/portfolio/big/6d0a90bb.jpg" alt="Лучшее качество">
+        </div>
+      </div>
+      <div class="swiper-pagination"></div>
+    </div>
   <?php endif; ?>
 </div>
 <div id="content_wrap">
-  <div id="wrap">
-    <div id="wrap_left_shadow">
-      <div id="content">

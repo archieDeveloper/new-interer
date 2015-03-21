@@ -1,6 +1,3 @@
-			</div>
-		</div>
-	</div>
 </div>
 <div id="footer_wrap">
 	<footer id="footer">
