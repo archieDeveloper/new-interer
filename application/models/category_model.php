@@ -14,6 +14,14 @@ class Category_model extends CI_Model {
     return $result;
   }
 
+  public function get_current($link) {
+    $sql = "SELECT `id`, `name`, `description`, `link` FROM `category_portfolio` WHERE `link` = ? LIMIT 1";
+    $data = array($link);
+    $query = $this->db->query($sql, $data);
+    $result = $query->row();
+    return $result;
+  }
+
   public function position_rewrite($data_id) {
     $strArr = array();
     foreach($data_id as $position => $id) {

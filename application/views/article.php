@@ -1,3 +1,10 @@
+<div class="wrap breadcrumb-wrap">
+  <div class="wrap-center">
+    <ul class="breadcrumb">
+      <?php breadcrumb($breadcrumb); ?>
+    </ul>
+  </div>
+</div>
 <div class="wrap">
   <div class="wrap-center">
     <div id='wrap-post-news'>
