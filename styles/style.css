@@ -446,10 +446,9 @@ a {
 }
 
 .post_news{
-  margin: 20px 10px 20px 10px;
+  margin: 20px 10px 30px 10px;
   width: 880px;
   padding-bottom: 20px;
-  border-bottom: 2px solid #eee;
 }
 
 #wrap-post-news {
@@ -478,32 +477,51 @@ a {
 
 .title_news span {
   color: #bbb;
-  font-size: 12px;
-  margin: 15px 0 0 0;
+  font-size: 14px;
   font-weight: bold;
+  font-family: 'Boblic';
 }
 
-.col-2 {
+.title_news h3 {
+  padding: 0;
+}
+
+.contacts {
   float: left;
-  width: 440px;
+  width: 660px;
   margin-right: 40px;
+  position: relative;
 }
 
-.col-2.end {
-  margin-right: 0;
+.contacts-block {
+  position: absolute;
+  right: 30px;
+  z-index: 1;
+  background: #fff;
+  padding: 5px 20px;
+  width: 200px;
+  box-shadow: 0 10px 10px rgba(0,0,0,0.1);
+  border-radius: 0 0 3px 3px;
 }
 
-.col-2 p b {
+.contacts p b {
   text-transform: uppercase;
-  font-size: 12px;
+  font-size: 14px;
+  font-family: 'Boblic';
 }
 
-.col-2 p a {
+.contacts p a {
   color: #CC1558;
 }
 
-.col-2 p a:hover {
+.contacts p a:hover {
   color: #CA4173;
+}
+
+.wrap h2.header-small {
+  text-align: left;
+  margin-bottom: 30px;
+  font-size: 30px;
 }
 
 #obr_sv{
@@ -523,15 +541,15 @@ a {
 
 .button{
   color: #fff;
-  padding: 10px;
+  padding: 10px 15px 8px 15px;
   border: 0;
   border-radius: 3px;
   background: #363636;
   text-transform: uppercase;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: bold;
   outline: none;
-  font-family: "PT Sans", serif;
+  font-family: 'Boblic',"PT Sans", serif;
 }
 
 .button:hover{
@@ -540,21 +558,22 @@ a {
   background: #CC1558;
 }
 
-#obr_sva textarea.obr_input {
+#callback-form textarea {
   width: 100%;
   max-width: 100%;
   height: 100px;
 }
 
-#obr_sva label {
+#callback-form label {
   font-weight: bold;
-  text-transform: uppercase;
-  font-size: 12px;
+  font-size: 14px;
   display: block;
   margin-bottom: 5px;
+  font-family: 'Boblic';
+  text-transform: uppercase;
 }
 
-.obr_input{
+#callback-form input, #callback-form textarea{
   padding: 7px;
   margin: 0 0 15px 0;
   border: 1px solid #eee;
@@ -563,10 +582,18 @@ a {
   font-family: 'PT Sans', serif;
   color: #444;
   width: 100%;
+  box-sizing: border-box;
 }
 
-.obr_input:focus{
+#callback-form input:focus, #callback-form textarea:focus {
   border: 1px solid #1591CC;
+}
+
+#callback-form .warring {
+  font-size:10px;
+  color:#727272;
+  margin:0 0 15px 0;
+  text-transform: uppercase;
 }
 
 #status{
@@ -1057,4 +1084,9 @@ span.swiper-pagination-bullet.swiper-pagination-bullet-active {
 .wrap.breadcrumb-wrap {
   padding: 20px 0 0 0;
   margin: 0 0 -20px 0;
+}
+
+.callback {
+  float: right;
+  width: 300px;
 }

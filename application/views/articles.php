@@ -16,7 +16,7 @@
     <article class="post_news">
         <div class="title_news">
             <h3><a href="/article/id/<?=$arr->id?>.html"><?=$arr->title?></a></h3>
-            <span style="font-size:12px; margin: 15px 0 0 0;"><?php echo date_rus($arr->date); ?></span>
+            <span><?php echo date_rus($arr->date); ?></span>
         </div>
         <div class="content_news">
             <span><?php $art = explode_article($arr->text); echo $art[0]; ?></span> <a href="/article/id/<?=$arr->id?>.html">Читать далее</a>
