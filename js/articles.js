@@ -94,8 +94,6 @@ $(document).ready(function(){
         $elem.find('.text-art').html(data.text);
         $elem.find('.edit-art').attr('data-id',data.id);
         $elem.find('.del-art').attr('data-id',data.id);
-        $btnAddP.show();
-        $newArtBox.slideUp(200);
 
         $('#title-new').val('');
         $('#date-new').val('');

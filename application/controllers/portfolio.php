@@ -12,10 +12,7 @@ class Portfolio extends CI_Controller {
     $this->action = $this->uri->segment(2);
   }
 
-  public function index($link = null) {
-    if ($link != null) {
-      $this->_category($link); return;
-    }
+  public function index() {
     $this->load->model('page_model');
     $this->data['page_list'] = $this->page_model->get_pages_list();
     $this->data['page_info'] = $this->page_model->get_page($this->controller);
@@ -48,7 +45,7 @@ class Portfolio extends CI_Controller {
     $this->load->view('templates/down', $this->data);
   }
 
-  public function _category($link = null) {
+  public function category($link = null) {
     if (is_null($link)) { show_404(); }
     $this->load->model('page_model');
     $this->data['page_list'] = $this->page_model->get_pages_list();
@@ -81,7 +78,7 @@ class Portfolio extends CI_Controller {
     if(!$this->data['current_category']) { show_404(); }
 
     $this->data['breadcrumb'][] = array('name' => $this->data['page_info']->title, 'link' => $this->controller);
-    $this->data['breadcrumb'][] = array('name' => $this->data['current_category']->name, 'link' => $link);
+    $this->data['breadcrumb'][] = array('name' => $this->data['current_category']->name, 'link' => 'category/'.$link);
 
     $this->load->view('templates/up', $this->data);
     $this->load->view('portfolio', $this->data);

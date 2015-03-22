@@ -42,7 +42,7 @@ $route['default_controller'] = "home";
 $route['404_override'] = '';
 
 /*$route['(:any)'] = 'page/index/$1';*/
-$route['portfolio/(:any)'] = 'portfolio/index/$1';
+//$route['portfolio/(:any)'] = 'portfolio/index/$1';
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

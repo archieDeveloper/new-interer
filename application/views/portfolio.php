@@ -12,7 +12,7 @@
       <ul>
         <?php foreach ($list_category_portfolio as $item) : ?>
           <?php if ($item->link != 'no-category') : ?>
-          <li <?php if(isset($category) && $item->link == $category) { echo 'class="active"'; } ?>><a href="/portfolio/<?=$item->link?>.html"><?=$item->name?></a></li>
+          <li <?php if(isset($category) && $item->link == $category) { echo 'class="active"'; } ?>><a href="/portfolio/category/<?=$item->link?>.html"><?=$item->name?></a></li>
           <?php endif; ?>
         <?php endforeach; ?>
       </ul>
