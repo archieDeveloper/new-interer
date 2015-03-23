@@ -89,13 +89,12 @@ class Portfolio_model extends CI_Model {
   }
 
   public function get_current($id) {
-    $sql = "SELECT * FROM `portfolio` WHERE `id` = ?";
+    $sql = "SELECT * FROM `portfolio` WHERE `id` = ? LIMIT 1";
     $data = array($id);
     $query = $this->db->query($sql,$data);
-    $result = $query->result();
+    $result = $query->row();
     if (!$result) { return false; }
-    if (!isset($result[0])) { return false; }
-    return $result[0];
+    return $result;
   }
 
 }

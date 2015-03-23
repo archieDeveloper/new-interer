@@ -32,14 +32,14 @@
 
       <form method="post" id="callback-form">
         <label for="author">Ваше имя:</label>
-        <input class="obr_input" name="author" type="text" required><br>
+        <input name="author" type="text" required><br>
         <label for="email">Email:</label>
-        <input class="obr_input" name="email" type="text" required><br>
+        <input name="email" type="text" required><br>
         <label for="number">Телефон:</label>
-        <input class="obr_input" name="number" type="text" required><br>
+        <input name="number" type="text" required><br>
         <label for="theme">Тема письма:</label>
-        <input class="obr_input" name="theme" type="text" required><br>
-        <label for="name">Сообщение:</label>
+        <input name="theme" type="text" required><br>
+        <label for="text">Сообщение:</label>
         <textarea name="text" required></textarea>
         <p class="warring">Все поля обязательны для заполнения!</p>
         <button class="button" name="submit">Отправить</button>

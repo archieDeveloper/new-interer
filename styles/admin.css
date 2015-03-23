@@ -435,12 +435,19 @@ body {
 .list-page li .img {
   float: left;
   margin-right: 10px;
-  width: 200px
+  max-width: 800px
 }
 
 .clr {
   float: none;
   clear: both
+}
+
+.preview-img {
+  float: left;
+  position: relative;
+  overflow: hidden;
+  width: 220px;
 }
 
 .slct {

@@ -21,6 +21,8 @@
     <script type="text/javascript" src="/js/swiper.js"></script>
   <?php endif; ?>
 
+  <script type="text/javascript" src="/js/lib/isotope.pkgd.min.js"></script>
+
   <script type="text/javascript" src="/js/fun.js"></script>
   <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon">
   <meta content="/img/soclogo.jpg" property="og:image">

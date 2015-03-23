@@ -17,8 +17,42 @@ $(document).ready(function(){
         console.log(data);
         $error.hide();
         var $newFileListPage = $($listPageLi).clone().prependTo('#files').removeAttr('id');
-        $newFileListPage.find('span.img img').attr('src','/img/portfolio/small/'+data.result.file_name);
+        var $img = $newFileListPage.find('span.img img');
+        $img.attr('src','/img/portfolio/big/'+data.result.file_name);
+        $newFileListPage.find('.preview-img img').attr('src','/img/portfolio/big/'+data.result.file_name);
+        $img.imgAreaSelect({
+          handles: true,
+          minWidth: 220,
+          minHeight: 220,
+          x1: 0, y1: 0,
+          x2: 220, y2: 220,
+          onSelectChange: function(img, selection) {
+            var heightWrap = selection.height * (220 / selection.width);
+
+            $('.preview-img').css({
+              height: Math.round(heightWrap) + 'px'
+            });
+
+            var scaleX = 220 / (selection.width || 1);
+            var scaleY = heightWrap / (selection.height || 1);
+
+            $('.preview-img img').css({
+              width: Math.round(220 / (selection.width / img.width)) + 'px',
+              marginLeft: '-' + Math.round(scaleX * selection.x1) + 'px',
+              marginTop: '-' + Math.round(scaleY * selection.y1) + 'px'
+            });
+          },
+          onSelectEnd: function(img, selection){
+            window.selectionCrop = {
+              x1: selection.x1 / img.width,
+              y1: selection.y1 / img.height,
+              x2: selection.x2 / img.width,
+              y2: selection.y2 / img.height
+            };
+          }
+        });
         $newFileListPage.find('span.img .trash').attr('data-id',data.result.current_row_id);
+        $newFileListPage.find('span.img .save').attr('data-id',data.result.current_row_id);
         $newFileListPage.find('.input-edit').attr('data-id',data.result.current_row_id);
         $newFileListPage.find('.select .drop').attr('data-id',data.result.current_row_id);
 
@@ -132,6 +166,36 @@ $(document).ready(function(){
         var $secondParent = $this.parent().parent();
         $secondParent.before('<li class="portfolio-trash">Работа удалена. <a href="#" class="no-trash" data-id="'+$id+'">Восстановить</a><a class="button close-no-trash" href="javascript:void(0);"><i class="flaticon-cross5"></i></a></li>');
         $secondParent.slideUp(200);
+      }
+    });
+  });
+
+  $(document).on('click','.save', function(e){
+    var $this = $(this);
+    var $id = $this.attr('data-id');
+    $this.prop('disabled', true);
+
+    console.log(selectionCrop);
+    $.ajax({
+      dataType : "html",
+      type     : "POST",
+      data     : {
+        id: $id,
+        x: selectionCrop.x1,
+        y: selectionCrop.y1,
+        width: selectionCrop.x2-selectionCrop.x1,
+        height: selectionCrop.y2-selectionCrop.y1,
+        crop_image: true
+      },
+      url      : '/nimyadmin/portfolio.html',
+      success  : function(data){
+        $this.prop('disabled', false);
+        var $secondParent = $this.parent().parent();
+        $secondParent.before('<li class="portfolio-trash">Работа удалена. <a href="#" class="no-trash" data-id="'+$id+'">Восстановить</a><a class="button close-no-trash" href="javascript:void(0);"><i class="flaticon-cross5"></i></a></li>');
+        $secondParent.slideUp(200);
+      },
+      error : function(data){
+        console.log(data);
       }
     });
   });

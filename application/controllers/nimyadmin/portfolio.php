@@ -27,6 +27,7 @@ class Portfolio extends CI_Controller {
 
   public function index() {
     if (!empty($_FILES)) $this->_upload();
+    if (isset($_POST['id']) && isset($_POST['crop_image'])) $this->_crop_image($_POST['id'],$_POST['x'],$_POST['y'],$_POST['width'],$_POST['height']);
     if (isset($_POST['id']) && isset($_POST['title'])) $this->_update_title_portfolio($_POST['id'], $_POST['title']);
     if (isset($_POST['id']) && isset($_POST['category_link'])) $this->_update_category_portfolio($_POST['id'], $_POST['category_link']);
     if (isset($_POST['id']) && isset($_POST['trash'])) $this->_trash_portfolio($_POST['id']);
@@ -62,8 +63,15 @@ class Portfolio extends CI_Controller {
     $this->data['page_title'] = 'Добавить работу';
     $this->data['page_controller'] = $this->controller;
     $this->data['page_action'] = $this->action;
-    $this->data['include_js'] = $this->include_js;
-    $this->data['include_css'] = $this->include_css;
+    $this->data['include_js'] = array(
+      'lib/jquery.fileupload',
+      'lib/jquery.fileupload-process',
+      'lib/jquery.iframe-transport',
+      'lib/jquery.imgareaselect.min',
+      'uploads');
+    $this->data['include_css'] = array(
+      'lib/jquery.fileupload',
+      'lib/imgareaselect/imgareaselect-animated');
 
     $this->load->model('category_model');
     $this->data['list_category_portfolio'] = $this->category_model->get_list();
@@ -156,6 +164,46 @@ class Portfolio extends CI_Controller {
       echo json_encode($data);
     }
 
+    exit();
+  }
+
+  public function  _crop_image($id,$x,$y,$width,$height) {
+    $this->load->model('portfolio_model');
+    $portfolio = $this->portfolio_model->get_current($id);
+
+    header('Content-type: application/json');
+
+    $config['image_library'] = 'gd2'; // выбираем библиотеку
+    $config['source_image'] = $_SERVER['DOCUMENT_ROOT'].'/img/portfolio/big/'.$portfolio->img;
+    $config['maintain_ratio'] = false; // сохранять пропорции
+    $config['new_image'] = $_SERVER['DOCUMENT_ROOT']."/img/portfolio/small";
+
+    $size = getimagesize($config['source_image']);
+
+    $config['x_axis'] = $size[0]*$x;
+    $config['y_axis'] = $size[1]*$y;
+    $config['width'] = $size[0]*$width;
+    $config['height'] = $size[1]*$height;
+
+    $this->load->library('image_lib', $config); // загружаем библиотеку
+
+    if ( ! $this->image_lib->crop())
+    {
+      $data['crop_error'] = $this->image_lib->display_errors();
+    }
+    $this->image_lib->clear();
+
+    $config['image_library'] = 'gd2'; // выбираем библиотеку
+    $config['source_image'] = $_SERVER['DOCUMENT_ROOT']."/img/portfolio/small/".$portfolio->img;
+    $config['maintain_ratio'] = TRUE; // сохранять пропорции
+    $config['width']    = 217; // и задаем размеры
+
+    $this->image_lib->initialize($config);
+
+    if ( ! $this->image_lib->resize()) {
+      $data['resize_error'] = $this->image_lib->display_errors();
+    }
+    echo json_encode($data);
     exit();
   }
 

@@ -13,8 +13,9 @@
 <ul class="list-page">
   <li id="js-list-page">
     <span class="img">
-      <img src="/img/portfolio/small/" alt="">
+      <img src="/img/portfolio/big/" alt="">
       <a class="button trash" data-id="" href="javascript:void(0);"><i class="flaticon-trash3"></i> В корзину</a>
+      <a class="button save" data-id="" href="javascript:void(0);"><i class="flaticon-trash3"></i> Сохранить</a>
     </span>
     <span>
       <b>Заголовок: </b><br>
@@ -37,6 +38,7 @@
         </ul>
       </span>
     </span>
+    <div class="preview-img"><img src="" alt="" style="position: relative"/></div>
     <div class="clr"></div>
   </li>
 </ul>

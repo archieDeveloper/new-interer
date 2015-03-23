@@ -113,11 +113,22 @@ $(document).ready(function(){
     $drop.slideUp(200);
   });
 
+
 });
 
 $(window).load(function() {
   "use strict";
 
+  /* Расстановка элементов в портфолио */
+  var $portfolioContainer = $('#portfolio-container');
+
+  $portfolioContainer.isotope({
+    itemSelector: '.wrap-product',
+    layoutMode: 'masonry'
+  });
+
+
+  /* парсер GET параметров */
   var parseGetParams = function() {
     var $_GET = {};
     var __GET = window.location.search.substring(1).split("&");

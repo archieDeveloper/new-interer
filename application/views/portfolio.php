@@ -27,11 +27,13 @@
         <?php endif; ?>
         <div class="cleaner"></div>
       </ul>
-      <?php foreach ($portfolio as $product) : ?>
-      <article class="wrap-product">
-        <a href="/img/portfolio/big/<?=$product->img?>" data-id='<?=$product->id?>' title='<?=$product->title?>'><img src="/img/portfolio/small/<?=$product->img?>" alt=""><span><?=$product->title?></span></a>
-      </article>
-      <?php endforeach; ?>
+      <div id="portfolio-container">
+        <?php foreach ($portfolio as $product) : ?>
+        <article class="wrap-product">
+          <a href="/img/portfolio/big/<?=$product->img?>" data-id='<?=$product->id?>' title='<?=$product->title?>'><img src="/img/portfolio/small/<?=$product->img?>" alt=""><span><?=$product->title?></span></a>
+        </article>
+        <?php endforeach; ?>
+      </div>
       <div class="cleaner"></div>
       <ul class="pagenation">
         <?php pagination($_GET['page'], $num_pages); ?>
