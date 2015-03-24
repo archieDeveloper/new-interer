@@ -49,6 +49,9 @@ class Contacts extends CI_Controller {
     $this->data['page_list'] = $this->page_model->get_pages_list();
     $this->data['page_info'] = $this->page_model->get_page($this->controller);
 
+    $this->load->model('category_model');
+    $this->data['list_category_portfolio'] = $this->category_model->get_list();
+
     $this->data['breadcrumb'][] = array('name' => $this->data['page_info']->title, 'link' => $this->controller);
 
     $this->load->view('templates/up', $this->data);

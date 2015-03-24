@@ -67,12 +67,13 @@
 <div class="wrap pink">
   <div class="wrap-center">
     <h2>Выполненные работы</h2>
-
-    <?php foreach ($portfolio as $product) : ?>
-    <article class="wrap-product" style="margin-right: 10px;">
-        <a href="/portfolio/category/<?=$product->link?>.html?id_product=<?=$product->id?>"><img src="/img/portfolio/small/<?=$product->img?>" alt=""><span><?=$product->title?></span></a>
-    </article>
-    <?php endforeach; ?>
+    <div id="portfolio-container" style="width: 1280px;">
+      <?php foreach ($portfolio as $product) : ?>
+      <article class="wrap-product">
+          <a href="/portfolio/category/<?=$product->link?>.html?id_product=<?=$product->id?>"><img src="/img/portfolio/small/<?=$product->img?>" alt=""><span><?=$product->title?></span></a>
+      </article>
+      <?php endforeach; ?>
+    </div>
     <div class="cleaner"></div>
   </div>
 </div>

@@ -30,7 +30,11 @@
       <div id="portfolio-container">
         <?php foreach ($portfolio as $product) : ?>
         <article class="wrap-product">
-          <a href="/img/portfolio/big/<?=$product->img?>" data-id='<?=$product->id?>' title='<?=$product->title?>'><img src="/img/portfolio/small/<?=$product->img?>" alt=""><span><?=$product->title?></span></a>
+          <a href="/img/portfolio/big/<?=$product->img?>" data-id='<?=$product->id?>' title='<?=$product->title?>'>
+            <img class="view-icon" src="http://s1.iconbird.com/ico/2013/11/504/w128h1281385326527zoomin.png" alt="">
+            <img src="/img/portfolio/small/<?=$product->img?>" alt="">
+            <span><?=$product->title?></span>
+          </a>
         </article>
         <?php endforeach; ?>
       </div>

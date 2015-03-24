@@ -25,6 +25,9 @@ class Article extends CI_Controller {
     if(!$this->data['news']) { show_404(); }
     $this->data['num_pages'] = $this->articles_model->get_num_news();
 
+    $this->load->model('category_model');
+    $this->data['list_category_portfolio'] = $this->category_model->get_list();
+
     $this->data['breadcrumb'][] = array('name' => $this->data['page_info']->title, 'link' => $this->controller);
 
     $this->load->view('templates/up', $this->data);
@@ -42,6 +45,9 @@ class Article extends CI_Controller {
     if (!$page) { show_404(); }
     $this->data['current_article'] = $this->articles_model->get_current_article($page);
     if (!$this->data['current_article']) { show_404(); }
+
+    $this->load->model('category_model');
+    $this->data['list_category_portfolio'] = $this->category_model->get_list();
 
     $this->data['breadcrumb'][] = array('name' => $this->data['page_info']->title, 'link' => $this->controller);
     $this->data['breadcrumb'][] = array('name' => $this->data['current_article']->title, 'link' => 'id/'.$this->data['current_article']->id);
