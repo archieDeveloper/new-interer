@@ -79,26 +79,14 @@ if ( ! function_exists('time_before'))
         $hours_before = 'час';
         break;
       case 2:
-        $hours_before = 'часа';
-        break;
       case 3:
-        $hours_before = 'часа';
-        break;
       case 4:
         $hours_before = 'часа';
         break;
       case 5:
-        $hours_before = 'часов';
-        break;
       case 6:
-        $hours_before = 'часов';
-        break;
       case 7:
-        $hours_before = 'часов';
-        break;
       case 8:
-        $hours_before = 'часов';
-        break;
       case 9:
         $hours_before = 'часов';
         break;

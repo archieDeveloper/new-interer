@@ -2,7 +2,15 @@
 
 class Home extends CI_Controller {
 
-  var $data = array();
+  var $data = array(),
+    $controller,
+    $action;
+
+  function __construct() {
+    parent::__construct();
+    $this->controller = $this->uri->segment(1);
+    $this->action = $this->uri->segment(2);
+  }
 
   public function index()
   {
@@ -11,7 +19,7 @@ class Home extends CI_Controller {
     $this->data['page_info'] = $this->page_model->get_page('');
 
     $this->load->model('portfolio_model');
-    $this->data['portfolio'] = $this->portfolio_model->get(null,1,8);
+    $this->data['portfolio'] = $this->portfolio_model->get_random(null,8);
     $this->load->model('category_model');
     $this->data['list_category_portfolio'] = $this->category_model->get_list();
 

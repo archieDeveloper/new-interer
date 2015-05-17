@@ -1,8 +1,8 @@
 <div class="wrap gray">
-  <div class="wrap-center">
+  <div class="wrap-center aniview" av-animation="slideInUp">
     <h2>Наши услуги</h2>
     <div class="big-circle-image">
-      <img src="http://new-interer.ru.loc/img/portfolio/big/82b87152.jpg" alt=""/>
+      <img src="/img/soclogo.jpg" alt=""/>
     </div>
     <p>Компания «Новый интерьер» уже более 7 лет занимается изготовлением мебели на заказ. У нас Вы можете заказать кухни, шкафы-купе, прихожие, детские, гардеробные, двери и окна по Вашему индивидуальному проекту не выходя из дома, только представьте теперь всё что Вам нужно под рукой. </p>
     <p>В современную эпоху очень важно экономить свое время, поэтому Вы можете оставить заявку на нашем сайте. Мы свяжемся с Вами и начнем создавать Ваш проект Онлайн. Также вы можете придти к нам в офисы указанные в контактах. Не важно какой путь Вы выбираете важно что мы поможем создать в Вашем доме Новый интерьер...
@@ -13,7 +13,7 @@
 </div>
 
 <div class="wrap">
-  <div class="wrap-center">
+  <div class="wrap-center aniview" av-animation="slideInRight">
     <h2>Наши преимущества</h2>
     <ul class="about-list">
       <li>
@@ -64,13 +64,13 @@
   </div>
 </div>
 
-<div class="wrap pink">
-  <div class="wrap-center">
+<div class="wrap pink wrap-portfolio-hidden">
+  <div class="wrap-center aniview" av-animation="slideInLeft">
     <h2>Выполненные работы</h2>
     <div id="portfolio-container" style="width: 1280px;">
       <?php foreach ($portfolio as $product) : ?>
       <article class="wrap-product">
-          <a href="/portfolio/category/<?=$product->link?>.html?id_product=<?=$product->id?>"><img src="/img/portfolio/small/<?=$product->img?>" alt=""><span><?=$product->title?></span></a>
+          <a href="/portfolio<?=$product->link ? '/category/'.$product->link : ''?>.html?id_product=<?=$product->id?>"><img src="/img/portfolio/small/<?=$product->img?>" alt=""><span><?=$product->title?></span></a>
       </article>
       <?php endforeach; ?>
     </div>
@@ -78,7 +78,7 @@
   </div>
 </div>
 <div class="wrap">
-  <div class="wrap-center">
+  <div class="wrap-center aniview" av-animation="rotateInUpLeft">
     <h2>Наши партнеры</h2>
     <img src="/img/logo-lacoste.jpg" width="190" alt=""/>
     <img src="/img/logo-cisco.jpg" width="190" alt=""/>

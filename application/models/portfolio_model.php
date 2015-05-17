@@ -72,6 +72,44 @@ class Portfolio_model extends CI_Model {
     return $query->result();
   }
 
+  public function get_random($link = null, $count = 1) {
+    if(is_null($link)){
+      $sql = "SELECT
+              `portfolio`.`id`,
+              `portfolio`.`category_id`,
+              `portfolio`.`img`,
+              `portfolio`.`title`,
+              `portfolio`.`trash`,
+              `category_portfolio`.`link`,
+              `category_portfolio`.`name`,
+              `category_portfolio`.`position`
+              FROM `portfolio` LEFT JOIN `category_portfolio`
+              ON `portfolio`.`category_id` = `category_portfolio`.`id`
+              WHERE `trash` = 0 ORDER BY `portfolio`.`id` DESC LIMIT ?";
+      $data = array($count);
+      $query = $this->db->query($sql, $data);
+      if (!$query) { return false; }
+      return $query->result();
+    }
+    $sql = "SELECT
+            `portfolio`.`id`,
+            `portfolio`.`category_id`,
+            `portfolio`.`img`,
+            `portfolio`.`title`,
+            `portfolio`.`trash`,
+            `category_portfolio`.`link`,
+            `category_portfolio`.`name`,
+            `category_portfolio`.`position`
+            FROM `portfolio` LEFT JOIN `category_portfolio`
+            ON `portfolio`.`category_id` = `category_portfolio`.`id`
+            WHERE `category_portfolio`.`link` = ? AND `trash` = 0
+            ORDER BY `portfolio`.`id` DESC LIMIT ?";
+    $data = array($link, $count);
+    $query = $this->db->query($sql, $data);
+    if (!$query) { return false; }
+    return $query->result();
+  }
+
   public function get_num($link = null, $num_rows = 5) {
     if(is_null($link)){
       $sql = "SELECT * FROM `portfolio` WHERE `trash` = 0";

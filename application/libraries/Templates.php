@@ -28,22 +28,27 @@ class CI_Templates {
 
 	// Private variables.  Do not change!
 	var $CI;
-        var $data = array();
+  var $data = array();
 
-	public function __construct()
-	{
-		$this->CI =& get_instance();
-	}
+  public function __construct()
+  {
+    $this->CI =& get_instance();
+  }
 
-    public function view($data, $content, $wrap = true){
-        
-        $this->CI->load->model('page_model');
-        $data['page_list'] = $this->CI->page_model->get_pages_list();
-        
-        if ($wrap) { $this->CI->load->view('templates/up', $data); }
-        if(is_array($content)){ foreach($content as $value){ $this->CI->load->view($value, $data); } } else { $this->CI->load->view($content, $data); }
-        if ($wrap) { $this->CI->load->view('templates/down', $data); }
+  public function view($data, $content, $wrap = true){
+    $this->CI->load->model('page_model');
+    $data['page_list'] = $this->CI->page_model->get_pages_list();
+
+    if ($wrap) { $this->CI->load->view('templates/up', $data); }
+    if(is_array($content)){
+      foreach($content as $value){
+        $this->CI->load->view($value, $data);
+      }
+    } else {
+      $this->CI->load->view($content, $data);
     }
+    if ($wrap) { $this->CI->load->view('templates/down', $data); }
+  }
 }
 
 /* End of file Cart.php */

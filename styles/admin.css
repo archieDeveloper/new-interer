@@ -556,7 +556,40 @@ body {
 }
 
 #js-list-page {
-  display: none
+  display: block;
+}
+
+#js-list-page2 {
+  display: none;
+}
+
+
+.js-list-page {
+  padding: 23px 0;
+}
+
+.js-list-page .img {
+  float: left;
+  margin-right: 20px;
+  border: 10px solid #FFF;
+  outline: 3px solid #eee;
+}
+
+.js-list-page .preview-img {
+  border: 10px solid #FFF;
+  outline: 3px solid #eee;
+  height: 0;
+}
+
+.js-list-page .img img {
+  max-width: 800px;
+  float: left;
+}
+
+.js-list-page .buttons {
+  clear: both;
+  text-align: center;
+  padding-top: 20px;
 }
 
 #error {
@@ -816,6 +849,7 @@ table.tg {width: 100%; border: 1px solid #ccc;}
   box-shadow: 0 0 18px rgba(0,0,0,0.4);
   outline: none;
   background-clip: padding-box;
+  float: left;
 }
 
 .ui-dialog .ui-dialog-titlebar {

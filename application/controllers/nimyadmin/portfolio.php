@@ -26,7 +26,7 @@ class Portfolio extends CI_Controller {
   }
 
   public function index() {
-    if (!empty($_FILES)) $this->_upload();
+    if (!empty($_FILES) && isset($_POST['type']) && $_POST['type'] == 'portfolio') $this->_upload_portfolio();
     if (isset($_POST['id']) && isset($_POST['crop_image'])) $this->_crop_image($_POST['id'],$_POST['x'],$_POST['y'],$_POST['width'],$_POST['height']);
     if (isset($_POST['id']) && isset($_POST['title'])) $this->_update_title_portfolio($_POST['id'], $_POST['title']);
     if (isset($_POST['id']) && isset($_POST['category_link'])) $this->_update_category_portfolio($_POST['id'], $_POST['category_link']);
@@ -96,7 +96,7 @@ class Portfolio extends CI_Controller {
     $this->load->view('admin/templates/down', $this->data);
   }
 
-  public function _upload() {
+  public function _upload_portfolio() {
     header('Content-type: application/json');
 
     $config['upload_path']      = $_SERVER['DOCUMENT_ROOT']."/img/portfolio/big";
@@ -116,51 +116,7 @@ class Portfolio extends CI_Controller {
       $this->load->model('portfolio_model');
       $data['current_row_id'] = $this->portfolio_model->add($data['file_name']);
 
-      $config['image_library'] = 'gd2'; // выбираем библиотеку
-      $config['source_image'] = $data['full_path'];
-      $config['maintain_ratio'] = false; // сохранять пропорции
-      $config['new_image'] = $_SERVER['DOCUMENT_ROOT']."/img/portfolio/small";
-
-      $width = $data['image_width'];
-      $height = $data['image_height'];
-
-      if ($width > $height) { //горизонтальное изображение
-        $config['x_axis'] = ($width/2)-($height/2);
-        $config['y_axis'] = 0;
-        $config['width'] = $height;
-        $config['height'] = $height;
-      } elseif ($width < $height) { //вертикальное изображение
-        $config['x_axis'] = 0;
-        $config['y_axis'] = ($height/2)-($width/2);
-        $config['width'] = $width;
-        $config['height'] = $width;
-      } else { // квадратное изображение
-        $config['x_axis'] = 0;
-        $config['y_axis'] = 0;
-        $config['width'] = $width;
-        $config['height'] = $height;
-      }
-
-      $this->load->library('image_lib', $config); // загружаем библиотеку
-
-      if ( ! $this->image_lib->crop())
-      {
-        $data['crop_error'] = $this->image_lib->display_errors();
-      }
-      $this->image_lib->clear();
-
-      $config['image_library'] = 'gd2'; // выбираем библиотеку
-      $config['source_image'] = $_SERVER['DOCUMENT_ROOT']."/img/portfolio/small/".$data['file_name'];
-      $config['maintain_ratio'] = TRUE; // сохранять пропорции
-      $config['width']    = 200; // и задаем размеры
-      $config['height']   = 200;
-
-      $this->image_lib->initialize($config);
-
-      if ( ! $this->image_lib->resize()) {
-        $data['resize_error'] = $this->image_lib->display_errors();
-      }
-
+      $this->_crop_image($data['current_row_id'],0,0,1,1);
       echo json_encode($data);
     }
 
@@ -168,9 +124,10 @@ class Portfolio extends CI_Controller {
   }
 
   public function  _crop_image($id,$x,$y,$width,$height) {
+    $data['current_row_id'] = $id;
     $this->load->model('portfolio_model');
     $portfolio = $this->portfolio_model->get_current($id);
-
+    $data['file_name'] = $portfolio->img;
     header('Content-type: application/json');
 
     $config['image_library'] = 'gd2'; // выбираем библиотеку
@@ -187,20 +144,26 @@ class Portfolio extends CI_Controller {
 
     $this->load->library('image_lib', $config); // загружаем библиотеку
 
-    if ( ! $this->image_lib->crop())
-    {
+    if (!$this->image_lib->crop()) {
       $data['crop_error'] = $this->image_lib->display_errors();
     }
+
+    $size = getimagesize($config['new_image'].'/'.$portfolio->img);
+
+    $data['image_width'] = $size[0];
+    $data['image_height'] = $size[1];
+
     $this->image_lib->clear();
 
     $config['image_library'] = 'gd2'; // выбираем библиотеку
     $config['source_image'] = $_SERVER['DOCUMENT_ROOT']."/img/portfolio/small/".$portfolio->img;
     $config['maintain_ratio'] = TRUE; // сохранять пропорции
+    $config['new_image'] = $_SERVER['DOCUMENT_ROOT']."/img/portfolio/small";
     $config['width']    = 217; // и задаем размеры
 
     $this->image_lib->initialize($config);
 
-    if ( ! $this->image_lib->resize()) {
+    if (!$this->image_lib->resize()) {
       $data['resize_error'] = $this->image_lib->display_errors();
     }
     echo json_encode($data);

@@ -23,6 +23,9 @@
 
   <script type="text/javascript" src="/js/lib/isotope.pkgd.min.js"></script>
 
+  <link type="text/css" rel="stylesheet" href="/styles/lib/animate.css">
+  <script type="text/javascript" src="/js/lib/jquery.aniview.min.js"></script>
+
   <script type="text/javascript" src="/js/fun.js"></script>
   <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon">
   <meta content="/img/soclogo.jpg" property="og:image">
@@ -104,7 +107,7 @@
               <span class="gray">С нами качество перестает быть мифом</span>
             </div>
           </div>
-          <img src="/img/234.jpg" alt="Покупка в один клик">
+          <div class="slide-img" style="background-image: url(/img/234.jpg);"></div>
         </div>
         <div class="swiper-slide">
           <div class="wrap-center absolute">
@@ -113,7 +116,7 @@
               <span class="gray">Идеальные формы, все что нужно для идеального дома</span>
             </div>
           </div>
-          <img src="/img/123.jpg" alt="С нами безопасно">
+          <div class="slide-img" style="background-image: url(/img/123.jpg);"></div>
         </div>
         <div class="swiper-slide">
           <div class="wrap-center absolute">
@@ -122,7 +125,7 @@
               <span class="gray">Мы делаем интерьер лучше, чем сами ожидаем того</span>
             </div>
           </div>
-          <img src="/img/portfolio/big/6d0a90bb.jpg" alt="Лучшее качество">
+          <div class="slide-img" style="background-image: url(/img/portfolio/big/6d0a90bb.jpg);"></div>
         </div>
       </div>
       <div class="swiper-pagination"></div>

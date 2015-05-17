@@ -113,6 +113,11 @@ $(document).ready(function(){
     $drop.slideUp(200);
   });
 
+  var options = {
+    animateThreshold: 200,
+    scrollPollInterval: 50
+  };
+  $('.aniview').AniView();
 
 });
 
@@ -140,6 +145,21 @@ $(window).load(function() {
   };
 
   var getParams = parseGetParams();
+
+  var getHtmlFancy = function(title) {
+    return  '<div class="float-left">'+
+              '<b class="title-product">' + (title ? title : '') + ' / </b>'+
+              '<span class="pos-product">Кутузова д.48 кв.39</span>'+
+              '<br>'+
+              'Поделись с друзьями в социальных сетях' +
+              '<br>' +
+              '<script type="text/javascript" src="//yandex.st/share/share.js" charset="utf-8"></script>' +
+              '<div class="yashare-auto-init" data-yashareL10n="ru" data-yashareQuickServices="vkontakte,facebook,twitter,odnoklassniki,moimir,gplus" data-yashareTheme="counter"></div>' +
+            '</div>'+
+            '<div class="float-right">'+
+              '<button class="button think">Записаться на бесплатный замер</button>'+
+            '</div>';
+  };
 
   $('.wrap-product a').fancybox({
     titleShow	: true,
@@ -201,7 +221,7 @@ $(window).load(function() {
         searchStr += '?id_product='+id_product;
       }
       history.pushState({foo: 'bar'}, 'Title', window.location.pathname+searchStr);
-      this.title = '<b class="title-product">' + (this.title ? this.title : '') + ' / </b><span class="pos-product">Кутузова д.48 кв.39</span><br>Поделись с друзьями в социальных сетях<br><script type="text/javascript" src="//yandex.st/share/share.js" charset="utf-8"></script><div class="yashare-auto-init" data-yashareL10n="ru" data-yashareQuickServices="vkontakte,facebook,twitter,odnoklassniki,moimir,gplus" data-yashareTheme="counter"></div><button class="button think">Записаться на бесплатный замер</button>';
+      this.title = getHtmlFancy(this.title);
     },
     helpers		: {
       title	: { type : 'inside' }
@@ -218,7 +238,7 @@ $(window).load(function() {
     $.fancybox.open([{
       titleShow	: true,
       href:'/img/portfolio/big/'+$curImg,
-      title: '<b class="title-product">' + ($curTitle ? $curTitle : '') + ' / </b><span class="pos-product">Кутузова д.48 кв.39</span><br>Поделись с друзьями в социальных сетях<br><script type="text/javascript" src="//yandex.st/share/share.js" charset="utf-8"></script><div class="yashare-auto-init" data-yashareL10n="ru" data-yashareQuickServices="vkontakte,facebook,twitter,odnoklassniki,moimir,gplus" data-yashareTheme="counter"></div><button class="button think">Записаться на бесплатный замер</button>',
+      title: getHtmlFancy($curTitle),
       afterClose	: function() {
         var id_product = $(this.element).attr('data-id');
 
