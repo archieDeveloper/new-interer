@@ -14,35 +14,10 @@ class Contacts extends CI_Controller {
 
   public function index() {
     if (isset($_POST['add_feedback']) && $_POST['add_feedback']) {
-      $this->load->model('feedback_model');
-      $this->load->library('email');
-
-      $this->feedback_model->add_feedback($_POST['name'],$_POST['number'],$_POST['address'],$_POST['start_time'],$_POST['end_time']);
-
-      $config['protocol'] = 'smtp';
-      $config['smtp_host'] = 'smtp.spaceweb.ru';
-      $config['smtp_user'] = 'support@new-interer.ru';
-      $config['smtp_pass'] = '123supportbase';
-      $config['smtp_port'] = '2525';
-      $config['mailtype'] = 'html';
-
-      $this->email->initialize($config);
-
-      $this->email->from('support@new-interer.ru', 'Новый Интерьер');
-      $this->email->to('newinterer@mail.ru','arkadij.ok@gmail.com');
-      $this->email->subject('Новый заказ на замер');
-      $this->email->message('<h2>Заявка на замер</h2><p><b>Имя: </b>'.$_POST['name'].'</p><p><b>Номер телефона: </b>'.$_POST['number'].'</p><p><b>Адрес: </b>'.$_POST['address'].'</p><p><b>Желаемое время: </b>с '.$_POST['start_time'].' до '.$_POST['end_time'].'</p>');
-
-      $this->email->send();
-
-      /*$config['smtp_username'] = 'support@new-interer.ru'; //Смените на имя своего почтового ящика.
-      $config['smtp_port'] = '2525'; // Порт работы. Не меняйте, если не уверены.
-      $config['smtp_host'] = 'smtp.spaceweb.ru'; //сервер для отправки почты(для наших клиентов менять не требуется)
-      $config['smtp_password'] = '123supportbase'; //Измените пароль
-      $config['smtp_debug'] = false; //Если Вы хотите видеть сообщения ошибок, укажите true вместо false
-      $config['smtp_charset'] = 'Windows-1251'; //кодировка сообщений. (или UTF-8, итд)
-      $config['smtp_from'] = 'Новый Интерьер'; //Ваше имя - или имя Вашего сайта. Будет показывать при прочтении в поле "От кого"*/
-      exit();
+      $this->_add_feedback($_POST['name'],$_POST['number'],$_POST['address'],$_POST['start_time'],$_POST['end_time']);
+    }
+    if (isset($_POST['add_callback'])) {
+      $this->_add_callback($_POST['name'],$_POST['email'],$_POST['number'],$_POST['topic'],$_POST['text']);
     }
 
     $this->load->model('page_model');
@@ -57,5 +32,55 @@ class Contacts extends CI_Controller {
     $this->load->view('templates/up', $this->data);
     $this->load->view('contacts', $this->data);
     $this->load->view('templates/down', $this->data);
+  }
+
+  public function _add_feedback($name, $number, $address, $start_time, $end_time) {
+    $this->load->model('feedback_model');
+    $this->feedback_model->add($name, $number, $address, $start_time, $end_time);
+
+    $message = '<h2>Заявка на замер</h2><p><b>Имя: </b>'.$name.'</p><p><b>Номер телефона: </b>'.$number.'</p><p><b>Адрес: </b>'.$address.'</p><p><b>Желаемое время: </b>с '.$start_time.' до '.$end_time.'</p>';
+    $this->_push_email('Новый заказ на замер', $message);
+
+    exit();
+  }
+
+  public function _add_callback($name, $email, $number, $topic, $text) {
+    $this->load->model('callback_model');
+    $this->callback_model->add($name, $email, $number, $topic, $text);
+
+    $message = '<h2>'.$topic.'</h2>
+                <p><b>Имя: </b>'.$name.'</p>
+                <p><b>Почта: </b>'.$email.'</p>
+                <p><b>Телефон: </b>'.$number.'</p>
+                <p><b>Текст: </b>с '.$text.'</p>';
+    $this->_push_email('Обратная связь', $message);
+  }
+
+  public function _push_email($subject, $message) {
+    $this->load->library('email');
+
+    $config['protocol'] = 'smtp';
+    $config['smtp_host'] = 'smtp.spaceweb.ru';
+    $config['smtp_user'] = 'support@new-interer.ru';
+    $config['smtp_pass'] = '123supportbase';
+    $config['smtp_port'] = '2525';
+    $config['mailtype'] = 'html';
+
+    $this->email->initialize($config);
+
+    $this->email->from('support@new-interer.ru', 'Новый Интерьер');
+    $this->email->to(array('arkadij.ok@gmail.com', 'skinoak@mail.ru'));
+    $this->email->subject($subject);
+    $this->email->message($message);
+
+    $this->email->send();
+
+    /*$config['smtp_username'] = 'support@new-interer.ru'; //Смените на имя своего почтового ящика.
+    $config['smtp_port'] = '2525'; // Порт работы. Не меняйте, если не уверены.
+    $config['smtp_host'] = 'smtp.spaceweb.ru'; //сервер для отправки почты(для наших клиентов менять не требуется)
+    $config['smtp_password'] = '123supportbase'; //Измените пароль
+    $config['smtp_debug'] = false; //Если Вы хотите видеть сообщения ошибок, укажите true вместо false
+    $config['smtp_charset'] = 'Windows-1251'; //кодировка сообщений. (или UTF-8, итд)
+    $config['smtp_from'] = 'Новый Интерьер'; //Ваше имя - или имя Вашего сайта. Будет показывать при прочтении в поле "От кого"*/
   }
 }

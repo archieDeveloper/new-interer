@@ -14,6 +14,8 @@
   <?php foreach ($include_css as $css_path) :?>
     <link rel="stylesheet" href="/styles/<?=$css_path?>.css">
   <?php endforeach; ?>
+
+  <link rel="shortcut icon" href="/img/favicon_admin.ico" type="image/x-icon">
 </head>
 <body>
   <div class="wrap-container">

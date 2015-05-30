@@ -1,6 +1,19 @@
 $(document).ready(function(){
   "use strict";
 
+  var slides = document.getElementsByClassName('desc-slide');
+
+  window.onscroll = function(){
+    var scrolled = window.pageYOffset || document.documentElement.scrollTop;
+    if (scrolled <= 800) {
+      for(var index in slides) {
+        if(typeof slides[index] === 'object'){
+          slides[index].style.marginTop = (scrolled/1.9+100) + 'px';
+        }
+      }
+    }
+  };
+
   $(document).scroll(function(){
     if($(document).scrollTop() <= 320) $('#page-up').fadeOut(); else $('#page-up').fadeIn();
   });
@@ -115,9 +128,9 @@ $(document).ready(function(){
 
   var options = {
     animateThreshold: 200,
-    scrollPollInterval: 50
+    scrollPollInterval: 0
   };
-  $('.aniview').AniView();
+  $('.aniview').AniView(options);
 
 });
 

@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <link rel="stylesheet" type="text/css" href="/styles/style.css">
+  <link rel="stylesheet" type="text/css" href="/styles/style.css<?='?v' . VERSION_SITE?>">
   <link rel="stylesheet" type="text/css" href="/fonts/boblic/boblic.css">
-  <link rel="stylesheet" type="text/css" href="/styles/flaticon.css">
+  <link rel="stylesheet" type="text/css" href="/styles/flaticon.css<?='?v' . VERSION_SITE?>">
   <link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700,400italic,700italic&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
 
   <script type="text/javascript" src="/js/lib/jquery-1.10.2.min.js"></script>
@@ -11,28 +11,29 @@
 
   <script type="text/javascript" src="/js/lib/jquery.mousewheel-3.0.6.pack.js"></script>
 
-  <link rel="stylesheet" type="text/css" href="/fancybox/jquery.fancybox.css" media="screen" />
-  <script type="text/javascript" src="/fancybox/jquery.fancybox.pack.js"></script>
+  <link rel="stylesheet" type="text/css" href="/fancybox/jquery.fancybox.css<?='?v' . VERSION_SITE?>" media="screen" />
+  <script type="text/javascript" src="/fancybox/jquery.fancybox.pack.js<?='?v' . VERSION_SITE?>"></script>
 
   <?php if (isset($slider_boolean)) : ?>
-    <link rel="stylesheet" type="text/css" href="/styles/lib/swiper.min.css" />
-    <script type="text/javascript" src="/js/lib/swiper.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/styles/lib/swiper.min.css<?='?v' . VERSION_SITE?>" />
+    <script type="text/javascript" src="/js/lib/swiper.min.js<?='?v' . VERSION_SITE?>"></script>
 
-    <script type="text/javascript" src="/js/swiper.js"></script>
+    <script type="text/javascript" src="/js/swiper.js<?='?v' . VERSION_SITE?>"></script>
   <?php endif; ?>
 
-  <script type="text/javascript" src="/js/lib/isotope.pkgd.min.js"></script>
+  <script type="text/javascript" src="/js/lib/isotope.pkgd.min.js<?='?v' . VERSION_SITE?>"></script>
 
-  <link type="text/css" rel="stylesheet" href="/styles/lib/animate.css">
-  <script type="text/javascript" src="/js/lib/jquery.aniview.min.js"></script>
+  <link type="text/css" rel="stylesheet" href="/styles/lib/animate.css<?='?v' . VERSION_SITE?>">
+  <script type="text/javascript" src="/js/lib/jquery.aniview.min.js<?='?v' . VERSION_SITE?>"></script>
 
-  <script type="text/javascript" src="/js/fun.js"></script>
+  <script type="text/javascript" src="/js/fun.js<?='?v' . VERSION_SITE?>"></script>
   <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon">
   <meta content="/img/soclogo.jpg" property="og:image">
   <meta charset = "utf-8">
 
   <meta name="keywords" content="<?=$page_info->keywords?>" />
   <meta name="description" content="<?=$page_info->description?>" />
+  <meta name='yandex-verification' content='553ab0d7f9c8ef13' />
 
   <title><?=$page_info->title?> | Новый Интерьер</title>
 </head>
@@ -76,9 +77,9 @@
 
 <div id="header_wrap">
   <header id="header">
-    <h1><a href="/"><img id="logo" src="/img/logo-ni.png">Новый Интерьер</a></h1>
+    <h1><a href="/"><img id="logo" src="/img/logo-ni.png<?='?v' . VERSION_SITE?>">Новый Интерьер</a></h1>
     <div id="info_head">
-      <span><b>Часы работы:</b> с 9:00 до 18:00</span><br>
+      <span><b>Часы работы:</b> с 10:00 до 19:00</span><br>
       <span><b>Телефон:</b> +7 (951) 226-25-96</span><br>
       <span><b>Адрес:</b> г.Новокузнецк пр.Запсибовцев, д. 39</span>
     </div>
@@ -125,7 +126,7 @@
               <span class="gray">Мы делаем интерьер лучше, чем сами ожидаем того</span>
             </div>
           </div>
-          <div class="slide-img" style="background-image: url(/img/portfolio/big/6d0a90bb.jpg);"></div>
+          <div class="slide-img" style="background-image: url(/img/123.png);"></div>
         </div>
       </div>
       <div class="swiper-pagination"></div>

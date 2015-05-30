@@ -30,19 +30,19 @@
       <h2 class="header-small">Обратная связь</h2>
       <p>Связаться с нами, вы можете по телефону или заполнив форму ниже.</p>
 
-      <form method="post" id="callback-form">
-        <label for="author">Ваше имя:</label>
-        <input name="author" type="text" required><br>
+      <form method="post" id="callback-form" action="/contacts.html">
+        <label for="name">Ваше имя:</label>
+        <input name="name" type="text" required><br>
         <label for="email">Email:</label>
         <input name="email" type="text" required><br>
         <label for="number">Телефон:</label>
         <input name="number" type="text" required><br>
-        <label for="theme">Тема письма:</label>
-        <input name="theme" type="text" required><br>
+        <label for="topic">Тема письма:</label>
+        <input name="topic" type="text" required><br>
         <label for="text">Сообщение:</label>
         <textarea name="text" required></textarea>
         <p class="warring">Все поля обязательны для заполнения!</p>
-        <button class="button" name="submit">Отправить</button>
+        <button class="button" name="add_callback">Отправить</button>
       </form>
     </div>
 
