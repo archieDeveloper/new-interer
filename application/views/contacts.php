@@ -42,7 +42,7 @@
         <label for="text">Сообщение:</label>
         <textarea name="text" required></textarea>
         <p class="warring">Все поля обязательны для заполнения!</p>
-        <button class="button" name="add_callback">Отправить</button>
+        <button class="button" name="add_feedback">Отправить</button>
       </form>
     </div>
 

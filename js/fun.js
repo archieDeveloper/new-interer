@@ -51,11 +51,12 @@ $(document).ready(function(){
 
   $(document).on('click','#form_obr button.button',function(){
     var $button = $(this);
-    var $name = $('#form_obr #name').val();
-    var $number = $('#form_obr #number').val();
-    var $address = $('#form_obr #address').val();
-    var $start_time = $('#form_obr #start_time .slct span').eq(0).text();
-    var $end_time = $('#form_obr #end_time .slct span').eq(0).text();
+    var $form_callback = $('#form_obr');
+    var $name = $form_callback.find('#name').val();
+    var $number = $form_callback.find('#number').val();
+    var $address = $form_callback.find('#address').val();
+    var $start_time = $form_callback.find('#start_time .slct span').eq(0).text();
+    var $end_time = $form_callback.find('#end_time .slct span').eq(0).text();
     console.log($button);
 
     var $bobo = $('#bobo');
@@ -71,7 +72,14 @@ $(document).ready(function(){
       $.ajax({
         dataType : "html",
         type     : "POST",
-        data     : 'name='+$name+'&number='+$number+'&address='+$address+'&start_time='+$start_time+'&end_time='+$end_time+'&add_feedback=1',
+        data     : {
+          name: $name,
+          number: $number,
+          address: $address,
+          start_time: $start_time,
+          end_time: $end_time,
+          add_callback: true
+        },
         url      : '/contacts.html',
         success  : function(data){
           $button.prop( "disabled", false );
@@ -80,11 +88,12 @@ $(document).ready(function(){
 
           $bobo.fadeIn('fast');
           $bobo.html("<div id='status'>Сообщение отправленно.</div>");
-          $('#form_obr #name').val('');
-          $('#form_obr #number').val('');
-          $('#form_obr #address').val('');
-          $('#form_obr #start_time .slct span').eq(0).text('10');
-          $('#form_obr #end_time .slct span').eq(0).text('11');
+
+          $form_callback.find('#name').val('');
+          $form_callback.find('#number').val('');
+          $form_callback.find('#address').val('');
+          $form_callback.find('#start_time .slct span').eq(0).text('10');
+          $form_callback.find('#end_time .slct span').eq(0).text('11');
         }
       });
     } else {

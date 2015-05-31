@@ -45,7 +45,7 @@
 
 <div id="form_obr">
   <div id="form_obr_close">x</div>
-  <div id="order_form_title"><h2>Запись на замер</h2></div>
+  <div id="order_form_title"><h2>Обратный звонок</h2></div>
   <div id="bobo"><div style='display:none;' id='status'></div></div>
   <form id="order_form" method="post">
     <div><label for="name">Ваше имя:</label> <input style="float:right; width: 380px;" type="text" name="name" id="name" required><div class="cleaner"></div></div>
@@ -69,11 +69,14 @@
         <div class="cleaner"></div>
       </span>
     </div>
-    <button style="float:right;" class="button" name="add_feedback">Записаться</button>
+    <button style="float:right;" class="button" name="add_callback">Заказать</button>
   </form>
 </div>
 
-<div id="obr_sv"></div>
+<div id="obr_sv">
+  <span>Есть вопросы<br>Закажите обратный звонок</span>
+  <img src="/img/elem/callback_button.png" alt=""/>
+</div>
 
 <div id="header_wrap">
   <header id="header">

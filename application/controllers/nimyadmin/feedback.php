@@ -25,9 +25,9 @@ class Feedback extends CI_Controller {
     $this->data['page_title'] = $this->page_title;
     $this->data['include_js'] = $this->include_js;
     $this->data['include_css'] = $this->include_css;
-    $this->load->model('feedback_model');
+    $this->load->model('callback_model');
 
-    $this->data['feedback_list'] = $this->feedback_model->get_feedback();
+    $this->data['feedback_list'] = $this->callback_model->get();
 
     $this->load->view('admin/templates/up', $this->data);
     $this->load->view('admin/feedback', $this->data);

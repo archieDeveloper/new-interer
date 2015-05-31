@@ -284,8 +284,12 @@ color: #fff;
 }
 
 .wrap.gray {
-  background: #eee;
+  background: #eee url(/img/elem/sharp_pattern.png);
   color: #444;
+}
+
+.wrap.gray p {
+  color: #000;
 }
 
 .wrap h2 {
@@ -547,17 +551,35 @@ color: #fff;
 
 #obr_sv{
   z-index: 900;
-  height: 55px;
-  width: 80px;
   position: fixed;
   top: 300px;
+  width: 210px;
   left: 0;
-  border-radius: 0 3px 3px 0;
-  background: url(/img/obr_sv.png);
+  padding: 15px;
+  border-radius: 0 5px 5px 0;
+  background: #77b3d4;
+  margin-left: -190px;
+  -webkit-transition: all 0.2s ease !important;
+  transition: all 0.2s ease !important;
 }
 
 #obr_sv:hover{
   cursor: pointer;
+  margin-left: 0;
+}
+
+#obr_sv img {
+  width: 16px;
+  display: block;
+  margin-left: 20px;
+  float: left;
+}
+
+#obr_sv span {
+  font-family: 'Boblic', "PT Sans", serif;
+  float: left;
+  display: block;
+  text-align: right;
 }
 
 .button{
@@ -846,6 +868,11 @@ color: #fff;
   line-height: 25px;
   border: 1px solid #EEE;
 }
+
+.slct span {
+  float: left;
+}
+
 .select .drop {
   display: none;
 }
