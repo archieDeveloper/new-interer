@@ -1,6 +1,6 @@
 <?php if (isset($page_title)) { echo '<h2>'.$page_title.' <a href="/nimyadmin/articles/add.html" class="button green btn-new-art"><i class="flaticon-plus13"></i> Добавить статью</a></h2>'; } ?>
 
-<ul class="pagenation">
+<ul class="pagination">
   <?php pagination($_GET['page'], $num_pages, '<i class="flaticon-thin6"></i>', '<i class="flaticon-thin2"></i>'); ?>
   <div class="cleaner"></div>
 </ul>
@@ -44,7 +44,7 @@
     </li>
   <?php endforeach; ?>
 </ul>
-<ul class="pagenation">
+<ul class="pagination">
   <?php pagination($_GET['page'], $num_pages, '<i class="flaticon-thin6"></i>', '<i class="flaticon-thin2"></i>'); ?>
   <div class="cleaner"></div>
 </ul>

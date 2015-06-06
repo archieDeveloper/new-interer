@@ -7,7 +7,7 @@
 </div>
 <div class="wrap">
   <div class="wrap-center">
-    <ul class="pagenation">
+    <ul class="pagination">
         <?php pagination($_GET['page'], $num_pages); ?>
         <div class="cleaner"></div>
     </ul>
@@ -24,7 +24,7 @@
     </article>
     <?php endforeach; ?>
     </div>
-    <ul class="pagenation">
+    <ul class="pagination">
         <?php pagination($_GET['page'], $num_pages); ?>
         <div class="cleaner"></div>
     </ul>

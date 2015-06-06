@@ -6,7 +6,7 @@ class Articles extends CI_Controller {
     $controller,
     $action,
     $page_title = 'Настройка статей',
-    $include_js = array('articles'),
+    $include_js = array('admin/articles'),
     $include_css = array('lib/jquery.fileupload');
 
   function __construct(){
@@ -27,10 +27,10 @@ class Articles extends CI_Controller {
     if (isset($_POST['id']) && isset($_POST['no_trash'])) $this->_no_trash_new($_POST['id']);
     $this->data['page_title'] = $this->page_title;
 
-    $this->load->model('articles_model');
     if (!isset($_GET['page'])) { $_GET['page'] = 1; }
     $page = (integer) $_GET['page'];
     if (!$page) { show_404(); }
+    $this->load->model('articles_model');
     $this->data['articles'] = $this->articles_model->get_news($page);
     $this->data['num_pages'] = $this->articles_model->get_num_news();
     $this->data['page_controller'] = $this->controller;
@@ -50,10 +50,10 @@ class Articles extends CI_Controller {
     if (isset($_POST['id']) && isset($_POST['no_trash'])) $this->_no_trash_new($_POST['id']);
     $this->data['page_title'] = $this->page_title;
 
-    $this->load->model('articles_model');
     if (!isset($_GET['page'])) { $_GET['page'] = 1; }
     $page = (integer) $_GET['page'];
     if (!$page) { show_404(); }
+    $this->load->model('articles_model');
     $this->data['articles'] = $this->articles_model->get_news($page);
     $this->data['num_pages'] = $this->articles_model->get_num_news();
     $this->data['page_controller'] = $this->controller;

@@ -1,6 +1,9 @@
 $(document).ready(function(){
+  'use strict';
 
-  $(document).on('click', '.edit-art', function(e){
+  var $document = $(document);
+
+  $document.on('click', '.edit-art', function(e){
     e.preventDefault();
     var $parent = $(this).parent().parent();
     $parent.find('.art-nav-1').hide();
@@ -17,7 +20,7 @@ $(document).ready(function(){
     $parent.find('.edit-text-art').show().find('.input-edit').val(text);
   });
 
-  $(document).on('click', '.no-edit-art', function(e){
+  $document.on('click', '.no-edit-art', function(e){
     e.preventDefault();
     var $parent = $(this).parent().parent();
     $parent.find('.art-nav-1').show();
@@ -32,7 +35,7 @@ $(document).ready(function(){
     $parent.find('.edit-text-art').hide().val('');
   });
 
-  $(document).on('click', '.save-edit-art', function(e){
+  $document.on('click', '.save-edit-art', function(e){
     e.preventDefault();
     var $parent = $(this).parent().parent();
     var id = $(this).attr('data-id');
@@ -46,8 +49,6 @@ $(document).ready(function(){
       data     : 'id='+id+'&title='+title+'&date='+date+'&text='+text+'&action=edit',
       url      : '/nimyadmin/articles.html',
       success  : function(data){
-        console.log(data);
-
         $parent.find('.art-nav-1').show();
         $parent.find('.art-nav-2').hide();
 
@@ -62,21 +63,21 @@ $(document).ready(function(){
     });
   });
 
-  $(document).on('click', '.show-all-text', function(e){
+  $document.on('click', '.show-all-text', function(e){
     e.preventDefault();
     var $this = $(this);
     $this.hide();
     $this.next().show();
   });
 
-  $(document).on('click', '.hide-all-text', function(e){
+  $document.on('click', '.hide-all-text', function(e){
     e.preventDefault();
     var $parent = $(this).parent();
     $parent.prev().show();
     $parent.hide();
   });
 
-  $(document).on('click', '.btn-publised-new', function(e){
+  $document.on('click', '.btn-publised-new', function(e){
     e.preventDefault();
     var title = $('#title-new').val();
     var date = $('#date-new').val();
@@ -87,7 +88,6 @@ $(document).ready(function(){
       data     : 'title='+title+'&date='+date+'&text='+text+'&action=add',
       url      : '/nimyadmin/articles.html',
       success  : function(data){
-        console.log(data);
         var $elem = $('.ajax-pre li').last().prependTo('.ajax-pre');
         $elem.find('.title-art').html(data.title);
         $elem.find('.date-art').html(data.date);
@@ -102,7 +102,7 @@ $(document).ready(function(){
     });
   });
 
-  $(document).on('click','.del-art', function(e){
+  $document.on('click','.del-art', function(e){
     e.preventDefault();
     var $_this = $(this);
     var $id = $_this.attr('data-id');
@@ -115,13 +115,19 @@ $(document).ready(function(){
       success  : function(data){
         $_this.prop('disabled', false);
         var $secondParent = $_this.parent().parent();
-        $secondParent.before('<li class="news-trash">Статья удалена. <a href="#" class="no-trash" data-id="'+$id+'">Восстановить</a><a class="button close-no-trash" href="javascript:void(0);"><i class="flaticon-cross5"></i></a></li>');
+        $secondParent.before(
+          '<li class="news-trash">' +
+            'Статья удалена.' +
+            '<a href="#" class="no-trash" data-id="'+$id+'">Восстановить</a>' +
+            '<a class="button close-no-trash" href="#"><i class="flaticon-cross5"></i></a>' +
+          '</li>'
+        );
         $secondParent.slideUp(200);
       }
     });
   });
 
-  $(document).on('click','.no-trash',function(e){
+  $document.on('click','.no-trash',function(e){
     e.preventDefault();
     var $_this = $(this);
     $_this.prop('disabled', true);
@@ -140,7 +146,7 @@ $(document).ready(function(){
     });
   });
 
-  $(document).on('click','.close-no-trash',function(e){
+  $document.on('click','.close-no-trash',function(e){
     e.preventDefault();
     var $parent = $(this).parent();
     $parent.next().remove();

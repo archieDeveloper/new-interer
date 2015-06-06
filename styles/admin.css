@@ -290,18 +290,18 @@ body {
   margin-bottom: 20px
 }
 
-.pagenation {
+.pagination {
   list-style-type: none;
   overflow: hidden;
   margin-bottom: 20px
 }
 
-.pagenation li {
+.pagination li {
   float: left;
   margin: 2px 0;
 }
 
-.pagenation li a {
+.pagination li a {
   display: block;
   padding: 10px;
   background: #fff;
@@ -318,12 +318,12 @@ body {
   transition: background-color 0.2s;
 }
 
-.pagenation li a:hover {
+.pagination li a:hover {
   background: #EDEDED;
   border: 1px solid #D3D3D3;
 }
 
-.pagenation li a.active {
+.pagination li a.active {
   background: #eee;
   color: #777;
   border: 0;

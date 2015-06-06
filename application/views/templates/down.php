@@ -51,7 +51,7 @@
     </div>
   </footer>
 </div>
-<div class="copyrigth">Новый Интерьер <?php echo date('Y'); ?>г. Все права защищены.</div>
+<div class="copyright">Новый Интерьер <?php echo date('Y'); ?>г. Все права защищены.</div>
 </div>
 
 <!-- Yandex.Metrika counter -->

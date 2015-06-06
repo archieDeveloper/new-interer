@@ -18,7 +18,7 @@
       </ul>
     </div>
     <div class="wrap-products">
-      <ul class="pagenation">
+      <ul class="pagination">
         <?php pagination($_GET['page'], $num_pages); ?>
         <?php if(isset($count_portfolio)): ?>
         <li class="count-elem">
@@ -39,7 +39,7 @@
         <?php endforeach; ?>
       </div>
       <div class="cleaner"></div>
-      <ul class="pagenation">
+      <ul class="pagination">
         <?php pagination($_GET['page'], $num_pages); ?>
         <?php if(isset($count_portfolio)): ?>
         <li class="count-elem">

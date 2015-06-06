@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <link rel="stylesheet" type="text/css" href="/styles/style.css<?='?v' . VERSION_SITE?>">
+  <link rel="stylesheet" type="text/css" href="/styles/all.min.css<?='?v' . VERSION_SITE?>">
   <link rel="stylesheet" type="text/css" href="/fonts/boblic/boblic.css">
   <link rel="stylesheet" type="text/css" href="/styles/flaticon.css<?='?v' . VERSION_SITE?>">
   <link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700,400italic,700italic&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
