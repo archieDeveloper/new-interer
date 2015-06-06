@@ -194,7 +194,7 @@ $(window).load(function() {
    * Функция работает с гет параметрами в адресной строке, удаляет или добавляет переменную id_poroduct
    * Можно модифицировать функцию так чтобы можно было кастомно задавать переменные
    *
-   * @params id_product int
+   * @param id_product int
    * @returns string
    */
   var getSearchString = function (id_product) {

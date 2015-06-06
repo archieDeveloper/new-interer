@@ -2,6 +2,9 @@
 
 class Feedback_model extends CI_Model {
 
+  /**
+   * @return bool
+   */
   public function get() {
     $sql = "SELECT * FROM `feedback`";
     $query = $this->db->query($sql);
@@ -10,6 +13,14 @@ class Feedback_model extends CI_Model {
     return $result;
   }
 
+  /**
+   * @param $name
+   * @param $email
+   * @param $number
+   * @param $topic
+   * @param $text
+   * @return bool
+   */
   public function add($name, $email, $number, $topic, $text) {
     $sql = "INSERT INTO `feedback` (`name`, `email`, `phone`, `topic`, `text`) VALUES (?, ?, ?, ?, ?)";
     $data = array($name, $email, $number, $topic, $text);
