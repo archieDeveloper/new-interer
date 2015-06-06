@@ -11,6 +11,9 @@
 
   <script type="text/javascript" src="/js/lib/jquery.mousewheel-3.0.6.pack.js"></script>
 
+  <script type="text/javascript" src="/js/lib/inputmask.min.js"></script>
+  <script type="text/javascript" src="/js/lib/jquery.inputmask.min.js"></script>
+
   <link rel="stylesheet" type="text/css" href="/fancybox/jquery.fancybox.css<?='?v' . VERSION_SITE?>" media="screen" />
   <script type="text/javascript" src="/fancybox/jquery.fancybox.pack.js<?='?v' . VERSION_SITE?>"></script>
 
@@ -106,12 +109,49 @@
       <div class="swiper-wrapper">
         <div class="swiper-slide">
           <div class="wrap-center absolute">
-            <div class="desc-slide">
-              <span class="pink">Мастерство <b>качества</b></span><br>
-              <span class="gray">С нами качество перестает быть мифом</span>
+            <div class="desc-slide left">
+              <span class="pink">Запишись на <b>бесплатный замер</b></span>
+            </div>
+            <div class="cleaner"></div>
+            <div class="desc-slide center">
+              <div class="black transparent">
+                <form action="/" class="form">
+                  <label for="name">Как к Вам обращаться?</label>
+                  <input name="name" type="text"/>
+
+                  <label for="number">На какой номер перезвонить?</label>
+                  <input name="number" type="text"/>
+
+                  <label for="time">Желаемое время замера</label>
+                  <div>
+                    <span class="select-prev">с</span>
+                    <span class="select" id="start_time">
+                      <a href="javascript:void(0);" class="slct"><span>10</span><i class="flaticon-chevron8"></i></a>
+                      <ul class="drop" data-id="1" style="display: none;">
+                        <li>10</li><li>11</li><li>12</li><li>13</li><li>14</li><li>15</li><li>16</li><li>17</li><li>18</li><li>19</li><li>20</li>
+                      </ul>
+                      <div class="cleaner"></div>
+                    </span>
+                    <span class="select-prev">до</span>
+                    <span class="select" id="end_time">
+                      <a href="javascript:void(0);" class="slct"><span>11</span><i class="flaticon-chevron8"></i></a>
+                      <ul class="drop" data-id="1" style="">
+                        <li>11</li><li>12</li><li>13</li><li>14</li><li>15</li><li>16</li><li>17</li><li>18</li><li>19</li><li>20</li><li>21</li>
+                      </ul>
+                      <div class="cleaner"></div>
+                    </span>
+                  </div>
+                  <button style="float: right;" class="button think white">Записаться</button>
+                  <div class="cleaner"></div>
+                </form>
+              </div>
+            </div>
+            <div class="cleaner"></div>
+            <div class="desc-slide right">
+              <span class="gray">Получи дизайн-проект в <b>подарок</b></span>
             </div>
           </div>
-          <div class="slide-img" style="background-image: url(/img/234.jpg);"></div>
+          <div class="slide-img" style="background-image: url(/img/slider/slide1.png);"></div>
         </div>
         <div class="swiper-slide">
           <div class="wrap-center absolute">

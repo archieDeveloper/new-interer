@@ -4,15 +4,17 @@ $(document).ready(function(){
   var slides = document.getElementsByClassName('desc-slide');
 
   window.onscroll = function(){
-    var scrolled = window.pageYOffset || document.documentElement.scrollTop;
+    /*var scrolled = window.pageYOffset || document.documentElement.scrollTop;
     if (scrolled <= 800) {
       for(var index in slides) {
         if(typeof slides[index] === 'object'){
           slides[index].style.marginTop = (scrolled/1.9+100) + 'px';
         }
       }
-    }
+    }*/
   };
+
+  $('input[name="number"]').inputmask("+7 (999) 999 99-99");
 
   $(document).scroll(function(){
     if($(document).scrollTop() <= 320) $('#page-up').fadeOut(); else $('#page-up').fadeIn();
@@ -183,64 +185,58 @@ $(window).load(function() {
             '</div>';
   };
 
+  /**
+   *
+   * Функция работает с гет параметрами в адресной строке, удаляет или добавляет переменную id_poroduct
+   * Можно модифицировать функцию так чтобы можно было кастомно задавать переменные
+   *
+   * @params id_product string
+   * @returns string
+   */
+  var getSearchString = function (id_product) {
+    var i, arrGetLength, newArrGet, newArrGetLength,
+      searchStr = '',
+      arrGet = window.location.search.split('&');
+    arrGet[0] = arrGet[0].substring(1);
+
+    arrGetLength = arrGet.length;
+    for (i = 0; i < arrGetLength; i++) {
+      arrGet[i] = arrGet[i].split('=');
+    }
+
+    newArrGet = [];
+    arrGetLength = arrGet.length;
+    for (i = 0; i < arrGetLength; i++) {
+      if (arrGet[i][0] !== 'id_product') {
+        newArrGet.push(arrGet[i]);
+      }
+    }
+
+    if (id_product) {
+      var newIdProduct = ['id_product',id_product];
+      newArrGet.push(newIdProduct);
+    }
+
+    newArrGetLength = newArrGet.length;
+    for (i = 0; i < newArrGetLength; i++) {
+      searchStr += (i === 0 ? '?' : '&') + newArrGet[i][0] + '=' + newArrGet[i][1];
+    }
+    return searchStr;
+  };
+
   $('.wrap-product a').fancybox({
     titleShow	: true,
     afterClose	: function() {
-      var id_product = $(this.element).attr('data-id');
-
-      var arrGet = window.location.search.split('&');
-      arrGet[0] = arrGet[0].substring(1);
-
-      var arrGetLength = arrGet.length;
-      for (var i = 0; i < arrGetLength; i++) {
-        arrGet[i] = arrGet[i].split('=');
-      }
-
-      var newArrGet = [];
-      arrGetLength = arrGet.length;
-      for (var i = 0; i < arrGetLength; i++) {
-        if (arrGet[i][0] !== 'id_product') {
-          newArrGet.push(arrGet[i]);
-        }
-      }
-
-      var searchStr = '';
-      var newArrGetLength = newArrGet.length;
-      for (var i = 0; i < newArrGetLength; i++) {
-        searchStr += (i === 0 ? '?' : '&') + newArrGet[i][0] + '=' + newArrGet[i][1];
-      }
+      var searchStr = getSearchString();
       history.pushState({foo: 'bar'}, 'Title', window.location.pathname+searchStr);
     },
     afterLoad	: function() {
       var id_product = $(this.element).attr('data-id');
-
-      var searchStr = '';
+      var searchStr;
       if (window.location.search !== '') {
-        var arrGet = window.location.search.split('&');
-        arrGet[0] = arrGet[0].substring(1);
-
-        var arrGetLength = arrGet.length;
-        for (var i = 0; i < arrGetLength; i++) {
-          arrGet[i] = arrGet[i].split('=');
-        }
-
-        var newArrGet = [];
-        arrGetLength = arrGet.length;
-        for (var i = 0; i < arrGetLength; i++) {
-          if (arrGet[i][0] !== 'id_product') {
-            newArrGet.push(arrGet[i]);
-          }
-        }
-
-        var newIdProduct = ['id_product',id_product];
-        newArrGet.push(newIdProduct);
-
-        var newArrGetLength = newArrGet.length;
-        for (var i = 0; i < newArrGetLength; i++) {
-          searchStr += (i === 0 ? '?' : '&') + newArrGet[i][0] + '=' + newArrGet[i][1];
-        }
+        searchStr = getSearchString(id_product);
       } else {
-        searchStr += '?id_product='+id_product;
+        searchStr = '?id_product='+id_product;
       }
       history.pushState({foo: 'bar'}, 'Title', window.location.pathname+searchStr);
       this.title = getHtmlFancy(this.title);
@@ -251,40 +247,15 @@ $(window).load(function() {
   });
 
   if (typeof getParams['id_product'] !== 'undefined') {
-    //$('.wrap-product a[data-id = '+getParams['id_product']+']').click();
     var $current_product = $('#current_product');
-    var $curId = $current_product.attr('data-id');
     var $curImg = $current_product.attr('data-img');
     var $curTitle = $current_product.attr('data-title');
-    console.log($curImg);
     $.fancybox.open([{
       titleShow	: true,
       href:'/img/portfolio/big/'+$curImg,
       title: getHtmlFancy($curTitle),
       afterClose	: function() {
-        var id_product = $(this.element).attr('data-id');
-
-        var arrGet = window.location.search.split('&');
-        arrGet[0] = arrGet[0].substring(1);
-
-        var arrGetLength = arrGet.length;
-        for (var i = 0; i < arrGetLength; i++) {
-          arrGet[i] = arrGet[i].split('=');
-        }
-
-        var newArrGet = [];
-        arrGetLength = arrGet.length;
-        for (var i = 0; i < arrGetLength; i++) {
-          if (arrGet[i][0] !== 'id_product') {
-            newArrGet.push(arrGet[i]);
-          }
-        }
-
-        var searchStr = '';
-        var newArrGetLength = newArrGet.length;
-        for (var i = 0; i < newArrGetLength; i++) {
-          searchStr += (i === 0 ? '?' : '&') + newArrGet[i][0] + '=' + newArrGet[i][1];
-        }
+        var searchStr = getSearchString();
         history.pushState({foo: 'bar'}, 'Title', window.location.pathname+searchStr);
       },
       helpers		: {
