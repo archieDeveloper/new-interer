@@ -156,8 +156,12 @@ $(window).load(function() {
     layoutMode: 'masonry'
   });
 
-
-  /* парсер GET параметров */
+  /**
+   *
+   * парсер GET параметров
+   *
+   * @returns {{}}
+   */
   var parseGetParams = function() {
     var $_GET = {};
     var __GET = window.location.search.substring(1).split("&");
@@ -169,6 +173,8 @@ $(window).load(function() {
   };
 
   var getParams = parseGetParams();
+
+  console.log(getParams);
 
   var getHtmlFancy = function(title) {
     return  '<div class="float-left">'+
@@ -190,37 +196,28 @@ $(window).load(function() {
    * Функция работает с гет параметрами в адресной строке, удаляет или добавляет переменную id_poroduct
    * Можно модифицировать функцию так чтобы можно было кастомно задавать переменные
    *
-   * @params id_product string
+   * @params id_product int
    * @returns string
    */
   var getSearchString = function (id_product) {
-    var i, arrGetLength, newArrGet, newArrGetLength,
-      searchStr = '',
-      arrGet = window.location.search.split('&');
-    arrGet[0] = arrGet[0].substring(1);
-
-    arrGetLength = arrGet.length;
-    for (i = 0; i < arrGetLength; i++) {
-      arrGet[i] = arrGet[i].split('=');
-    }
-
-    newArrGet = [];
-    arrGetLength = arrGet.length;
-    for (i = 0; i < arrGetLength; i++) {
-      if (arrGet[i][0] !== 'id_product') {
-        newArrGet.push(arrGet[i]);
-      }
-    }
+    var searchStr = '',
+      $_GET = parseGetParams(),
+      first = true;
 
     if (id_product) {
-      var newIdProduct = ['id_product',id_product];
-      newArrGet.push(newIdProduct);
+      $_GET['id_product'] = id_product;
+    } else {
+      delete $_GET['id_product'];
     }
 
-    newArrGetLength = newArrGet.length;
-    for (i = 0; i < newArrGetLength; i++) {
-      searchStr += (i === 0 ? '?' : '&') + newArrGet[i][0] + '=' + newArrGet[i][1];
+    for(var param in $_GET){
+      searchStr +=
+        (first === true ? '?' : '&') +
+        param +
+        ($_GET[param] ? '=' + $_GET[param] : '');
+      first = false;
     }
+
     return searchStr;
   };
 
