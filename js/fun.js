@@ -209,10 +209,11 @@ $(window).load(function() {
     }
 
     for(var param in $_GET){
+      var currentParam = $_GET[param];
       searchStr +=
         (first === true ? '?' : '&') +
         param +
-        ($_GET[param] ? '=' + $_GET[param] : '');
+        (currentParam ? '=' + currentParam : '');
       first = false;
     }
 
