@@ -3,7 +3,7 @@
 class Feedback_model extends CI_Model {
 
   /**
-   * @return bool
+   * @return array || bool
    */
   public function get() {
     $sql = "SELECT * FROM `feedback`";
@@ -14,6 +14,7 @@ class Feedback_model extends CI_Model {
   }
 
   /**
+    $sql = "SELECT * FROM
    * @param $name
    * @param $email
    * @param $number
