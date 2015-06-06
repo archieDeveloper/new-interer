@@ -2,6 +2,7 @@ $(document).ready(function(){
   "use strict";
 
   var slides = document.getElementsByClassName('desc-slide');
+  var $document = $(document);
 
   window.onscroll = function(){
     /*var scrolled = window.pageYOffset || document.documentElement.scrollTop;
@@ -16,22 +17,22 @@ $(document).ready(function(){
 
   $('input[name="number"]').inputmask("+7 (999) 999 99-99");
 
-  $(document).scroll(function(){
+  $document.scroll(function(){
     if($(document).scrollTop() <= 320) $('#page-up').fadeOut(); else $('#page-up').fadeIn();
   });
 
-  $(document).on('click', '#page-up', function(){
+  $document.on('click', '#page-up', function(){
     $('body, html').animate({scrollTop: 0}, 300);
   });
 
   var $form_obr = $('#form_obr'),
     $black_fon = $('#black_fon');
 
-  $(document).on('click','#obr_sv',function() {
-    var $he = $(document).height();
-    var $wi = $(document).width();
+  $document.on('click','#obr_sv',function() {
+    var $he = $document.height();
+    var $wi = $document.width();
 
-    var $top = $(document).scrollTop()+100;
+    var $top = $document.scrollTop()+100;
     var $left = ($wi/2)-($form_obr.width()/2);
 
     $black_fon.css({'height':$he,'width':$wi});
@@ -41,17 +42,17 @@ $(document).ready(function(){
     $form_obr.fadeIn('fast');
   });
 
-  $(document).on('click','#form_obr_close',function(){
+  $document.on('click','#form_obr_close',function(){
     $black_fon.fadeOut('fast');
     $form_obr.fadeOut('fast');
   });
 
-  $(document).on('click','#black_fon',function(){
+  $document.on('click','#black_fon',function(){
     $black_fon.fadeOut('fast');
     $form_obr.fadeOut('fast');
   });
 
-  $(document).on('click','#form_obr button.button',function(){
+  $document.on('click','#form_obr button.button',function(){
     var $button = $(this);
     var $form_callback = $('#form_obr');
     var $name = $form_callback.find('#name').val();
@@ -59,7 +60,6 @@ $(document).ready(function(){
     var $address = $form_callback.find('#address').val();
     var $start_time = $form_callback.find('#start_time .slct span').eq(0).text();
     var $end_time = $form_callback.find('#end_time .slct span').eq(0).text();
-    console.log($button);
 
     var $bobo = $('#bobo');
     if ($name != '' && $number != '' && $address != '' && $start_time != '' && $end_time != '') {
@@ -110,7 +110,7 @@ $(document).ready(function(){
 
   // Select
 
-  $(document).on('click', '.slct',function(e){
+  $document.on('click', '.slct',function(e){
     e.preventDefault();
     var $this = $(this);
     var $dropBlock = $this.parent().find('.drop');
@@ -127,7 +127,7 @@ $(document).ready(function(){
   });
 
   /* Работаем с событием клика по элементам выпадающего списка */
-  $(document).on('click','.drop li',function(){
+  $document.on('click','.drop li',function(){
     var $drop = $('.drop'),
       $this = $(this);
     $drop.find('li').removeClass('active');
@@ -173,8 +173,6 @@ $(window).load(function() {
   };
 
   var getParams = parseGetParams();
-
-  console.log(getParams);
 
   var getHtmlFancy = function(title) {
     return  '<div class="float-left">'+
