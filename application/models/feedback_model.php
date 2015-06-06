@@ -14,7 +14,6 @@ class Feedback_model extends CI_Model {
   }
 
   /**
-    $sql = "SELECT * FROM
    * @param $name
    * @param $email
    * @param $number
