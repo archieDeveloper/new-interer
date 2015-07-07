@@ -123,6 +123,9 @@ $(document).ready(function(){
         $error.fadeIn('slow');
       } else {
 
+        $listPageLi.show();
+        $listPageLi2.hide();
+
         $error.hide();
 
         window.listData1 = data.result;
@@ -313,7 +316,9 @@ $(document).ready(function(){
     width: 'auto',
     closeText: '<i class="flaticon-cross5"></i>',
     close: function(){
-      //$imgAreaSelect.cancelSelection();
+        if(window.arrSelections != null){
+            window.arrSelections.cancelSelection();
+        }
     }
   });
 

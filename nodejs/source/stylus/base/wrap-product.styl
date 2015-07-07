@@ -1,70 +1,52 @@
-.wrap-products {
-  float: right;
-  width: 820px;
-  margin-right: -30px;
-}
+.wrap-products
+  float right
+  width 820px
+  margin-right -30px
 
-.wrap-product {
-  float: left;
-  width: 237px;
-  text-align: center;
-  margin-bottom: 30px;
-  margin-right: 30px;
-  border: 3px solid #EEE;
-  background: #fff;
-  border-radius: 3px;
-}
+.wrap-product
+  float left
+  width 237px
+  text-align center
+  margin-bottom 30px
+  margin-right 30px
+  border 3px solid #EEE
+  background #fff
+  border-radius 3px
+  &:hover
+    border-color #E92253
+    & img.view-icon
+      display block
+  & img
+    display block
+    margin 10px auto
+    width 217px
+    &.view-icon
+      position absolute
+      top 50%
+      left 50%
+      margin -50px 0 0 -30px
+      width 60px
+      opacity 0.5
+      display none
+  & a
+    color #444
+    text-decoration none
+    font-size 14px
+    font-weight bold
+    &:hover
+      color: #860D2E;
+      text-decoration: none;
+  & span
+    display block
+    margin 15px
+    font-family font-header
 
-.wrap-product:hover {
-  border-color: #E92253;
-}
-
-.wrap-product:hover img.view-icon{
-  display: block;
-}
-
-.wrap-product img {
-  display: block;
-  margin: 10px auto;
-  width: 217px;
-}
-
-.wrap-product a {
-  color: #444;
-  text-decoration: none;
-  font-size: 14px;
-  font-weight: bold;
-}
-
-.wrap-product a:hover {
-  color: #860D2E;
-  text-decoration: none;
-}
-
-.wrap-product span {
-  display: block;
-  margin: 15px;
-  font-family: 'Boblic', 'PT Sans', Arial, serif;
-}
-
-.wrap-product img.view-icon {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  margin: -50px 0 0 -30px;
-  width: 60px;
-  opacity: 0.5;
-  display: none;
-}
-
-.wrap-portfolio-hidden .wrap-product {
-  border-color: #fff;
-  margin-right: 10px;
-  margin-bottom: 10px;
-}
-
-.wrap-portfolio-hidden .wrap-product:hover {
-  border-color: #860D2E;
-  padding: 5px;
-  margin: -5px;
-}
+.wrap-portfolio-hidden
+  & .wrap-product
+    border-color #fff
+    margin-right 10px
+    margin-bottom 10px
+    &:hover
+      border-color #860D2E
+      padding 5px
+      margin -5px

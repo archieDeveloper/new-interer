@@ -1,97 +1,69 @@
-.wrap{
-  padding: 50px 0;
-}
+.wrap
+  padding 50px 0
+  &.pink
+    background: #D32F58 url(/img/bg-wrap.png) fixed;
+    color: #fff;
+    & h2
+      color #fff
+  &.gray
+    background #eee url(/img/elem/sharp_pattern.png)
+    color #444
+    & p
+      color #000
+  & h2
+    padding 0
+    margin-bottom 50px
+    font-size 40px
+    color #860D2E
+    text-align center
+    &.header-small
+      text-align left
+      margin-bottom 30px
+      font-size 30px
+  & h1, h2, h3
+    text-transform uppercase
+  &.breadcrumb-wrap
+    padding 20px 0 0 0
+    margin 0 0 -20px 0
 
-.wrap.pink {
-  background: #D32F58 url(/img/bg-wrap.png) fixed;
-  color: #fff;
-}
+.wrap-center
+  width: 1000px
+  margin: 0 auto
+  &.absolute
+    position absolute
+    width 1000px
+    left 50%
+    margin-left -500px
+    top 0
+    z-index: 3
 
-.wrap.pink h2 {
-  color: #fff;
-}
+.wrap-portfolio-hidden
+  height 500px
+  overflow hidden
+  position relative
+  &:after
+    content ''
+    position absolute
+    bottom 0
+    left 0
+    right 0
+    background #eee;
+    height 5px
+    background -moz-linear-gradient(top,  rgba(0,0,0,0) 0%, rgba(0,0,0,0.29) 100%)
+    background -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0)), color-stop(100%,rgba(0,0,0,0.29)))
+    background -webkit-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.29) 100%)
+    background -o-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.29) 100%)
+    background -ms-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.29) 100%)
+    background linear-gradient(to bottom,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.29) 100%)
+    //filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#4a000000',GradientType=0 );
+    background rgba(0,0,0,0.2)
+  & #portfolio-container
+    width 1020px
 
-.wrap.gray {
-  background: #eee url(/img/elem/sharp_pattern.png);
-  color: #444;
-}
-
-.wrap.gray p {
-  color: #000;
-}
-
-.wrap h2 {
-  padding: 0;
-  margin-bottom: 50px;
-  font-size: 40px;
-  color: #860D2E;
-  text-align: center;
-}
-
-.wrap h1,h2,h3 {
-  text-transform: uppercase;
-}
-
-.wrap h2.header-small {
-  text-align: left;
-  margin-bottom: 30px;
-  font-size: 30px;
-}
-
-.wrap-center {
-  width: 1000px;
-  margin: 0 auto;
-}
-
-.wrap-center.absolute{
-  position: absolute;
-  width: 1000px;
-  left: 50%;
-  margin-left: -500px;
-  top: 0;
-  z-index: 3;
-}
-
-.wrap.breadcrumb-wrap {
-  padding: 20px 0 0 0;
-  margin: 0 0 -20px 0;
-}
-
-.wrap-portfolio-hidden #portfolio-container {
-  width: 1020px;
-}
-
-.wrap-portfolio-hidden {
-  height: 500px;
-  overflow: hidden;
-  position: relative;
-}
-
-.wrap-portfolio-hidden:after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: #eee;
-  height: 5px;
-
-  background: -moz-linear-gradient(top,  rgba(0,0,0,0) 0%, rgba(0,0,0,0.29) 100%);
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0)), color-stop(100%,rgba(0,0,0,0.29)));
-  background: -webkit-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.29) 100%);
-  background: -o-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.29) 100%);
-  background: -ms-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.29) 100%);
-  background: linear-gradient(to bottom,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.29) 100%);
-  //filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#4a000000',GradientType=0 );
-
-  background: rgba(0,0,0,0.2);
-}
-
-.warp_view-all-portfolio {
-  display: block;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  text-align: center;
-}
+.warp_view-all-portfolio
+  display block
+  position absolute
+  bottom 0
+  left 0
+  right 0
+  text-align: center
