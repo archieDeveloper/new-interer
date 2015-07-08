@@ -31,7 +31,7 @@
 
   <script type="text/javascript" src="/js/fun.js<?='?v' . VERSION_SITE?>"></script>
   <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon">
-  <meta content="/img/soclogo.jpg" property="og:image">
+  <meta content="/img/share_logo.png" property="og:image">
   <meta charset = "utf-8">
 
   <meta name="keywords" content="<?=$page_info->keywords?>" />
@@ -53,7 +53,6 @@
   <form id="order_form" method="post">
     <div><label for="name">Ваше имя:</label> <input style="float:right; width: 380px;" type="text" name="name" id="name" required><div class="cleaner"></div></div>
     <div><label for="number">Телефон:</label> <input style="float:right; width: 380px;" type="text" name="number" id="number" required><div class="cleaner"></div></div>
-    <div><label for="address">Адрес:</label> <input style="float:right; width: 380px;" type="text" name="address" id="address" required><div class="cleaner"></div></div>
     <div><label style="width: 121px;">Желаемое время:</label>
       <span class="select-prev">с</span>
       <span class="select" id="start_time">
@@ -67,7 +66,7 @@
       <span class="select" id="end_time">
         <a href="javascript:void(0);" class="slct"><span>11</span><i class="flaticon-chevron8"></i></a>
         <ul class="drop" data-id="1">
-          <li>11</li><li>12</li><li>13</li><li>14</li><li>15</li><li>16</li><li>17</li><li>18</li><li>19</li><li>20</li><li>21</li>
+          <li>11</li><li>12</li><li>13</li><li>14</li><li>15</li><li>16</li><li>17</li><li>18</li><li>19</li>
         </ul>
         <div class="cleaner"></div>
       </span>
@@ -76,7 +75,7 @@
   </form>
 </div>
 
-<div id="obr_sv">
+<div id="obr_sv" class="obr_sv">
   <span>Есть вопросы<br>Закажите обратный звонок</span>
   <img src="/img/elem/callback_button.png" alt=""/>
 </div>

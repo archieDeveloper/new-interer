@@ -28,7 +28,8 @@ $(document).ready(function(){
   var $form_obr = $('#form_obr'),
     $black_fon = $('#black_fon');
 
-  $document.on('click','#obr_sv',function() {
+  $document.on('click','.obr_sv',function(e) {
+    e.preventDefault();
     var $he = $document.height();
     var $wi = $document.width();
 

@@ -8,12 +8,12 @@
 
     <p>Вся мебель в нашей компании создается по дизайн-проектам наших специалистов и исключительно индивидуально для каждого гостя нашей компании.</p>
 
-    <p>В современном мире очень важна мобильность, поэтому после того как вы оставите заявку на <a href="#" class="obr_sv">обратный звонок</a> вам перезвонят наши менеджеры и ответят на все интересующие Вас вопросы.</p>
+    <p>В современном мире очень важна мобильность, поэтому после того как вы оставите заявку на <a href="#" class="obr_sv pseudo">обратный звонок</a> вам перезвонят наши менеджеры и ответят на все интересующие Вас вопросы.</p>
 
     <p>Мы поможем выбрать из множества цветов и красок этого огромного мира, мы поможем создать
     в вашем доме Новый интерьер.</p>
 
-    <p><a href="#">Закажите звонок</a> или <a href="#">отправьте информацию</a> о проекте и тогда мы сможем сформировать цену которая подходит Вам.</p>
+    <p><a href="#" class="obr_sv pseudo">Закажите звонок</a> или <a href="/contacts.html#feedback">отправьте информацию</a> о проекте и тогда мы сможем сформировать цену которая подходит Вам.</p>
   </div>
 </div>
 
@@ -100,10 +100,12 @@
 <div class="wrap">
   <div class="wrap-center aniview" av-animation="rotateInUpLeft">
     <h2>Наши партнеры</h2>
-    <img src="/img/logo-lacoste.jpg" width="190" alt=""/>
-    <img src="/img/logo-cisco.jpg" width="190" alt=""/>
-    <img src="/img/logo-macrumors.jpg" width="190" alt=""/>
-    <img src="/img/logo-peugeot.jpg" width="190" alt=""/>
-    <img src="/img/unicorn.png" width="190" alt=""/>
+    <div class="partners">
+      <img src="/img/partners/blum.png" alt="Blum" title="Blum"/>
+      <img src="/img/partners/boyard.png" alt="Boyard" title="Boyard"/>
+      <img src="/img/partners/egger.png" alt="Egger" title="Egger"/>
+      <img src="/img/partners/hellitech.png" alt="Hellitech" title="Hellitech"/>
+      <img src="/img/partners/zevs.png" alt="Zevs" title="Zevs"/>
+    </div>
   </div>
 </div>

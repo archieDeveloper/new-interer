@@ -581,6 +581,14 @@
   line-height: 30px;
   color: #aaa;
 }
+.partners {
+  width: 1080px;
+  margin-left: -40px;
+}
+.partners img {
+  margin: 0 31.25px;
+  width: 150px;
+}
 .view-all-portfolio {
   padding: 15px 20px 0;
   display: inline-block;
@@ -812,6 +820,10 @@ p {
 }
 a {
   color: #cc1558;
+}
+a.pseudo {
+  border-bottom: 1px dashed #cc1558;
+  text-decoration: none;
 }
 .button {
   color: #fff;
