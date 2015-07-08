@@ -6,7 +6,7 @@
   </div>
 </div>
 <div class="wrap">
-  <div class="wrap-center">
+  <div class="wrap-center" id="feedback">
     <div class="contacts">
       <h2 class="header-small">Контакты</h2>
       <div class="contacts-block">

@@ -25,7 +25,7 @@
         <span>Информация</span>
         <li><a href="/">Карта сайта</a></li>
         <li><a href="/portfolio.html">Политика</a></li>
-        <li><a href="/contacts.html">Обратная связь</a></li>
+        <li><a href="/contacts.html#feedback">Обратная связь</a></li>
         <li><a href="/">Вакансии</a></li>
         <li><a href="/portfolio.html">Сотрудничество</a></li>
       </ul>

@@ -155,21 +155,20 @@
         </div>
         <div class="swiper-slide">
           <div class="wrap-center absolute">
-            <div class="desc-slide">
-              <span class="pink">Дом <b>перфекционизма</b></span><br>
-              <span class="gray">Идеальные формы, все что нужно для идеального дома</span>
+            <div class="desc-slide center">
+              <span class="payment">Рассрочка<br>0%</span>
             </div>
           </div>
-          <div class="slide-img" style="background-image: url(/img/123.jpg);"></div>
+          <div class="slide-img" style="background-image: url(/img/slider/slide2.png);"></div>
         </div>
         <div class="swiper-slide">
           <div class="wrap-center absolute">
             <div class="desc-slide">
-              <span class="pink">Превосходство <b>ожиданий</b></span><br>
-              <span class="gray">Мы делаем интерьер лучше, чем сами ожидаем того</span>
+              <span class="pink">Экономьте свое <b>время</b></span><br>
+              <span class="gray">Закажите обратный звонок — мы ответим на интерисующие Вас вопросы!</span>
             </div>
           </div>
-          <div class="slide-img" style="background-image: url(/img/123.png);"></div>
+          <div class="slide-img" style="background-image: url(/img/slider/slide3.jpg);"></div>
         </div>
       </div>
       <div class="swiper-pagination"></div>
