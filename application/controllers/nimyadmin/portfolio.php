@@ -1,33 +1,37 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class Portfolio extends CI_Controller {
+class Portfolio extends CI_Controller
+{
 
   var $data = array(),
     $controller,
     $action,
     $page_title = 'Настройка выполненых работ',
     $include_js = array(
-      'lib/jquery.fileupload',
-      'lib/jquery.fileupload-process',
-      'lib/jquery.iframe-transport',
-      'uploads'),
+    'lib/jquery.fileupload',
+    'lib/jquery.fileupload-process',
+    'lib/jquery.iframe-transport',
+    'uploads'),
     $include_css = array(
-      'lib/jquery.fileupload');
+    'lib/jquery.fileupload');
 
-  function __construct(){
+  function __construct()
+  {
     parent::__construct();
     $this->controller = $this->uri->segment(2);
     $this->action = $this->uri->segment(3);
 
     $this->load->library('auth');
     if (!$this->auth->root()) {
-      header("Location: /nimyadmin/login.html"); exit();
+      header("Location: /nimyadmin/login.html");
+      exit();
     }
   }
 
-  public function index() {
+  public function index()
+  {
     if (!empty($_FILES) && isset($_POST['type']) && $_POST['type'] == 'portfolio') $this->_upload_portfolio();
-    if (isset($_POST['id']) && isset($_POST['crop_image'])) $this->_crop_image($_POST['id'],$_POST['x'],$_POST['y'],$_POST['width'],$_POST['height']);
+    if (isset($_POST['id']) && isset($_POST['crop_image'])) $this->_crop_image($_POST['id'], $_POST['x'], $_POST['y'], $_POST['width'], $_POST['height']);
     if (isset($_POST['id']) && isset($_POST['title'])) $this->_update_title_portfolio($_POST['id'], $_POST['title']);
     if (isset($_POST['id']) && isset($_POST['category_link'])) $this->_update_category_portfolio($_POST['id'], $_POST['category_link']);
     if (isset($_POST['id']) && isset($_POST['trash'])) $this->_trash_portfolio($_POST['id']);
@@ -44,9 +48,13 @@ class Portfolio extends CI_Controller {
     $this->data['include_css'] = $this->include_css;
 
     $this->load->model('portfolio_model');
-    if (!isset($_GET['page'])) { $_GET['page'] = 1; }
-    $page = (integer) $_GET['page'];
-    if (!$page) { show_404(); }
+    if (!isset($_GET['page'])) {
+      $_GET['page'] = 1;
+    }
+    $page = (integer)$_GET['page'];
+    if (!$page) {
+      show_404();
+    }
     $this->data['portfolio'] = $this->portfolio_model->get(null, $page);
 
     $this->data['num_pages'] = $this->portfolio_model->get_num();
@@ -59,7 +67,8 @@ class Portfolio extends CI_Controller {
     $this->load->view('admin/templates/down', $this->data);
   }
 
-  public function add() {
+  public function add()
+  {
     $this->data['page_title'] = 'Добавить работу';
     $this->data['page_controller'] = $this->controller;
     $this->data['page_action'] = $this->action;
@@ -81,7 +90,8 @@ class Portfolio extends CI_Controller {
     $this->load->view('admin/templates/down', $this->data);
   }
 
-  public function categories() {
+  public function categories()
+  {
     $this->data['page_title'] = 'Категории';
     $this->data['page_controller'] = $this->controller;
     $this->data['page_action'] = $this->action;
@@ -96,15 +106,16 @@ class Portfolio extends CI_Controller {
     $this->load->view('admin/templates/down', $this->data);
   }
 
-  public function _upload_portfolio() {
+  public function _upload_portfolio()
+  {
     header('Content-type: application/json');
 
-    $config['upload_path']      = $_SERVER['DOCUMENT_ROOT']."/img/portfolio/big";
-    $config['allowed_types']    = "jpg|jpeg|png";
-    $config['max_size']         = 20000;
-    $config['max_width']        = 3000;
-    $config['max_height']       = 3000;
-    $config['encrypt_name']     = TRUE;
+    $config['upload_path'] = $_SERVER['DOCUMENT_ROOT'] . "/img/portfolio/big";
+    $config['allowed_types'] = "jpg|jpeg|png";
+    $config['max_size'] = 20000;
+    $config['max_width'] = 3000;
+    $config['max_height'] = 3000;
+    $config['encrypt_name'] = TRUE;
 
     $this->load->library('upload', $config);
 
@@ -116,14 +127,15 @@ class Portfolio extends CI_Controller {
       $this->load->model('portfolio_model');
       $data['current_row_id'] = $this->portfolio_model->add($data['file_name']);
 
-      $this->_crop_image($data['current_row_id'],0,0,1,1);
+      $this->_crop_image($data['current_row_id'], 0, 0, 1, 1);
       echo json_encode($data);
     }
 
     exit();
   }
 
-  public function  _crop_image($id,$x,$y,$width,$height) {
+  public function  _crop_image($id, $x, $y, $width, $height)
+  {
     $data['current_row_id'] = $id;
     $this->load->model('portfolio_model');
     $portfolio = $this->portfolio_model->get_current($id);
@@ -131,16 +143,16 @@ class Portfolio extends CI_Controller {
     header('Content-type: application/json');
 
     $config['image_library'] = 'gd2'; // выбираем библиотеку
-    $config['source_image'] = $_SERVER['DOCUMENT_ROOT'].'/img/portfolio/big/'.$portfolio->img;
+    $config['source_image'] = $_SERVER['DOCUMENT_ROOT'] . '/img/portfolio/big/' . $portfolio->img;
     $config['maintain_ratio'] = false; // сохранять пропорции
-    $config['new_image'] = $_SERVER['DOCUMENT_ROOT']."/img/portfolio/small";
+    $config['new_image'] = $_SERVER['DOCUMENT_ROOT'] . "/img/portfolio/small";
 
     $size = getimagesize($config['source_image']);
 
-    $config['x_axis'] = $size[0]*$x;
-    $config['y_axis'] = $size[1]*$y;
-    $config['width'] = $size[0]*$width;
-    $config['height'] = $size[1]*$height;
+    $config['x_axis'] = $size[0] * $x;
+    $config['y_axis'] = $size[1] * $y;
+    $config['width'] = $size[0] * $width;
+    $config['height'] = $size[1] * $height;
 
     $this->load->library('image_lib', $config); // загружаем библиотеку
 
@@ -148,7 +160,7 @@ class Portfolio extends CI_Controller {
       $data['crop_error'] = $this->image_lib->display_errors();
     }
 
-    $size = getimagesize($config['new_image'].'/'.$portfolio->img);
+    $size = getimagesize($config['new_image'] . '/' . $portfolio->img);
 
     $data['image_width'] = $size[0];
     $data['image_height'] = $size[1];
@@ -156,10 +168,10 @@ class Portfolio extends CI_Controller {
     $this->image_lib->clear();
 
     $config['image_library'] = 'gd2'; // выбираем библиотеку
-    $config['source_image'] = $_SERVER['DOCUMENT_ROOT']."/img/portfolio/small/".$portfolio->img;
+    $config['source_image'] = $_SERVER['DOCUMENT_ROOT'] . "/img/portfolio/small/" . $portfolio->img;
     $config['maintain_ratio'] = TRUE; // сохранять пропорции
-    $config['new_image'] = $_SERVER['DOCUMENT_ROOT']."/img/portfolio/small";
-    $config['width']    = 217; // и задаем размеры
+    $config['new_image'] = $_SERVER['DOCUMENT_ROOT'] . "/img/portfolio/small";
+    $config['width'] = 217; // и задаем размеры
 
     $this->image_lib->initialize($config);
 
@@ -170,23 +182,25 @@ class Portfolio extends CI_Controller {
     exit();
   }
 
-  public function _update_title_portfolio($id,$title) {
+  public function _update_title_portfolio($id, $title)
+  {
     // header('Content-type: application/json');
 
     $this->load->model('portfolio_model');
-    $this->portfolio_model->edit_title($id,$title);
+    $this->portfolio_model->edit_title($id, $title);
 
     exit();
   }
 
-  public function _update_category_portfolio($id,$link)
+  public function _update_category_portfolio($id, $link)
   {
     $this->load->model('portfolio_model');
-    $this->portfolio_model->edit_category($id,$link);
+    $this->portfolio_model->edit_category($id, $link);
     exit();
   }
 
-  public function _update_category_portfolio_date($id, $name, $desc, $slug) {
+  public function _update_category_portfolio_date($id, $name, $desc, $slug)
+  {
     header('Content-type: application/json');
     $data = array();
     $this->load->model('category_model');
@@ -195,7 +209,8 @@ class Portfolio extends CI_Controller {
     exit();
   }
 
-  public function _add_category_portfolio($name, $desc, $slug) {
+  public function _add_category_portfolio($name, $desc, $slug)
+  {
     header('Content-type: application/json');
     $data = array();
     $this->load->model('category_model');
@@ -204,7 +219,8 @@ class Portfolio extends CI_Controller {
     exit();
   }
 
-  public function _delete_category_portfolio($id) {
+  public function _delete_category_portfolio($id)
+  {
     header('Content-type: application/json');
     $data = array();
     $this->load->model('category_model');

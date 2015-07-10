@@ -1,20 +1,20 @@
 <?php
 /**
- * @name		CodeIgniter Secure Authentication Library
- * @author		Jens Segers
- * @link		http://www.jenssegers.be
- * @license		MIT License Copyright (c) 2012 Jens Segers
- * 
+ * @name    CodeIgniter Secure Authentication Library
+ * @author    Jens Segers
+ * @link    http://www.jenssegers.be
+ * @license    MIT License Copyright (c) 2012 Jens Segers
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -24,13 +24,15 @@
  * THE SOFTWARE.
  */
 
-if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class Hash_pass {
+class Hash_pass
+{
 
-  public function enhash($pass, $salt = null) {
+  public function enhash($pass, $salt = null)
+  {
     if (is_null($salt) || empty($salt)) {
-      $salt = '$2a$10$'.md5(crypt(time().time()*2)).'$';
+      $salt = '$2a$10$' . md5(crypt(time() . time() * 2)) . '$';
       $data['salt'] = $salt;
     }
     $hash_pass = crypt($pass, $salt);
@@ -38,11 +40,14 @@ class Hash_pass {
     return $data;
   }
 
-  public function genRandStr($length = 8){
+  public function genRandStr($length = 8)
+  {
     $chars = 'abdefhiknrstyzABDEFGHKNQRSTYZ23456789';
     $numChars = strlen($chars);
     $string = '';
-    for ($i = 0; $i < $length; $i++) { $string .= substr($chars, rand(1, $numChars) - 1, 1); }
+    for ($i = 0; $i < $length; $i++) {
+      $string .= substr($chars, rand(1, $numChars) - 1, 1);
+    }
     return $string;
   }
 }

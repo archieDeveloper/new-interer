@@ -1,6 +1,7 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class Auctions_model extends CI_Model {
+class Auctions_model extends CI_Model
+{
 
   public function get_auctions_list()
   {
@@ -38,7 +39,7 @@ class Auctions_model extends CI_Model {
     if ($result) {
       date_default_timezone_set('MST');
       $sql = "INSERT INTO `rate` (`user_id`,`date_time`,`lot_id`,`user_rate`) VALUES ((SELECT `id` FROM `users` WHERE `network` = ? AND `uid` = ?),?,?,?)";
-      $data = array($user_data['network'], $user_data['uid'],date("Y-m-d H:i:s"), $lot_id, $new_rate);
+      $data = array($user_data['network'], $user_data['uid'], date("Y-m-d H:i:s"), $lot_id, $new_rate);
       $query = $this->db->query($sql, $data);
     }
     return $result;

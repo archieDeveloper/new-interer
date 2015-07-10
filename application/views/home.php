@@ -84,7 +84,9 @@
     <div id="portfolio-container">
       <?php foreach ($portfolio as $product) : ?>
       <article class="wrap-product">
-          <a href="/portfolio<?=$product->link ? '/category/'.$product->link : ''?>.html?id_product=<?=$product->id?>"><img src="/img/portfolio/small/<?=$product->img?>" alt=""><span><?=$product->title?></span></a>
+          <a href="/portfolio<?=$product->link ? '/category/'.$product->link : ''?>.html?id_product=<?=$product->id?>">
+            <img src="/img/portfolio/small/<?=$product->img?>" alt=""><span><?=$product->title?></span>
+          </a>
       </article>
       <?php endforeach; ?>
     </div>

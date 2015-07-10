@@ -1,6 +1,7 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class Feedback extends CI_Controller {
+class Feedback extends CI_Controller
+{
 
   var $data = array(),
     $controller,
@@ -9,14 +10,16 @@ class Feedback extends CI_Controller {
     $include_js = array(),
     $include_css = array();
 
-  function __construct(){
+  function __construct()
+  {
     parent::__construct();
     $this->controller = $this->uri->segment(1);
     $this->action = $this->uri->segment(2);
 
     $this->load->library('auth');
     if (!$this->auth->root()) {
-      header("Location: /nimyadmin/login.html"); exit();
+      header("Location: /nimyadmin/login.html");
+      exit();
     }
   }
 

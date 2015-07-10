@@ -1,6 +1,7 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class Articles extends CI_Controller {
+class Articles extends CI_Controller
+{
 
   var $data = array(),
     $controller,
@@ -9,27 +10,42 @@ class Articles extends CI_Controller {
     $include_js = array('admin/articles'),
     $include_css = array('lib/jquery.fileupload');
 
-  function __construct(){
+  function __construct()
+  {
     parent::__construct();
     $this->controller = $this->uri->segment(2);
     $this->action = $this->uri->segment(3);
 
     $this->load->library('auth');
     if (!$this->auth->root()) {
-      header("Location: /nimyadmin/login.html"); exit();
+      header("Location: /nimyadmin/login.html");
+      exit();
     }
   }
 
-  public function index() {
-    if (isset($_POST['action']) && $_POST['action'] == 'add') $this->_add_new($_POST['title'],$_POST['date'],$_POST['text']);
-    if (isset($_POST['action']) && $_POST['action'] == 'edit') $this->_edit_new($_POST['id'],$_POST['title'],$_POST['date'],$_POST['text']);
-    if (isset($_POST['id']) && isset($_POST['trash'])) $this->_trash_new($_POST['id']);
-    if (isset($_POST['id']) && isset($_POST['no_trash'])) $this->_no_trash_new($_POST['id']);
+  public function index()
+  {
+    if (isset($_POST['action']) && $_POST['action'] == 'add') {
+      $this->_add_new($_POST['title'], $_POST['date'], $_POST['text']);
+    }
+    if (isset($_POST['action']) && $_POST['action'] == 'edit') {
+      $this->_edit_new($_POST['id'], $_POST['title'], $_POST['date'], $_POST['text']);
+    }
+    if (isset($_POST['id']) && isset($_POST['trash'])) {
+      $this->_trash_new($_POST['id']);
+    }
+    if (isset($_POST['id']) && isset($_POST['no_trash'])) {
+      $this->_no_trash_new($_POST['id']);
+    }
     $this->data['page_title'] = $this->page_title;
 
-    if (!isset($_GET['page'])) { $_GET['page'] = 1; }
-    $page = (integer) $_GET['page'];
-    if (!$page) { show_404(); }
+    if (!isset($_GET['page'])) {
+      $_GET['page'] = 1;
+    }
+    $page = (integer)$_GET['page'];
+    if (!$page) {
+      show_404();
+    }
     $this->load->model('articles_model');
     $this->data['articles'] = $this->articles_model->get_news($page);
     $this->data['num_pages'] = $this->articles_model->get_num_news();
@@ -43,16 +59,29 @@ class Articles extends CI_Controller {
     $this->load->view('admin/templates/down', $this->data);
   }
 
-  public function add() {
-    if (isset($_POST['action']) && $_POST['action'] == 'add') $this->_add_new($_POST['title'],$_POST['date'],$_POST['text']);
-    if (isset($_POST['action']) && $_POST['action'] == 'edit') $this->_edit_new($_POST['id'],$_POST['title'],$_POST['date'],$_POST['text']);
-    if (isset($_POST['id']) && isset($_POST['trash'])) $this->_trash_new($_POST['id']);
-    if (isset($_POST['id']) && isset($_POST['no_trash'])) $this->_no_trash_new($_POST['id']);
+  public function add()
+  {
+    if (isset($_POST['action']) && $_POST['action'] == 'add') {
+      $this->_add_new($_POST['title'], $_POST['date'], $_POST['text']);
+    }
+    if (isset($_POST['action']) && $_POST['action'] == 'edit') {
+      $this->_edit_new($_POST['id'], $_POST['title'], $_POST['date'], $_POST['text']);
+    }
+    if (isset($_POST['id']) && isset($_POST['trash'])) {
+      $this->_trash_new($_POST['id']);
+    }
+    if (isset($_POST['id']) && isset($_POST['no_trash'])) {
+      $this->_no_trash_new($_POST['id']);
+    }
     $this->data['page_title'] = $this->page_title;
 
-    if (!isset($_GET['page'])) { $_GET['page'] = 1; }
-    $page = (integer) $_GET['page'];
-    if (!$page) { show_404(); }
+    if (!isset($_GET['page'])) {
+      $_GET['page'] = 1;
+    }
+    $page = (integer)$_GET['page'];
+    if (!$page) {
+      show_404();
+    }
     $this->load->model('articles_model');
     $this->data['articles'] = $this->articles_model->get_news($page);
     $this->data['num_pages'] = $this->articles_model->get_num_news();
@@ -66,7 +95,8 @@ class Articles extends CI_Controller {
     $this->load->view('admin/templates/down', $this->data);
   }
 
-  public function _add_new($title, $date, $text){
+  public function _add_new($title, $date, $text)
+  {
     header('Content-type: application/json');
     $this->load->model('articles_model');
     $new_art = $this->articles_model->add_new($title, $date, $text);
@@ -77,7 +107,8 @@ class Articles extends CI_Controller {
     exit();
   }
 
-  public function _edit_new($id, $title, $date, $text){
+  public function _edit_new($id, $title, $date, $text)
+  {
     header('Content-type: application/json');
     $this->load->model('articles_model');
     $edit_art = $this->articles_model->edit_new($id, $title, $date, $text);
@@ -88,13 +119,15 @@ class Articles extends CI_Controller {
     exit();
   }
 
-  public function _trash_new($id){
+  public function _trash_new($id)
+  {
     $this->load->model('articles_model');
     $this->articles_model->trash_new($id);
     exit();
   }
 
-  public function _no_trash_new($id){
+  public function _no_trash_new($id)
+  {
     $this->load->model('articles_model');
     $this->articles_model->no_trash_new($id);
     exit();
