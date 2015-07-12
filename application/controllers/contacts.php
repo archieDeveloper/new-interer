@@ -63,7 +63,7 @@ class Contacts extends CI_Controller
       $title = 'Заявка на замер';
     }
 
-    $message = '<h2>' . $title . '</h2>'.
+    $message = '<h2>' . $title . '</h2>' .
       '<p><b>Имя: </b>' . $name . '</p>
       <p><b>Номер телефона: </b>' . $number . '</p>
       <p><b>Желаемое время: </b>с ' . $start_time . ' до ' . $end_time . '</p>';

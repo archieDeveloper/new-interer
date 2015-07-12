@@ -5,7 +5,7 @@ class Callback_model extends CI_Model
 
   public function get()
   {
-    $sql = "SELECT * FROM `callback`";
+    $sql = "SELECT * FROM `callback` ORDER BY `id` DESC";
     $query = $this->db->query($sql);
     $result = $query->result();
     if (!$result) {

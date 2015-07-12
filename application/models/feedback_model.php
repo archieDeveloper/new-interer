@@ -8,7 +8,7 @@ class Feedback_model extends CI_Model
    */
   public function get()
   {
-    $sql = "SELECT * FROM `feedback`";
+    $sql = "SELECT * FROM `feedback` ORDER BY `id` DESC";
     $query = $this->db->query($sql);
     $result = $query->result();
     if (!$result) {
