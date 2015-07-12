@@ -14,10 +14,10 @@ class Callback_model extends CI_Model
     return $result;
   }
 
-  public function add($name, $number, $address, $start_time, $end_time)
+  public function add($name, $number, $start_time, $end_time, $froze = 0)
   {
-    $sql = "INSERT INTO `callback` (`name`, `number`, `address`, `start_time`, `end_time`) VALUES (?, ?, ?, ?, ?)";
-    $data = array($name, $number, $address, $start_time, $end_time);
+    $sql = "INSERT INTO `callback` (`name`, `number`, `start_time`, `end_time`, `froze`) VALUES (?, ?, ?, ?, ?)";
+    $data = array($name, $number, $start_time, $end_time, $froze);
     $query = $this->db->query($sql, $data);
     return false;
   }

@@ -22,16 +22,22 @@
   border-radius: 51px;
   float: left;
   margin-right: 15px;
-  background: #e61f50;
+  background: #fff;
+}
+.about-list li .header-about .image img {
+  height: 50px;
+  display: block;
+  margin: 0 auto;
 }
 .about-list li p {
   margin: 20px 0;
 }
-.about-list ul li {
-  margin: 3px 0;
-}
 .about-list ul {
   margin: 20px 0 20px 20px;
+}
+.about-list ul li {
+  margin: 3px 0;
+  list-style-image: url("/img/elem/checkmark.png");
 }
 .breadcrumb {
   list-style-type: none;
@@ -349,7 +355,8 @@
   font-weight: bold;
   border-radius: 3px;
 }
-#bobo {
+#bobo,
+#froze_status {
   margin-bottom: 20px;
 }
 #black_fon {
@@ -360,7 +367,8 @@
   position: absolute;
   background: rgba(0,0,0,0.6);
 }
-#form_obr {
+#form_obr,
+#sing_up_froze {
   z-index: 9999;
   position: absolute;
   top: 50px;
@@ -379,7 +387,8 @@
   font-size: 32px;
   color: #860d2e;
 }
-#form_obr_close {
+#form_obr_close,
+#sing_up_froze_close {
   height: 24px;
   line-height: 24px;
   width: 24px;
@@ -519,15 +528,17 @@
   margin: 20px 0;
 }
 .big-circle-image {
-  width: 200px;
-  height: 200px;
+  width: 250px;
+  height: 250px;
   overflow: hidden;
   border-radius: 200px;
   float: left;
-  margin-right: 50px;
+  margin-right: 30px;
+  border: 5px solid #fff;
+  box-shadow: 0 5px 0 rgba(0,0,0,0.1);
 }
 .big-circle-image img {
-  width: 200px;
+  width: 100%;
 }
 .callback {
   float: right;
@@ -722,6 +733,7 @@
   font-size: 35px;
   display: inline-block;
   float: right;
+  border-radius: 3px;
 }
 .desc-slide .gray {
   background: #242424 url("/img/elem/main-tail.gif");
@@ -729,6 +741,7 @@
   font-size: 20px;
   display: inline-block;
   float: right;
+  border-radius: 3px;
 }
 .desc-slide .black {
   background: #000;
@@ -857,6 +870,31 @@ a.pseudo {
   border: 2px solid #fff;
   color: #fff;
   opacity: 0.7;
+}
+.button.big {
+  font-size: 25px;
+  -webkit-transition: 0.2s ease-out;
+  -moz-transition: 0.2s ease-out;
+  -o-transition: 0.2s ease-out;
+  -ms-transition: 0.2s ease-out;
+  transition: 0.2s ease-out;
+  cursor: pointer;
+  background-color: #77b3d4;
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
+  padding: 20px 30px 18px 30px;
+}
+.button.big:hover {
+  box-shadow: 0 5px 11px 0 rgba(0,0,0,0.18), 0 4px 15px 0 rgba(0,0,0,0.15);
+  background-color: #91c7e5;
+}
+.button.big i[class^="flaticon-"] {
+  font-size: 30px;
+  vertical-align: middle;
+  margin-left: 30px;
+  background-color: #fff;
+  color: #77b3d4;
+  border-radius: 50px;
+  padding: 10px;
 }
 .form input,
 .form textarea {
@@ -1083,6 +1121,7 @@ a.pseudo {
   text-decoration: none;
   font-size: 14px;
   font-weight: bold;
+  display: block;
 }
 .wrap-product a:hover {
   color: #860d2e;

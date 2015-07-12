@@ -4,7 +4,6 @@
   <link rel="stylesheet" type="text/css" href="/styles/all.min.css<?='?v' . VERSION_SITE?>">
   <link rel="stylesheet" type="text/css" href="/fonts/boblic/boblic.css">
   <link rel="stylesheet" type="text/css" href="/styles/flaticon.css<?='?v' . VERSION_SITE?>">
-  <link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700,400italic,700italic&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
 
   <script type="text/javascript" src="/js/lib/jquery-1.10.2.min.js"></script>
   <script type="text/javascript" src="/js/lib/jquery-ui-1.10.4.custom.min.js"></script>
@@ -124,7 +123,7 @@
                   <label for="time">Желаемое время замера</label>
                   <div>
                     <span class="select-prev">с</span>
-                    <span class="select" id="start_time">
+                    <span class="select" name="start_time">
                       <a href="javascript:void(0);" class="slct"><span>10</span><i class="flaticon-chevron8"></i></a>
                       <ul class="drop" data-id="1" style="display: none;">
                         <li>10</li><li>11</li><li>12</li><li>13</li><li>14</li><li>15</li><li>16</li><li>17</li><li>18</li><li>19</li><li>20</li>
@@ -132,7 +131,7 @@
                       <div class="cleaner"></div>
                     </span>
                     <span class="select-prev">до</span>
-                    <span class="select" id="end_time">
+                    <span class="select" name="end_time">
                       <a href="javascript:void(0);" class="slct"><span>11</span><i class="flaticon-chevron8"></i></a>
                       <ul class="drop" data-id="1" style="">
                         <li>11</li><li>12</li><li>13</li><li>14</li><li>15</li><li>16</li><li>17</li><li>18</li><li>19</li><li>20</li><li>21</li>
@@ -140,7 +139,7 @@
                       <div class="cleaner"></div>
                     </span>
                   </div>
-                  <button style="float: right;" class="button think white">Записаться</button>
+                  <button style="float: right;" class="button think white froze">Записаться</button>
                   <div class="cleaner"></div>
                 </form>
               </div>
@@ -165,6 +164,10 @@
             <div class="desc-slide">
               <span class="pink">Экономьте свое <b>время</b></span><br>
               <span class="gray">Закажите обратный звонок — мы ответим на интерисующие Вас вопросы!</span>
+            </div>
+            <div class="cleaner"></div>
+            <div class="desc-slide right">
+              <button class="button big obr_sv" style="margin-top: 100px">Заказать обратный звонок <i class="flaticon-phone14"></i></button>
             </div>
           </div>
           <div class="slide-img" style="background-image: url(/img/slider/slide3.jpg);"></div>

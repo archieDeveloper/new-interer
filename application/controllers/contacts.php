@@ -17,12 +17,16 @@ class Contacts extends CI_Controller
   public function index()
   {
     if (isset($_POST['add_callback']) && $_POST['add_callback']) {
+      $froze = 0;
+      if (isset($_POST['froze'])) {
+        $froze = $_POST['froze'];
+      }
       $this->_add_callback(
         $_POST['name'],
         $_POST['number'],
-        $_POST['address'],
         $_POST['start_time'],
-        $_POST['end_time']
+        $_POST['end_time'],
+        $froze
       );
     }
     if (isset($_POST['add_feedback'])) {
@@ -49,17 +53,21 @@ class Contacts extends CI_Controller
     $this->load->view('templates/down', $this->data);
   }
 
-  public function _add_callback($name, $number, $address, $start_time, $end_time)
+  public function _add_callback($name, $number, $start_time, $end_time, $froze = 0)
   {
     $this->load->model('callback_model');
-    $this->callback_model->add($name, $number, $address, $start_time, $end_time);
+    $this->callback_model->add($name, $number, $start_time, $end_time, $froze);
 
-    $message = '<h2>Заявка на замер</h2>
-                <p><b>Имя: </b>' . $name . '</p>
-                <p><b>Номер телефона: </b>' . $number . '</p>
-                <p><b>Адрес: </b>' . $address . '</p>
-                <p><b>Желаемое время: </b>с ' . $start_time . ' до ' . $end_time . '</p>';
-    $this->_push_email('Новый заказ на замер', $message);
+    $title = 'Заявка на обратный звонок';
+    if ($froze) {
+      $title = 'Заявка на замер';
+    }
+
+    $message = '<h2>' . $title . '</h2>'.
+      '<p><b>Имя: </b>' . $name . '</p>
+      <p><b>Номер телефона: </b>' . $number . '</p>
+      <p><b>Желаемое время: </b>с ' . $start_time . ' до ' . $end_time . '</p>';
+    $this->_push_email($title, $message);
 
     exit();
   }

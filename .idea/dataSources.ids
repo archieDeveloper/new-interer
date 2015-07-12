@@ -18,9 +18,9 @@
       <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
       <column name="name" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12"/>
       <column name="number" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
-      <column name="address" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12"/>
       <column name="start_time" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <column name="end_time" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="froze" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6" def="MA=="/>
       <primary-key name="PRIMARY" columns="id"/>
     </table>
     <table name="category_portfolio" schema="" catalog="newinterer-db" type="TABLE">

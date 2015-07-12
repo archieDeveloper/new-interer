@@ -23,7 +23,8 @@
     <ul class="about-list">
       <li>
         <div class="header-about">
-          <div class="image"><img src="http://livedemo00.template-help.com/wt_42974/images/icon-1.png" alt=""/></div>
+          <?php //http://livedemo00.template-help.com/wt_42974/images/icon-1.png?>
+          <div class="image"><img src="/img/elem/2.png" alt=""/></div>
           <div>
             <b>Качество</b><br>мебели
           </div>
@@ -36,7 +37,8 @@
       </li>
       <li>
         <div class="header-about">
-          <div class="image"><img src="http://livedemo00.template-help.com/wt_42974/images/icon-2.png" alt=""/></div>
+          <?php //http://livedemo00.template-help.com/wt_42974/images/icon-2.png?>
+          <div class="image"><img src="/img/elem/7.png" alt=""/></div>
           <div>
             <b>Экологичные</b><br>материалы
           </div>
@@ -49,7 +51,8 @@
       </li>
       <li>
         <div class="header-about">
-          <div class="image"><img src="http://livedemo00.template-help.com/wt_42974/images/icon-3.png" alt=""/></div>
+          <?php //http://livedemo00.template-help.com/wt_42974/images/icon-3.png?>
+          <div class="image"><img src="/img/elem/1.png" alt=""/></div>
           <div>
             <b>Ценовая</b><br>политика
           </div>
@@ -62,7 +65,8 @@
       </li>
       <li>
         <div class="header-about">
-          <div class="image"><img src="http://livedemo00.template-help.com/wt_42974/images/icon-4.png" alt=""/></div>
+          <?php //http://livedemo00.template-help.com/wt_42974/images/icon-4.png?>
+          <div class="image"><img src="/img/elem/4.png" alt=""/></div>
           <div>
             <b>Забота</b><br>о клиенте
           </div>
