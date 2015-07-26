@@ -254,7 +254,7 @@
   position: absolute;
   top: 50px;
   left: 50px;
-  padding: 15px;
+  padding: 30px;
   background: #fbfbfb;
   border-radius: 3px;
   box-shadow: 0 0 10px rgba(0,0,0,0.5);
@@ -263,29 +263,34 @@
 }
 
 #order_form_title h2 {
-  border-bottom: 2px solid #444;
+  border-bottom: 2px solid #444444;
   padding: 0;
-  margin-bottom: 10px;
+  padding-bottom: 10px;
+  margin-bottom: 30px;
   font-size: 32px;
   color: #860D2E;
 }
 
-#form_obr_close, #sing_up_froze_close {
-  height: 24px;
-  line-height: 24px;
-  width: 24px;
+#form_obr_close, #sing_up_froze_close
+  height: 40px;
+  line-height: 40px;
+  width: 40px;
   background: #363636;
   border-radius: 32px;
   text-align: center;
   position: absolute;
-  right: -12px;
-  top: -12px;
+  right: -21px;
+  top: -21px;
   color: #fff;
   cursor: pointer;
   font-size: 12px;
   font-weight: bold;
   text-transform: uppercase;
-}
+  border: 2px solid #FBFBFB;
+
+#form_obr_close i[class^="flaticon-"]
+  font-size 20px
+  vertical-align middle
 
 #form_obr_close:hover {
   background: #CC1558;
@@ -300,13 +305,14 @@
   text-transform: uppercase;
   font-size: 12px;
   float: left;
-  margin-top: 8px;
+  display block
+  margin-top: 15px;
 }
 
 #order_form input {
-  padding: 7px;
-  margin: 0 0 15px 0;
-  border: 1px solid #eee;
+  padding: 15px;
+  margin: 0 0 30px 0;
+  border: 2px solid #eee;
   outline: none;
   border-radius: 3px;
   font-family: 'PT Sans', serif;
@@ -314,9 +320,9 @@
 }
 
 #order_form textarea {
-  padding: 7px;
+  padding: 15px;
   margin: 0 0 15px 0;
-  border: 1px solid #eee;
+  border: 2px solid #eee;
   outline: none;
   border-radius: 3px;
   font-family: 'PT Sans', serif;
@@ -324,11 +330,11 @@
 }
 
 #order_form input:focus {
-  border: 1px solid #1591CC;
+  border-color: #1591CC;
 }
 
 #order_form textarea:focus {
-  border: 1px solid #1591CC;
+  border-color: #1591CC;
 }
 
 #order_form_title {

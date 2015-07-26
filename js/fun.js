@@ -319,8 +319,7 @@ $(window).load(function () {
 
   var getHtmlFancy = function (title) {
     return '<div class="float-left">' +
-      '<b class="title-product">' + (title ? title : '') + ' / </b>' +
-      '<span class="pos-product">Кутузова д.48 кв.39</span>' +
+      '<b class="title-product">' + (title ? title : '') + '</b>' +
       '<br>' +
       'Поделись с друзьями в социальных сетях' +
       '<br>' +

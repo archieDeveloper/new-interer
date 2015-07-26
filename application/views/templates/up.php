@@ -46,7 +46,7 @@
 <div id="black_fon"></div>
 
 <div id="form_obr">
-  <div id="form_obr_close">x</div>
+  <div id="form_obr_close"><i class="flaticon-cross5"></i></div>
   <div id="order_form_title"><h2>Обратный звонок</h2></div>
   <div id="bobo"><div style='display:none;' id='status'></div></div>
   <form id="order_form" method="post">
