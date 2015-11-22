@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal">
+    <data-source name="Новый интерьер" uuid="fd8c7cd3-e303-450f-ac3f-c44b6d4edb4c">
+      <secret-storage>master_key</secret-storage>
+      <user-name>mysql</user-name>
+      <schema-pattern>newinterer-db.*</schema-pattern>
+      <default-schemas>newinterer-db.*</default-schemas>
+    </data-source>
+  </component>
+</project>

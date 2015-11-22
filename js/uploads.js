@@ -144,6 +144,17 @@ $(document).ready(function(){
     $('.select .status-field-edit').hide();
     $('.slct').removeClass('active');
   });
+
+  $(document).on('click', '.edit-img', function(){
+    $listPageLi.show();
+
+    window.listData1 = data.result;
+    imgSelect($listPageLi, data.result, 'big');
+
+    $listPageLi.find('.buttons .save-first').attr('data-id',data.result.current_row_id);
+
+    $('#success').fadeIn('slow');
+  });
   // Select
 
   $(document).on('click', '.slct',function(e){

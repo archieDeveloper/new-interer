@@ -14,10 +14,11 @@
 <ul class="list-page">
   <?php foreach ($portfolio as $key => $value) : ?>
     <li>
-      <span class="img">
+      <div class="img">
         <img src="/img/portfolio/small/<?=$value->img?>" alt="">
         <a class="button trash" data-id="<?=$value->id?>" href="javascript:void(0);"><i class="flaticon-trash3"></i> В корзину</a>
-      </span>
+        <span class="edit-img" data-id="<?=$value->id?>"><i class="flaticon-photo7"></i> Изменить миниатюру</span>
+      </div>
       <span>
         <b>Заголовок: </b><br>
         <input class="input-edit" type="text" value="<?=$value->title?>" size="60" data-id="<?=$value->id?>" placeholder="Без заголовка">
@@ -47,3 +48,18 @@
   <?php pagination($_GET['page'], $num_pages, '<i class="flaticon-thin6"></i>', '<i class="flaticon-thin2"></i>'); ?>
   <div class="cleaner"></div>
 </ul>
+
+<div class="model-delete-category" title="Выбор фотографии">
+  <div class="js-list-page" id="js-list-page">
+    <div>
+      <div class="img">
+        <img src="/img/portfolio/big/" alt="">
+      </div>
+      <div class="preview-img"><img src="" alt="" style="position: relative"/></div>
+    </div>
+    <div class="buttons">
+      <a class="button blue save-first" data-id="" href="javascript:void(0);"><i class="flaticon-checkmark2"></i> Сохранить</a>
+    </div>
+    <div class="clr"></div>
+  </div>
+</div>

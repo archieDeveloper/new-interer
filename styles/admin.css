@@ -435,8 +435,38 @@ body {
 .list-page li .img {
   float: left;
   margin-right: 10px;
-  max-width: 800px
+  max-width: 800px;
+  position: relative;
+  overflow: hidden;
 }
+
+.list-page li .img:hover .edit-img {
+  top: 0;
+  opacity: 1;
+}
+
+.list-page li .img .edit-img {
+  position: absolute;
+  opacity: 0;
+  top: -60px;
+  left: 0;
+  right: 0;
+  display: block;
+  border: 0;
+  padding: 10px 15px;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #C5C5C5;
+  font-family: 'Clear Sans';
+  outline: none;
+  cursor: pointer;
+  -webkit-transition: all 0.2s ease !important;
+  transition: all 0.2s ease !important;
+}
+
+.list-page li .img .edit-img:hover {
+  color: #FFFFff;
+}
+
 
 .clr {
   float: none;

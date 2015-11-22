@@ -11,6 +11,7 @@ class Portfolio extends CI_Controller
     'lib/jquery.fileupload',
     'lib/jquery.fileupload-process',
     'lib/jquery.iframe-transport',
+    'lib/jquery.imgareaselect.min',
     'uploads'),
     $include_css = array(
     'lib/jquery.fileupload');

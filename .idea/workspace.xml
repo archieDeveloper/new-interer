@@ -1,0 +1,1129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="bf407bd6-0916-4efd-bc2d-58853479f395" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/styles/admin.css" afterPath="$PROJECT_DIR$/styles/admin.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/styles/all.css" afterPath="$PROJECT_DIR$/styles/all.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/styles/all.min.css" afterPath="$PROJECT_DIR$/styles/all.min.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/models/feedback_model.php" afterPath="$PROJECT_DIR$/application/models/feedback_model.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/nodejs/source/stylus/base/identifiers.styl" afterPath="$PROJECT_DIR$/nodejs/source/stylus/base/identifiers.styl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/admin/portfolio/index.php" afterPath="$PROJECT_DIR$/application/views/admin/portfolio/index.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/controllers/nimyadmin/portfolio.php" afterPath="$PROJECT_DIR$/application/controllers/nimyadmin/portfolio.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/nodejs/source/stylus/base/ui.styl" afterPath="$PROJECT_DIR$/nodejs/source/stylus/base/ui.styl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/uploads.js" afterPath="$PROJECT_DIR$/js/uploads.js" />
+    </list>
+    <ignored path="new-interer.ru.loc.iws" />
+    <ignored path=".idea/workspace.xml" />
+    <ignored path=".idea/dataSources.local.xml" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
+  <component name="CreatePatchCommitExecutor">
+    <option name="PATCH_PATH" value="" />
+  </component>
+  <component name="DatabaseView">
+    <option name="FLATTEN" value="false" />
+    <option name="GROUP_BY_TYPE" value="true" />
+    <option name="SORT_CHILDREN" value="false" />
+    <option name="SHOW_TABLE_CONSTRAINTS" value="true" />
+    <PATH>
+      <PATH_ELEMENT>
+        <option name="myItemId" />
+        <option name="myItemType" value="com.intellij.database.view.DbRootNodeDescriptor" />
+      </PATH_ELEMENT>
+      <PATH_ELEMENT>
+        <option name="myItemId" value="Новый интерьер" />
+        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
+      </PATH_ELEMENT>
+      <PATH_ELEMENT>
+        <option name="myItemId" value="newinterer-db" />
+        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
+      </PATH_ELEMENT>
+    </PATH>
+    <PATH>
+      <PATH_ELEMENT>
+        <option name="myItemId" />
+        <option name="myItemType" value="com.intellij.database.view.DbRootNodeDescriptor" />
+      </PATH_ELEMENT>
+      <PATH_ELEMENT>
+        <option name="myItemId" value="Новый интерьер" />
+        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
+      </PATH_ELEMENT>
+      <PATH_ELEMENT>
+        <option name="myItemId" value="newinterer-db" />
+        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
+      </PATH_ELEMENT>
+      <PATH_ELEMENT>
+        <option name="myItemId" value="feedback" />
+        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
+      </PATH_ELEMENT>
+    </PATH>
+    <PATH>
+      <PATH_ELEMENT>
+        <option name="myItemId" />
+        <option name="myItemType" value="com.intellij.database.view.DbRootNodeDescriptor" />
+      </PATH_ELEMENT>
+      <PATH_ELEMENT>
+        <option name="myItemId" value="Новый интерьер" />
+        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
+      </PATH_ELEMENT>
+      <PATH_ELEMENT>
+        <option name="myItemId" value="newinterer-db" />
+        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
+      </PATH_ELEMENT>
+      <PATH_ELEMENT>
+        <option name="myItemId" value="callback" />
+        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
+      </PATH_ELEMENT>
+    </PATH>
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
+  <component name="FavoritesManager">
+    <favorites_list name="new-interer.ru.loc" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file leaf-file-name="ui.styl" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/nodejs/source/stylus/base/ui.styl">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="2" column="28" selection-start-line="2" selection-start-column="28" selection-end-line="2" selection-end-column="28" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="identifiers.styl" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/nodejs/source/stylus/base/identifiers.styl">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.4189406">
+              <caret line="293" column="17" selection-start-line="293" selection-start-column="17" selection-end-line="293" selection-end-column="17" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/nodejs/source/stylus/base/post.styl" />
+        <option value="$PROJECT_DIR$/nodejs/source/stylus/base/product.styl" />
+        <option value="$PROJECT_DIR$/nodejs/source/stylus/base/social.styl" />
+        <option value="$PROJECT_DIR$/nodejs/source/stylus/base/wrap.styl" />
+        <option value="$PROJECT_DIR$/application/views/contacts.php" />
+        <option value="$PROJECT_DIR$/nodejs/source/stylus/main.styl" />
+        <option value="$PROJECT_DIR$/nodejs/source/stylus/base/partners.styl" />
+        <option value="$PROJECT_DIR$/application/views/templates/down.php" />
+        <option value="$PROJECT_DIR$/application/controllers/article.php" />
+        <option value="$PROJECT_DIR$/application/controllers/home.php" />
+        <option value="$PROJECT_DIR$/application/controllers/portfolio.php" />
+        <option value="$PROJECT_DIR$/application/controllers/nimyadmin/articles.php" />
+        <option value="$PROJECT_DIR$/application/controllers/nimyadmin/contacts.php" />
+        <option value="$PROJECT_DIR$/application/controllers/nimyadmin/feedback.php" />
+        <option value="$PROJECT_DIR$/application/controllers/nimyadmin/home.php" />
+        <option value="$PROJECT_DIR$/application/controllers/nimyadmin/login.php" />
+        <option value="$PROJECT_DIR$/application/controllers/nimyadmin/logout.php" />
+        <option value="$PROJECT_DIR$/application/controllers/nimyadmin/pages.php" />
+        <option value="$PROJECT_DIR$/application/helpers/date_rus_helper.php" />
+        <option value="$PROJECT_DIR$/application/libraries/Auth.php" />
+        <option value="$PROJECT_DIR$/application/libraries/Hash_pass.php" />
+        <option value="$PROJECT_DIR$/application/libraries/Templates.php" />
+        <option value="$PROJECT_DIR$/application/models/articles_model.php" />
+        <option value="$PROJECT_DIR$/application/models/auctions_model.php" />
+        <option value="$PROJECT_DIR$/application/models/auth_model.php" />
+        <option value="$PROJECT_DIR$/application/models/category_model.php" />
+        <option value="$PROJECT_DIR$/application/models/contacts_model.php" />
+        <option value="$PROJECT_DIR$/application/models/page_model.php" />
+        <option value="$PROJECT_DIR$/application/models/portfolio_model.php" />
+        <option value="$PROJECT_DIR$/nodejs/source/stylus/base/wrap-product.styl" />
+        <option value="$PROJECT_DIR$/nodejs/source/stylus/base/about-list.styl" />
+        <option value="$PROJECT_DIR$/application/views/home.php" />
+        <option value="$PROJECT_DIR$/nodejs/source/stylus/base/other.styl" />
+        <option value="$PROJECT_DIR$/nodejs/source/stylus/base/slider.styl" />
+        <option value="$PROJECT_DIR$/js/swiper.js" />
+        <option value="$PROJECT_DIR$/nodejs/source/stylus/base/var.styl" />
+        <option value="$PROJECT_DIR$/nodejs/source/stylus/base/tags.styl" />
+        <option value="$PROJECT_DIR$/styles/flaticon.css" />
+        <option value="$PROJECT_DIR$/application/views/portfolio.php" />
+        <option value="$PROJECT_DIR$/application/controllers/contacts.php" />
+        <option value="$PROJECT_DIR$/application/views/admin/feedback.php" />
+        <option value="$PROJECT_DIR$/application/models/feedback_model.php" />
+        <option value="$PROJECT_DIR$/application/models/callback_model.php" />
+        <option value="$PROJECT_DIR$/js/fun.js" />
+        <option value="$PROJECT_DIR$/application/views/templates/up.php" />
+        <option value="$PROJECT_DIR$/styles/admin.css" />
+        <option value="$PROJECT_DIR$/application/views/admin/portfolio/index.php" />
+        <option value="$PROJECT_DIR$/js/uploads.js" />
+        <option value="$PROJECT_DIR$/application/controllers/nimyadmin/portfolio.php" />
+        <option value="$PROJECT_DIR$/nodejs/source/stylus/base/ui.styl" />
+        <option value="$PROJECT_DIR$/nodejs/source/stylus/base/identifiers.styl" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+  </component>
+  <component name="NamedScopeManager">
+    <order />
+  </component>
+  <component name="PhpServers">
+    <servers />
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="-1" />
+    <option name="width" value="1922" />
+    <option name="height" value="1050" />
+  </component>
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state>
+        <expanded-state>
+          <State>
+            <id />
+          </State>
+        </expanded-state>
+        <selected-state>
+          <State>
+            <id>PHP</id>
+          </State>
+        </selected-state>
+      </profile-state>
+    </entry>
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <OptionsSetting value="true" id="Add" />
+    <OptionsSetting value="true" id="Remove" />
+    <OptionsSetting value="true" id="Checkout" />
+    <OptionsSetting value="true" id="Update" />
+    <OptionsSetting value="true" id="Status" />
+    <OptionsSetting value="true" id="Edit" />
+    <ConfirmationsSetting value="0" id="Add" />
+    <ConfirmationsSetting value="0" id="Remove" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="new-interer.ru.loc" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="new-interer.ru.loc" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="new-interer.ru.loc" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="new-interer.ru.loc" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="new-interer.ru.loc" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="nodejs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="new-interer.ru.loc" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="new-interer.ru.loc" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="nodejs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="source" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="stylus" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+      <pane id="Scratches" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="HbShouldOpenHtmlAsHb" value="" />
+    <property name="FullScreen" value="false" />
+    <property name="options.lastSelected" value="preferences.sourceCode.PHP" />
+    <property name="options.splitter.main.proportions" value="0.3" />
+    <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="dynamic.classpath" value="false" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="LayoutCode.rearrangeEntriesPHP" value="false" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/img" />
+      <recent name="$PROJECT_DIR$/img/slider" />
+      <recent name="$PROJECT_DIR$/nodejs" />
+      <recent name="$PROJECT_DIR$/js/lib" />
+      <recent name="$PROJECT_DIR$/img/elem" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/img/slider" />
+      <recent name="$PROJECT_DIR$/nodejs/source/stylus/base" />
+      <recent name="$PROJECT_DIR$/nodejs/source/stylus" />
+      <recent name="$PROJECT_DIR$/styles/base/home" />
+      <recent name="$PROJECT_DIR$/js/admin" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
+      <method />
+    </configuration>
+    <configuration default="true" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
+      <TestRunner />
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpBehatConfigurationType" factoryName="Behat">
+      <BehatRunner />
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpLocalRunConfigurationType" factoryName="PHP Console">
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpUnitRemoteRunConfigurationType" factoryName="PHPUnit on Server">
+      <method />
+    </configuration>
+    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <node-options />
+      <gulpfile />
+      <tasks />
+      <arguments />
+      <pass-parent-envs>true</pass-parent-envs>
+      <envs />
+      <method />
+    </configuration>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="bf407bd6-0916-4efd-bc2d-58853479f395" name="Default" comment="" />
+      <created>1424534296181</created>
+      <option name="number" value="Default" />
+      <updated>1424534296181</updated>
+    </task>
+    <task id="LOCAL-00006" summary="добавлена возможность менять сортировку списка категории товаров">
+      <created>1424615164050</created>
+      <option name="number" value="00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1424615164050</updated>
+    </task>
+    <task id="LOCAL-00007" summary="изменил связь между элементами выполненных работ и их категорий">
+      <created>1424623536444</created>
+      <option name="number" value="00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1424623536444</updated>
+    </task>
+    <task id="LOCAL-00008" summary="исправил ошибку с выводом выполненных работ на главной странице и убрал из таблицы не нужное поле &quot;type&quot;">
+      <created>1424625215109</created>
+      <option name="number" value="00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1424625215109</updated>
+    </task>
+    <task id="LOCAL-00009" summary="исправил ошибку с выводом выполненных работ в категориях">
+      <created>1424626162035</created>
+      <option name="number" value="00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1424626162035</updated>
+    </task>
+    <task id="LOCAL-00010" summary="разделил страницу выполненных робот на 3, теперь разные функции находятся в своей подкатегории">
+      <created>1424680905115</created>
+      <option name="number" value="00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1424680905115</updated>
+    </task>
+    <task id="LOCAL-00011" summary="разделил страницу управления статьями на подкатегории">
+      <created>1424697494734</created>
+      <option name="number" value="00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1424697494734</updated>
+    </task>
+    <task id="LOCAL-00012" summary="изменил список редактирования категорий, заменил его на таблицу">
+      <created>1424769824058</created>
+      <option name="number" value="00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1424769824058</updated>
+    </task>
+    <task id="LOCAL-00013" summary="оптимизировал файл uploads.js">
+      <created>1424771257825</created>
+      <option name="number" value="00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1424771257825</updated>
+    </task>
+    <task id="LOCAL-00014" summary="добавил форму редактирования категории">
+      <created>1424862371021</created>
+      <option name="number" value="00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1424862371021</updated>
+    </task>
+    <task id="LOCAL-00015" summary="изменил цвет кнопок">
+      <created>1425806081417</created>
+      <option name="number" value="00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1425806081417</updated>
+    </task>
+    <task id="LOCAL-00016" summary="реализовал редактирование категорий">
+      <created>1426070387239</created>
+      <option name="number" value="00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1426070387239</updated>
+    </task>
+    <task id="LOCAL-00017" summary="сделал форму для добавления категорий">
+      <created>1426101410511</created>
+      <option name="number" value="00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1426101410511</updated>
+    </task>
+    <task id="LOCAL-00018" summary="реализовал добавление категоий">
+      <created>1426179675228</created>
+      <option name="number" value="00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1426179675228</updated>
+    </task>
+    <task id="LOCAL-00019" summary="рефакторинг кода, вывел методы работающие с категориями в отдельный файл модели">
+      <created>1426180521196</created>
+      <option name="number" value="00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1426180521196</updated>
+    </task>
+    <task id="LOCAL-00020" summary="рефакторинг кода, вывел методы работающие с портфолио в отдельный файл модели">
+      <created>1426181688740</created>
+      <option name="number" value="00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1426181688740</updated>
+    </task>
+    <task id="LOCAL-00021" summary="подправил несколько ошибок после рефакторинга">
+      <created>1426182380224</created>
+      <option name="number" value="00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1426182380224</updated>
+    </task>
+    <task id="LOCAL-00022" summary="подправил несколько ошибок после рефакторинга">
+      <created>1426182925350</created>
+      <option name="number" value="00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1426182925350</updated>
+    </task>
+    <task id="LOCAL-00023" summary="Добавил модальное окно при нажатии на кнопку удаления категории">
+      <created>1426702774110</created>
+      <option name="number" value="00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1426702774110</updated>
+    </task>
+    <task id="LOCAL-00024" summary="Добавил возможность удалять категории">
+      <created>1426784589147</created>
+      <option name="number" value="00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1426784589147</updated>
+    </task>
+    <task id="LOCAL-00025" summary="Добавил авторизацию в админку">
+      <created>1426793673185</created>
+      <option name="number" value="00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1426793673185</updated>
+    </task>
+    <task id="LOCAL-00026" summary="чуть-чуть подправил код в fun.js - там был полный ужас">
+      <created>1426854957063</created>
+      <option name="number" value="00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1426854957063</updated>
+    </task>
+    <task id="LOCAL-00027" summary="обновил дизайн, удалил лишние файлы из проекта">
+      <created>1426937485133</created>
+      <option name="number" value="00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1426937485133</updated>
+    </task>
+    <task id="LOCAL-00028" summary="исправил несколько warning'оф">
+      <created>1426938374359</created>
+      <option name="number" value="00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1426938374359</updated>
+    </task>
+    <task id="LOCAL-00029" summary="удалил лишний css из файла style.css">
+      <created>1426938893827</created>
+      <option name="number" value="00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1426938893827</updated>
+    </task>
+    <task id="LOCAL-00030" summary="добавил классненький шрифт">
+      <created>1426957779103</created>
+      <option name="number" value="00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1426957779103</updated>
+    </task>
+    <task id="LOCAL-00031" summary="верстаю страницу с выполненными работами">
+      <created>1426963472012</created>
+      <option name="number" value="00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1426963472012</updated>
+    </task>
+    <task id="LOCAL-00032" summary="добавил &quot;хлебные крошки&quot;, изменил немного структуру файлов">
+      <created>1427042338352</created>
+      <option name="number" value="00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1427042338352</updated>
+    </task>
+    <task id="LOCAL-00033" summary="исправил ошибку в портфолио и в файле article.js">
+      <created>1427042803604</created>
+      <option name="number" value="00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1427042803604</updated>
+    </task>
+    <task id="LOCAL-00034" summary="подверстал страницы со статьями и контактами">
+      <created>1427047585507</created>
+      <option name="number" value="00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1427047585507</updated>
+    </task>
+    <task id="LOCAL-00035" summary="добавил возможность выбирать миниатюрку для выполненных работ, в связи с этим подключил js плагин который делает плиточки из выполненных работ">
+      <created>1427104268879</created>
+      <option name="number" value="00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1427104268879</updated>
+    </task>
+    <task id="LOCAL-00036" summary="подправил стили, добавил в футер список категорий выполненных работ">
+      <created>1427225931092</created>
+      <option name="number" value="00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1427225931092</updated>
+    </task>
+    <task id="LOCAL-00037" summary="fix and add animate lib">
+      <created>1431857233195</created>
+      <option name="number" value="00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1431857233195</updated>
+    </task>
+    <task id="LOCAL-00038" summary="fix and add feedback model">
+      <created>1433002987147</created>
+      <option name="number" value="00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1433002987147</updated>
+    </task>
+    <task id="LOCAL-00039" summary="change callback button and fix select bug in firefox">
+      <created>1433081511124</created>
+      <option name="number" value="00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1433081511124</updated>
+    </task>
+    <task id="LOCAL-00040" summary="add plugin inputmask and refactor fun.js file">
+      <created>1433574542420</created>
+      <option name="number" value="00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1433574542420</updated>
+    </task>
+    <task id="LOCAL-00041" summary="refactor fun.js file">
+      <created>1433578494546</created>
+      <option name="number" value="00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1433578494546</updated>
+    </task>
+    <task id="LOCAL-00042" summary="refactor fun.js file">
+      <created>1433578687515</created>
+      <option name="number" value="00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1433578687515</updated>
+    </task>
+    <task id="LOCAL-00043" summary="refactor fun.js file">
+      <created>1433578927326</created>
+      <option name="number" value="00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1433578927326</updated>
+    </task>
+    <task id="LOCAL-00044" summary="fix indentation models">
+      <created>1433580643567</created>
+      <option name="number" value="00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1433580643567</updated>
+    </task>
+    <task id="LOCAL-00045" summary="fix indentation models">
+      <created>1433580813760</created>
+      <option name="number" value="00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1433580813760</updated>
+    </task>
+    <task id="LOCAL-00046" summary="fix">
+      <created>1433580866566</created>
+      <option name="number" value="00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1433580866566</updated>
+    </task>
+    <task id="LOCAL-00047" summary="add nodejs and stylus">
+      <created>1433594597288</created>
+      <option name="number" value="00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1433594597288</updated>
+    </task>
+    <task id="LOCAL-00048" summary="fix styl files">
+      <created>1436298718543</created>
+      <option name="number" value="00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1436298718543</updated>
+    </task>
+    <task id="LOCAL-00049" summary="fix">
+      <created>1436361248877</created>
+      <option name="number" value="00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1436361248877</updated>
+    </task>
+    <task id="LOCAL-00050" summary="fix and add partners in home page">
+      <created>1436374834057</created>
+      <option name="number" value="00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1436374834128</updated>
+    </task>
+    <task id="LOCAL-00051" summary="fix style code :)">
+      <created>1436538256028</created>
+      <option name="number" value="00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1436538256028</updated>
+    </task>
+    <task id="LOCAL-00052" summary="fix - computation">
+      <created>1436701027839</created>
+      <option name="number" value="00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1436701027839</updated>
+    </task>
+    <task id="LOCAL-00053" summary="sort desc callbacks">
+      <created>1436704026861</created>
+      <option name="number" value="00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1436704026861</updated>
+    </task>
+    <task id="LOCAL-00054" summary="redesign form callback">
+      <created>1437911116454</created>
+      <option name="number" value="00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1437911116462</updated>
+    </task>
+    <option name="localTasksCounter" value="55" />
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-1" y="0" width="1922" height="1050" extended-state="7" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.325054" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32721382" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.17129135" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17235859" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977587" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32941177" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.63529414" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.08226496" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+    </layout>
+  </component>
+  <component name="Vcs.Log.UiProperties">
+    <option name="RECENTLY_FILTERED_USER_GROUPS">
+      <collection />
+    </option>
+    <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+      <collection />
+    </option>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="чуть-чуть подправил код в fun.js - там был полный ужас" />
+    <MESSAGE value="обновил дизайн, удалил лишние файлы из проекта" />
+    <MESSAGE value="исправил несколько warning'оф" />
+    <MESSAGE value="удалил лишний css из файла style.css" />
+    <MESSAGE value="добавил классненький шрифт" />
+    <MESSAGE value="верстаю страницу с выполненными работами" />
+    <MESSAGE value="добавил &quot;хлебные крошки&quot;, изменил немного структуру файлов" />
+    <MESSAGE value="исправил ошибку в портфолио и в файле article.js" />
+    <MESSAGE value="подверстал страницы со статьями и контактами" />
+    <MESSAGE value="добавил возможность выбирать миниатюрку для выполненных работ, в связи с этим подключил js плагин который делает плиточки из выполненных работ" />
+    <MESSAGE value="подправил стили, добавил в футер список категорий выполненных работ" />
+    <MESSAGE value="fix and add animate lib" />
+    <MESSAGE value="fix and add feedback model" />
+    <MESSAGE value="change callback button and fix select bug in firefox" />
+    <MESSAGE value="add plugin inputmask and refactor fun.js file" />
+    <MESSAGE value="refactor fun.js file" />
+    <MESSAGE value="fix indentation models" />
+    <MESSAGE value="add nodejs and stylus" />
+    <MESSAGE value="fix styl files" />
+    <MESSAGE value="fix" />
+    <MESSAGE value="fix and add partners in home page" />
+    <MESSAGE value="fix style code :)" />
+    <MESSAGE value="fix - computation" />
+    <MESSAGE value="sort desc callbacks" />
+    <MESSAGE value="redesign form callback" />
+    <option name="LAST_COMMIT_MESSAGE" value="redesign form callback" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <option name="time" value="3" />
+    </breakpoint-manager>
+    <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/application/controllers/article.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-23.333334">
+          <caret line="35" column="0" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/portfolio.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-20.0">
+          <caret line="99" column="0" selection-start-line="99" selection-start-column="0" selection-end-line="99" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/nimyadmin/articles.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="9.333333">
+          <caret line="73" column="6" selection-start-line="73" selection-start-column="6" selection-end-line="73" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/nimyadmin/contacts.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/nimyadmin/home.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/nimyadmin/login.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-10.0">
+          <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/nimyadmin/logout.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/nimyadmin/pages.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-12.666667">
+          <caret line="19" column="31" selection-start-line="19" selection-start-column="31" selection-end-line="19" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/helpers/date_rus_helper.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="47.444443">
+          <caret line="32" column="12" selection-start-line="32" selection-start-column="12" selection-end-line="32" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/libraries/Auth.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-12.0">
+          <caret line="18" column="18" selection-start-line="18" selection-start-column="18" selection-end-line="18" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/libraries/Hash_pass.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.6666665">
+          <caret line="33" column="41" selection-start-line="33" selection-start-column="41" selection-end-line="33" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/libraries/Uauth.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="6.111111">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/libraries/Ulogin.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-4.0508084">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/libraries/Templates.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.11111111">
+          <caret line="17" column="3" selection-start-line="17" selection-start-column="3" selection-end-line="17" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/models/articles_model.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-11.333333">
+          <caret line="17" column="5" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/models/auth_model.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-14.0">
+          <caret line="21" column="5" selection-start-line="21" selection-start-column="5" selection-end-line="21" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/models/category_model.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-10.0">
+          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/models/contacts_model.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-11.333333">
+          <caret line="17" column="24" selection-start-line="17" selection-start-column="24" selection-end-line="17" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/models/portfolio_model.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.0749724">
+          <caret line="21" column="3" selection-start-line="21" selection-start-column="3" selection-end-line="21" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/models/page_model.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4366042">
+          <caret line="22" column="31" selection-start-line="22" selection-start-column="31" selection-end-line="22" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/26dbe20d/fd8c7cd3-e303-450f-ac3f-c44b6d4edb4c/newinterer-db..portfolio">
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/26dbe20d/fd8c7cd3-e303-450f-ac3f-c44b6d4edb4c/newinterer-db..category_portfolio">
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nodejs/source/stylus/base/wrap-product.styl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="35" column="17" selection-start-line="35" selection-start-column="17" selection-end-line="35" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/home.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-8.0">
+          <caret line="12" column="47" selection-start-line="12" selection-start-column="47" selection-end-line="12" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nodejs/source/stylus/base/other.styl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="10" column="11" selection-start-line="10" selection-start-column="11" selection-end-line="10" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nodejs/source/stylus/base/slider.styl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="44" column="14" selection-start-line="44" selection-start-column="14" selection-end-line="44" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nodejs/source/stylus/base/tags.styl">
+      <provider editor-type-id="com.intellij.database.editor.CsvTableFileEditorProvider">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="12" column="12" selection-start-line="12" selection-start-column="12" selection-end-line="12" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nodejs/source/stylus/base/var.styl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="46" selection-start-line="0" selection-start-column="46" selection-end-line="0" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/26dbe20d/fd8c7cd3-e303-450f-ac3f-c44b6d4edb4c/newinterer-db..callback">
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/swiper.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="6" column="16" selection-start-line="6" selection-start-column="16" selection-end-line="6" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fonts/flaticon.svg">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/models/callback_model.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.45594713">
+          <caret line="23" column="1" selection-start-line="23" selection-start-column="1" selection-end-line="23" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/models/feedback_model.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.25770926">
+          <caret line="13" column="19" selection-start-line="13" selection-start-column="19" selection-end-line="13" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/26dbe20d/fd8c7cd3-e303-450f-ac3f-c44b6d4edb4c/newinterer-db..feedback">
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/admin/feedback.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.21806167">
+          <caret line="11" column="57" selection-start-line="11" selection-start-column="57" selection-end-line="11" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/nimyadmin/feedback.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3171806">
+          <caret line="16" column="43" selection-start-line="16" selection-start-column="43" selection-end-line="16" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/contacts.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.21365638">
+          <caret line="74" column="44" selection-start-line="74" selection-start-column="44" selection-end-line="74" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/portfolio.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.40528634">
+          <caret line="62" column="23" selection-start-line="62" selection-start-column="11" selection-end-line="62" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/home.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.2918502">
+          <caret line="6" column="47" selection-start-line="6" selection-start-column="47" selection-end-line="6" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/fun.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="321" column="67" selection-start-line="321" selection-start-column="67" selection-end-line="321" selection-end-column="67" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/templates/up.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.888889">
+          <caret line="48" column="37" selection-start-line="48" selection-start-column="37" selection-end-line="48" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/styles/flaticon.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.16371681">
+          <caret line="274" column="1" selection-start-line="274" selection-start-column="1" selection-end-line="274" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/admin/portfolio/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-12.814815">
+          <caret line="56" column="12" selection-start-line="56" selection-start-column="12" selection-end-line="56" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nodejs/source/stylus/base/about-list.styl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0784">
+          <caret line="6" column="21" selection-start-line="6" selection-start-column="21" selection-end-line="6" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/styles/admin.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.2592">
+          <caret line="449" column="12" selection-start-line="449" selection-start-column="12" selection-end-line="449" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/uploads.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.3152">
+          <caret line="148" column="23" selection-start-line="148" selection-start-column="23" selection-end-line="148" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/config/database.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.2274247">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/nimyadmin/portfolio.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="6.471572">
+          <caret line="215" column="7" selection-start-line="215" selection-start-column="7" selection-end-line="215" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/admin/portfolio/add.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="29" column="8" selection-start-line="29" selection-start-column="8" selection-end-line="29" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nodejs/source/stylus/base/ui.styl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="2" column="28" selection-start-line="2" selection-start-column="28" selection-end-line="2" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nodejs/source/stylus/base/identifiers.styl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4189406">
+          <caret line="293" column="17" selection-start-line="293" selection-start-column="17" selection-end-line="293" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ScopeChooserConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>
