@@ -1,17 +1,21 @@
-var gulp = require('gulp');
+var gulp, coffee, concat, uglify, rename, jade, stylus, webpack, gutil;
+gulp = require('gulp');
 
-var coffee = require('gulp-coffee');
-var concat = require('gulp-concat');
-var uglify = require('gulp-uglify');
-var rename = require('gulp-rename');
-var jade = require('gulp-jade');
-var stylus = require('gulp-stylus');
+coffee = require('gulp-coffee');
+concat = require('gulp-concat');
+uglify = require('gulp-uglify');
+rename = require('gulp-rename');
+jade = require('gulp-jade');
+stylus = require('gulp-stylus');
+webpack = require('webpack');
+gutil   = require('gulp-util');
 
 var paths = {
   coffee: ['source/coffee/**/*.coffee'],
   stylus: ['source/stylus/main.styl'],
   stylusWatch: ['source/stylus/**/*.styl'],
-  jade: ['source/jade/**/*.jade']
+  jade: ['source/jade/**/*.jade'],
+  js: ['../js/**/*.js']
 };
 
 //stylus: ['source/stylus/**/*.styl'],
@@ -59,13 +63,25 @@ gulp.task('jade', function() {
     .pipe(gulp.dest('build/'));
 });
 
+
+gulp.task("webpack", function (callback) {
+  var config = require('./webpack.config');
+  webpack(config, function (err, stats) {
+    if (err) throw new gutil.PluginError("webpack", err);
+    gutil.log("[webpack]", stats.toString(), {colors: true});
+    callback();
+  });
+});
+
+
 // Rerun the task when a file changes
 gulp.task('watch', function() {
   //gulp.watch(paths.coffee, ['coffee']);
+  gulp.watch(paths.js, ['webpack']);
   gulp.watch(paths.stylusWatch, ['stylus']);
   gulp.watch(paths.stylusWatch, ['stylus-min']);
   //gulp.watch(paths.jade, ['jade']);
 });
 
 // The default task (called when you run `gulp` from cli)
-gulp.task('default', ['stylus', 'stylus-min', 'watch']);
+gulp.task('default', ['stylus', 'stylus-min', 'webpack', 'watch']);
