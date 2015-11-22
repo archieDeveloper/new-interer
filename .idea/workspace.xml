@@ -2,15 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bf407bd6-0916-4efd-bc2d-58853479f395" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/styles/admin.css" afterPath="$PROJECT_DIR$/styles/admin.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/styles/all.css" afterPath="$PROJECT_DIR$/styles/all.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/styles/all.min.css" afterPath="$PROJECT_DIR$/styles/all.min.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/models/feedback_model.php" afterPath="$PROJECT_DIR$/application/models/feedback_model.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/nodejs/source/stylus/base/identifiers.styl" afterPath="$PROJECT_DIR$/nodejs/source/stylus/base/identifiers.styl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/admin/portfolio/index.php" afterPath="$PROJECT_DIR$/application/views/admin/portfolio/index.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/controllers/nimyadmin/portfolio.php" afterPath="$PROJECT_DIR$/application/controllers/nimyadmin/portfolio.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/nodejs/source/stylus/base/ui.styl" afterPath="$PROJECT_DIR$/nodejs/source/stylus/base/ui.styl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/uploads.js" afterPath="$PROJECT_DIR$/js/uploads.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="new-interer.ru.loc.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -98,11 +91,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="identifiers.styl" pinned="false" current-in-tab="true">
+      <file leaf-file-name="identifiers.styl" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/nodejs/source/stylus/base/identifiers.styl">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.4189406">
+            <state vertical-scroll-proportion="0.0">
               <caret line="293" column="17" selection-start-line="293" selection-start-column="17" selection-end-line="293" selection-end-column="17" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0576">
+              <caret line="2" column="7" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
               <folding />
             </state>
           </provider>
@@ -116,7 +119,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/nodejs/source/stylus/base/post.styl" />
         <option value="$PROJECT_DIR$/nodejs/source/stylus/base/product.styl" />
         <option value="$PROJECT_DIR$/nodejs/source/stylus/base/social.styl" />
         <option value="$PROJECT_DIR$/nodejs/source/stylus/base/wrap.styl" />
@@ -167,6 +169,7 @@
         <option value="$PROJECT_DIR$/application/controllers/nimyadmin/portfolio.php" />
         <option value="$PROJECT_DIR$/nodejs/source/stylus/base/ui.styl" />
         <option value="$PROJECT_DIR$/nodejs/source/stylus/base/identifiers.styl" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -240,42 +243,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="new-interer.ru.loc" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="new-interer.ru.loc" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="new-interer.ru.loc" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="nodejs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="new-interer.ru.loc" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="new-interer.ru.loc" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="nodejs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="source" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="stylus" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -650,12 +617,12 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1" y="0" width="1922" height="1050" extended-state="7" />
+    <frame x="-1" y="0" width="1922" height="1050" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.325054" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.325054" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32721382" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32721382" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.17129135" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
@@ -721,13 +688,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/application/controllers/article.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-23.333334">
-          <caret line="35" column="0" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/controllers/portfolio.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-20.0">
@@ -1104,8 +1064,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/nodejs/source/stylus/base/identifiers.styl">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4189406">
+        <state vertical-scroll-proportion="0.0">
           <caret line="293" column="17" selection-start-line="293" selection-start-column="17" selection-end-line="293" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0576">
+          <caret line="2" column="7" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
           <folding />
         </state>
       </provider>
