@@ -4,18 +4,14 @@ path    = require('path');
 webpack = require('webpack');
 
 module.exports = {
-  entry: './source/js/admin/index.js',
+  entry: './source/js/admin.js',
   output: {
-    path: path.join(__dirname, '../js/')
-  },
-  filename: 'admin',
-  module: {
-    loaders: [
-      {test: /\.coffee$/, loader: 'coffee-loader'}
-    ]
+    path: path.join(__dirname, '../js/'),
+    filename: 'admin.js'
   },
   resolve: {
-    extensions: ["", ".web.coffee", ".web.js", ".coffee", ".js"]
+    root: path.resolve(__dirname, './source/js'),
+    extensions: ['', '.js']
   },
   plugins: [
     new webpack.optimize.UglifyJsPlugin

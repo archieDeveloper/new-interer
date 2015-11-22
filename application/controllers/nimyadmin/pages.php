@@ -3,12 +3,12 @@
 class Pages extends CI_Controller
 {
 
-  var $data = array(),
+  var $data = [],
     $controller,
     $action,
     $page_title = 'Настройка страниц',
-    $include_js = array(),
-    $include_css = array();
+    $include_js = [],
+    $include_css = [];
 
   function __construct()
   {

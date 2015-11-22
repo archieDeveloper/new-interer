@@ -15,7 +15,7 @@ var paths = {
   stylus: ['source/stylus/main.styl'],
   stylusWatch: ['source/stylus/**/*.styl'],
   jade: ['source/jade/**/*.jade'],
-  js: ['../js/**/*.js']
+  js: ['source/js/**/*.js']
 };
 
 //stylus: ['source/stylus/**/*.styl'],

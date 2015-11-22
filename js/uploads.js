@@ -205,59 +205,6 @@ $(document).ready(function(){
     });
   });
 
-  var text;
-  $(document).on('keypress','.input-edit',function(e){
-    if(e.keyCode == 13) $(this).blur();
-  });
-  $(document).on('focus','.input-edit', function(){
-    var $this = $(this);
-    text = $this.val();
-    $this.next().find('.status-field-edit').show();
-  });
-  $(document).on('blur','.input-edit', function(){
-    $inputBlur($(this));
-  });
-
-  var $inputBlur = function($this_i){
-    if (text !== $this_i.val()) {
-      $this_i.prop('disabled', true);
-      var $next = $this_i.next();
-      $next.find('.status-field-edit').hide();
-      $next.find('.status-field-save').show();
-      var $id = $this_i.attr('data-id');
-      var $title = $this_i.val();
-      $.ajax({
-        dataType : "html",
-        type     : "POST",
-        data     : 'id='+$id+'&title='+$title,
-        url      : '/nimyadmin/portfolio.html',
-        success  : function(data){
-          $this_i.next().find('.status-field-save').hide();
-          $this_i.prop('disabled', false);
-        }
-      });
-    }
-    $this_i.next().find('.status-field-edit').hide();
-  };
-
-  $(document).on('click','.trash', function(e){
-    var $this = $(this);
-    var $id = $this.attr('data-id');
-    $this.prop('disabled', true);
-    $.ajax({
-      dataType : "html",
-      type     : "POST",
-      data     : 'id='+$id+'&trash=1',
-      url      : '/nimyadmin/portfolio.html',
-      success  : function(data){
-        $this.prop('disabled', false);
-        var $secondParent = $this.parent().parent();
-        $secondParent.before('<li class="portfolio-trash">Работа удалена. <a href="#" class="no-trash" data-id="'+$id+'">Восстановить</a><a class="button close-no-trash" href="javascript:void(0);"><i class="flaticon-cross5"></i></a></li>');
-        $secondParent.slideUp(200);
-      }
-    });
-  });
-
   $(document).on('click','.save', function(e){
     var $this = $(this);
     var $id = $this.attr('data-id');

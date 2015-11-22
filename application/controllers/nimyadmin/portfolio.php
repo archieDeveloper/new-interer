@@ -3,18 +3,20 @@
 class Portfolio extends CI_Controller
 {
 
-  var $data = array(),
+  var $data = [],
     $controller,
     $action,
     $page_title = 'Настройка выполненых работ',
-    $include_js = array(
-    'lib/jquery.fileupload',
-    'lib/jquery.fileupload-process',
-    'lib/jquery.iframe-transport',
-    'lib/jquery.imgareaselect.min',
-    'uploads'),
-    $include_css = array(
-    'lib/jquery.fileupload');
+    $include_js = [
+      'lib/jquery.fileupload',
+      'lib/jquery.fileupload-process',
+      'lib/jquery.iframe-transport',
+      'lib/jquery.imgareaselect.min',
+      'admin'
+    ],
+    $include_css = [
+      'lib/jquery.fileupload'
+    ];
 
   function __construct()
   {
@@ -73,15 +75,15 @@ class Portfolio extends CI_Controller
     $this->data['page_title'] = 'Добавить работу';
     $this->data['page_controller'] = $this->controller;
     $this->data['page_action'] = $this->action;
-    $this->data['include_js'] = array(
+    $this->data['include_js'] = [
       'lib/jquery.fileupload',
       'lib/jquery.fileupload-process',
       'lib/jquery.iframe-transport',
       'lib/jquery.imgareaselect.min',
-      'uploads');
-    $this->data['include_css'] = array(
+      'uploads'];
+    $this->data['include_css'] = [
       'lib/jquery.fileupload',
-      'lib/imgareaselect/imgareaselect-animated');
+      'lib/imgareaselect/imgareaselect-animated'];
 
     $this->load->model('category_model');
     $this->data['list_category_portfolio'] = $this->category_model->get_list();
@@ -107,6 +109,61 @@ class Portfolio extends CI_Controller
     $this->load->view('admin/templates/down', $this->data);
   }
 
+  /**
+   *
+   * @Ajax
+   *
+   */
+  public function trash()
+  {
+    $this->load->library('request');
+    if (!$this->request->isAjax() || empty($_POST['id'])) {
+      show_404();
+    }
+    $this->_trash_portfolio($_POST['id']);
+    $this->data['id'] = $_POST['id'];
+    $response['html'] = $this->load->view('admin/templates/portfolio/trash', $this->data, true);
+    $response['data'] = $this->data;
+    echo json_encode($response);
+  }
+
+  /**
+   *
+   * @Ajax
+   *
+   */
+  public function title()
+  {
+    $this->load->library('request');
+    if (!$this->request->isAjax() || empty($_POST['id']) || !isset($_POST['title'])) {
+      show_404();
+    }
+    $this->_update_title_portfolio($_POST['id'], $_POST['title']);
+    $this->data['id'] = $_POST['id'];
+    $this->data['title'] = $_POST['title'];
+    $response['data'] = $this->data;
+    echo json_encode($response);
+  }
+
+
+  /**
+   *
+   * @Ajax
+   *
+   */
+  public function category()
+  {
+    $this->load->library('request');
+    if (!$this->request->isAjax() || empty($_POST['id']) || empty($_POST['category_link'])) {
+      show_404();
+    }
+    $this->_update_category_portfolio($_POST['id'], $_POST['category_link']);
+    $this->data['id'] = $_POST['id'];
+    $this->data['category_link'] = $_POST['category_link'];
+    $response['data'] = $this->data;
+    echo json_encode($response);
+  }
+
   public function _upload_portfolio()
   {
     header('Content-type: application/json');
@@ -121,7 +178,7 @@ class Portfolio extends CI_Controller
     $this->load->library('upload', $config);
 
     if ($this->upload->do_upload() == false) {
-      $error = array('error' => $this->upload->display_errors());
+      $error = ['error' => $this->upload->display_errors()];
       echo json_encode($error);
     } else {
       $data = $this->upload->data();
@@ -185,25 +242,20 @@ class Portfolio extends CI_Controller
 
   public function _update_title_portfolio($id, $title)
   {
-    // header('Content-type: application/json');
-
     $this->load->model('portfolio_model');
     $this->portfolio_model->edit_title($id, $title);
-
-    exit();
   }
 
   public function _update_category_portfolio($id, $link)
   {
     $this->load->model('portfolio_model');
     $this->portfolio_model->edit_category($id, $link);
-    exit();
   }
 
   public function _update_category_portfolio_date($id, $name, $desc, $slug)
   {
     header('Content-type: application/json');
-    $data = array();
+    $data = [];
     $this->load->model('category_model');
     $data['error'] = $this->category_model->update($id, $name, $desc, $slug);
     echo json_encode($data);
@@ -213,7 +265,6 @@ class Portfolio extends CI_Controller
   public function _add_category_portfolio($name, $desc, $slug)
   {
     header('Content-type: application/json');
-    $data = array();
     $this->load->model('category_model');
     $data = $this->category_model->add($name, $desc, $slug);
     echo json_encode($data);
@@ -223,7 +274,6 @@ class Portfolio extends CI_Controller
   public function _delete_category_portfolio($id)
   {
     header('Content-type: application/json');
-    $data = array();
     $this->load->model('category_model');
     $data = $this->category_model->delete($id);
     echo json_encode($data);
@@ -234,7 +284,6 @@ class Portfolio extends CI_Controller
   {
     $this->load->model('portfolio_model');
     $this->portfolio_model->trash($id);
-    exit();
   }
 
   public function _no_trash_portfolio($id)
