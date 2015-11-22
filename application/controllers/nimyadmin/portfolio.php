@@ -35,8 +35,6 @@ class Portfolio extends CI_Controller
   {
     if (!empty($_FILES) && isset($_POST['type']) && $_POST['type'] == 'portfolio') $this->_upload_portfolio();
     if (isset($_POST['id']) && isset($_POST['crop_image'])) $this->_crop_image($_POST['id'], $_POST['x'], $_POST['y'], $_POST['width'], $_POST['height']);
-    if (isset($_POST['id']) && isset($_POST['title'])) $this->_update_title_portfolio($_POST['id'], $_POST['title']);
-    if (isset($_POST['id']) && isset($_POST['category_link'])) $this->_update_category_portfolio($_POST['id'], $_POST['category_link']);
     if (isset($_POST['id']) && isset($_POST['trash'])) $this->_trash_portfolio($_POST['id']);
     if (isset($_POST['id']) && isset($_POST['no_trash'])) $this->_no_trash_portfolio($_POST['id']);
     if (isset($_POST['id']) && isset($_POST['update_category_portfolio'])) $this->_update_category_portfolio_date($_POST['id'], $_POST['name'], $_POST['desc'], $_POST['slug']);
@@ -120,7 +118,8 @@ class Portfolio extends CI_Controller
     if (!$this->request->isAjax() || empty($_POST['id'])) {
       show_404();
     }
-    $this->_trash_portfolio($_POST['id']);
+    $this->load->model('portfolio_model');
+    $this->portfolio_model->trash($_POST['id']);
     $this->data['id'] = $_POST['id'];
     $response['html'] = $this->load->view('admin/templates/portfolio/trash', $this->data, true);
     $response['data'] = $this->data;
@@ -138,7 +137,8 @@ class Portfolio extends CI_Controller
     if (!$this->request->isAjax() || empty($_POST['id']) || !isset($_POST['title'])) {
       show_404();
     }
-    $this->_update_title_portfolio($_POST['id'], $_POST['title']);
+    $this->load->model('portfolio_model');
+    $this->portfolio_model->edit_title($_POST['id'], $_POST['title']);
     $this->data['id'] = $_POST['id'];
     $this->data['title'] = $_POST['title'];
     $response['data'] = $this->data;
@@ -157,7 +157,8 @@ class Portfolio extends CI_Controller
     if (!$this->request->isAjax() || empty($_POST['id']) || empty($_POST['category_link'])) {
       show_404();
     }
-    $this->_update_category_portfolio($_POST['id'], $_POST['category_link']);
+    $this->load->model('portfolio_model');
+    $this->portfolio_model->edit_category($_POST['id'], $_POST['category_link']);
     $this->data['id'] = $_POST['id'];
     $this->data['category_link'] = $_POST['category_link'];
     $response['data'] = $this->data;
@@ -240,18 +241,6 @@ class Portfolio extends CI_Controller
     exit();
   }
 
-  public function _update_title_portfolio($id, $title)
-  {
-    $this->load->model('portfolio_model');
-    $this->portfolio_model->edit_title($id, $title);
-  }
-
-  public function _update_category_portfolio($id, $link)
-  {
-    $this->load->model('portfolio_model');
-    $this->portfolio_model->edit_category($id, $link);
-  }
-
   public function _update_category_portfolio_date($id, $name, $desc, $slug)
   {
     header('Content-type: application/json');
@@ -278,12 +267,6 @@ class Portfolio extends CI_Controller
     $data = $this->category_model->delete($id);
     echo json_encode($data);
     exit();
-  }
-
-  public function _trash_portfolio($id)
-  {
-    $this->load->model('portfolio_model');
-    $this->portfolio_model->trash($id);
   }
 
   public function _no_trash_portfolio($id)
