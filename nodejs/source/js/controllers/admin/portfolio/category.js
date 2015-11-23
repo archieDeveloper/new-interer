@@ -1,97 +1,103 @@
+var controller, view, Category;
+
+controller = require('helpers/controller');
+view = require('helpers/view');
+
+Category = (function() {
+
+  var Category, $document;
+  $document = $(document);
+
+  Category = function() {
+    this.sortable();
+    this.editCategory();
+    this.cancelEditCategory();
+  };
+
+  Category.prototype.$catListTb = $('#cat-list-tb');
+
+  Category.prototype.sortable = function() {
+    this.$catListTb.sortable({
+      placeholder: "ui-state-highlight",
+      start: function(e,elem) {
+        var $item;
+        $item = $(elem.item);
+        $item.css({display:'inline-table'});
+      },
+      stop: function(e,elem) {
+        var $item, $tr, arrayMenu, trClass, trKey, data, callback;
+        $item = $(elem.item);
+        $item.removeAttr('style');
+        $tr = $(this).find('tr');
+        arrayMenu = [];
+        trClass = ['tg-4eph','tg-031e'];
+        trKey = false;
+        $tr.each(function(){
+          var $this;
+          $this = $(this);
+          trKey = !trKey;
+          $this.removeClass();
+          $this.addClass(trClass[trKey ? 1 : 0]);
+          arrayMenu.push($this.attr('data-id'));
+        });
+        data = {
+          data_id: arrayMenu
+        };
+        callback = function() {
+
+        };
+        controller.call('nimyadmin/portfolio/sortable', data, callback);
+      }
+    });
+  };
+
+  Category.prototype.editCategory = function() {
+    var self;
+    self = this;
+    $document.on('click', '.edit-category', function(e) {
+      var $secondParent, $this, data, callback;
+      e.preventDefault();
+      $this = $(this);
+      self.$catListTb.sortable('disable');
+      $secondParent = $this.parent().parent();
+      data = {
+        id: $secondParent.attr('data-id'),
+        name: $secondParent.find('.tg-name').text(),
+        desc: $secondParent.find('.tg-desc').text(),
+        slug: $secondParent.find('.tg-slug').text()
+      };
+      callback = function(result) {
+        self.$catListTb.find('.cancel-edit-category').click();
+        $secondParent.hide();
+        $secondParent.after(result);
+      };
+      view.render('admin/templates/portfolio/category/edit', data, callback);
+    });
+  };
+
+  Category.prototype.cancelEditCategory = function() {
+    var self;
+    self = this;
+    $document.on('click', '.cancel-edit-category', function(e){
+      var $editForm;
+      e.preventDefault();
+      self.$catListTb.sortable('enable');
+      $editForm = $(this).parent().parent().parent();
+      $editForm.prev().show();
+      $editForm.remove();
+    });
+  };
+
+  return Category;
+})();
+
+module.exports = new Category;
+
+
 $(document).ready(function(){
   "use strict";
-  //таблица категорий
-  var $catListTb = $("#cat-list-tb");
-
-  //сортировка катигорий
-  $catListTb.sortable({
-    placeholder: "ui-state-highlight",
-    start: function(e,elem){
-      var $item = $(elem.item);
-      $item.css({'display':'inline-table'});
-    },
-    stop: function(e,elem){
-      var $item = $(elem.item);
-      $item.removeAttr('style');
-      var $tr = $(this).find('tr');
-      var arrayMenu = [];
-      var trClass = ['tg-4eph','tg-031e'],
-          trKey = false;
-      $tr.each(function(){
-        trKey = !trKey;
-        $(this).removeClass();
-        $(this).addClass(trClass[trKey ? 1 : 0]);
-        arrayMenu.push($(this).attr('data-id'));
-      });
-      console.log(arrayMenu);
-      $.ajax({
-        dataType : "html",
-        type     : "POST",
-        data     : {
-          'data_id': arrayMenu
-        },
-        url      : '/nimyadmin/portfolio.html',
-        success  : function(data){
-          console.log(data);
-        },
-        error : function(data){
-          console.log(data.responseText);
-        }
-      });
-    }
-  });
-
-  //редактирование категорий
-  $(document).on('click','.edit-category',function(e){
-    e.preventDefault();
-
-    $catListTb.find('.cancel-edit-category').click();
-    $catListTb.sortable('disable');
-
-    var $secondParent = $(this).parent().parent();
-
-    var $id = $secondParent.attr('data-id'),
-      $name = $secondParent.find('.tg-name').text(),
-      $desc = $secondParent.find('.tg-desc').text(),
-      $slug = $secondParent.find('.tg-slug').text();
-    $secondParent.hide();
-    $secondParent.after(
-      '<tr class="tg-jh46" data-id="'+$id+'">'+
-        '<td colspan="6" class="colspanchange">'+
-          '<fieldset>'+
-            '<div class="inline-edit-col">'+
-              '<h4>Свойства</h4>'+
-              '<label>'+
-                '<span class="title">Название</span>'+
-                '<span class="input-text-wrap"><input type="text" name="name" class="ptitle input-edit tg-name" value="'+$name+'"></span>'+
-              '</label>'+
-              '<label>'+
-                '<span class="title">Описание</span>'+
-                '<span class="input-text-wrap"><input type="text" name="desc" class="ptitle input-edit tg-desc" value="'+$desc+'"></span>'+
-              '</label>'+
-              '<label>'+
-                '<span class="title">Ярлык</span>'+
-                '<span class="input-text-wrap"><input type="text" name="slug" class="ptitle input-edit tg-slug" value="'+$slug+'"></span>'+
-              '</label>'+
-            '</div>'+
-          '</fieldset>'+
-          '<p class="inline-edit-save submit">'+
-            '<a href="#inline-edit" class="button cancel-edit-category right green"><i class="flaticon-cross5"></i> Отменить</a>'+
-            '<a href="#inline-edit" class="button save-edit-category left blue"><i class="flaticon-checkmark2"></i> Обновить категорию</a>'+
-            '<span class="error" style="display:none;"></span>'+
-          '</p>'+
-        '</td>'+
-      '</tr>');
-  });
 
   //отмена редактирования категории
-  $(document).on('click','.cancel-edit-category',function(e){
-    e.preventDefault();
-    $catListTb.sortable('enable');
-    var $editForm = $(this).parent().parent().parent();
-    $editForm.prev().show();
-    $editForm.remove();
-  });
 
   //сохранение редактирования категории
   $(document).on('click','.save-edit-category',function(e){

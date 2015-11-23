@@ -155,55 +155,6 @@ $(document).ready(function(){
 
     $('#success').fadeIn('slow');
   });
-  // Select
-
-  $(document).on('click', '.slct',function(e){
-    e.preventDefault();
-
-    var dropBlock = $(this).parent().find('.drop');
-    var $this = $(this);
-    if( dropBlock.is(':hidden') ) {
-      dropBlock.slideDown(200);
-      $this.addClass('active');
-      $this.next().find('.status-field-edit').show();
-    } else {
-      $this.removeClass('active');
-      dropBlock.slideUp(200);
-      $this.next().find('.status-field-edit').hide();
-    }
-  });
-
-  /* Работаем с событием клика по элементам выпадающего списка */
-  $(document).on('click','.drop li',function(){
-    var $this = $(this),
-      $parent = $this.parent(),
-      $parentPrev = $parent.prev();
-
-    $parentPrev.find('.status-field-edit').hide();
-    var $save = $parentPrev.find('.status-field-save');
-    $save.show();
-    var $drop = $('.drop');
-    $drop.find('li').removeClass('active');
-    $this.addClass('active');
-    var selectResult = $this.html();
-    $parent.parent().find('.slct').removeClass('active').html(selectResult+'<i class="flaticon-chevron8"></i>');
-    $drop.slideUp(200);
-
-    var $id = $parent.attr('data-id');
-    var $categoryLink = $this.text();
-    var $dropLi = $('.drop li');
-    $dropLi.prop('disabled', true);
-    $.ajax({
-      dataType : "html",
-      type     : "POST",
-      data     : 'id='+$id+'&category_link='+$categoryLink,
-      url      : '/nimyadmin/portfolio.html',
-      success  : function(data){
-        $save.hide();
-        $dropLi.prop('disabled', false);
-      }
-    });
-  });
 
   $(document).on('click','.save', function(e){
     var $this = $(this);

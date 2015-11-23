@@ -35,8 +35,6 @@ class Portfolio extends CI_Controller
   {
     if (!empty($_FILES) && isset($_POST['type']) && $_POST['type'] == 'portfolio') $this->_upload_portfolio();
     if (isset($_POST['id']) && isset($_POST['crop_image'])) $this->_crop_image($_POST['id'], $_POST['x'], $_POST['y'], $_POST['width'], $_POST['height']);
-    if (isset($_POST['id']) && isset($_POST['trash'])) $this->_trash_portfolio($_POST['id']);
-    if (isset($_POST['id']) && isset($_POST['no_trash'])) $this->_no_trash_portfolio($_POST['id']);
     if (isset($_POST['id']) && isset($_POST['update_category_portfolio'])) $this->_update_category_portfolio_date($_POST['id'], $_POST['name'], $_POST['desc'], $_POST['slug']);
     if (isset($_POST['add_category_portfolio'])) $this->_add_category_portfolio($_POST['name'], $_POST['desc'], $_POST['slug']);
     if (isset($_POST['delete_category_portfolio'])) $this->_delete_category_portfolio($_POST['id']);
@@ -96,7 +94,7 @@ class Portfolio extends CI_Controller
     $this->data['page_title'] = 'Категории';
     $this->data['page_controller'] = $this->controller;
     $this->data['page_action'] = $this->action;
-    $this->data['include_js'] = array('admin/category');
+    $this->data['include_js'] = $this->include_js;
     $this->data['include_css'] = $this->include_css;
 
     $this->load->model('category_model');
@@ -120,6 +118,25 @@ class Portfolio extends CI_Controller
     }
     $this->load->model('portfolio_model');
     $this->portfolio_model->trash($_POST['id']);
+    $this->data['id'] = $_POST['id'];
+    $response['html'] = $this->load->view('admin/templates/portfolio/trash', $this->data, true);
+    $response['data'] = $this->data;
+    echo json_encode($response);
+  }
+
+  /**
+   *
+   * @Ajax
+   *
+   */
+  public function restore()
+  {
+    $this->load->library('request');
+    if (!$this->request->isAjax() || empty($_POST['id'])) {
+      show_404();
+    }
+    $this->load->model('portfolio_model');
+    $this->portfolio_model->restore($_POST['id']);
     $this->data['id'] = $_POST['id'];
     $response['html'] = $this->load->view('admin/templates/portfolio/trash', $this->data, true);
     $response['data'] = $this->data;
@@ -266,13 +283,6 @@ class Portfolio extends CI_Controller
     $this->load->model('category_model');
     $data = $this->category_model->delete($id);
     echo json_encode($data);
-    exit();
-  }
-
-  public function _no_trash_portfolio($id)
-  {
-    $this->load->model('portfolio_model');
-    $this->portfolio_model->no_trash($id);
     exit();
   }
 

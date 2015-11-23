@@ -28,6 +28,7 @@ var Portfolio = (function() {
     this.trash();
     this.title();
     this.category();
+    this.restore();
   };
 
   Portfolio.prototype.trash = function() {
@@ -47,6 +48,33 @@ var Portfolio = (function() {
         $secondParent.slideUp(200);
       };
       controller.call('nimyadmin/portfolio/trash', data, callback);
+    });
+  };
+
+  Portfolio.prototype.restore = function() {
+    $document.on('click', '.no-trash', function(e) {
+      var $this, data, callback;
+      e.preventDefault();
+      $this = $(this);
+      $this.prop('disabled', true);
+      data = {
+        id: $this.attr('data-id')
+      };
+      callback = function() {
+        var $parent;
+        $this.prop('disabled', false);
+        $parent = $this.parent();
+        $parent.next().slideDown(200);
+        $parent.remove();
+      };
+      controller.call('nimyadmin/portfolio/restore', data, callback);
+    });
+    $document.on('click', '.close-no-trash', function(e) {
+      var $parent;
+      e.preventDefault();
+      $parent = $(this).parent();
+      $parent.next().remove();
+      $parent.remove();
     });
   };
 

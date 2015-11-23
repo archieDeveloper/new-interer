@@ -25,7 +25,7 @@ class Portfolio_model extends CI_Model
     $this->db->query($sql, $data);
   }
 
-  public function no_trash($id)
+  public function restore($id)
   {
     $sql = "UPDATE `portfolio` SET `trash` = 0 WHERE `id` = ?";
     $data = array($id);
