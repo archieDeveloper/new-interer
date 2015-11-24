@@ -15,7 +15,8 @@ var paths = {
   stylus: ['source/stylus/main.styl'],
   stylusWatch: ['source/stylus/**/*.styl'],
   jade: ['source/jade/**/*.jade'],
-  js: ['source/js/**/*.js']
+  js: ['source/js/**/*.js'],
+  smarty: ['../application/views/**/*.tpl']
 };
 
 //stylus: ['source/stylus/**/*.styl'],
@@ -77,6 +78,7 @@ gulp.task("webpack", function (callback) {
 // Rerun the task when a file changes
 gulp.task('watch', function() {
   //gulp.watch(paths.coffee, ['coffee']);
+  gulp.watch(paths.smarty, ['webpack']);
   gulp.watch(paths.js, ['webpack']);
   gulp.watch(paths.stylusWatch, ['stylus']);
   gulp.watch(paths.stylusWatch, ['stylus-min']);

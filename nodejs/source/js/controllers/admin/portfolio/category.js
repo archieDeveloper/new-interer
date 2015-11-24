@@ -55,7 +55,7 @@ Category = (function() {
     var self;
     self = this;
     $document.on('click', '.edit-category', function(e) {
-      var $secondParent, $this, data, callback;
+      var $secondParent, $this, data, template, html;
       e.preventDefault();
       $this = $(this);
       self.$catListTb.sortable('disable');
@@ -66,12 +66,12 @@ Category = (function() {
         desc: $secondParent.find('.tg-desc').text(),
         slug: $secondParent.find('.tg-slug').text()
       };
-      callback = function(result) {
-        self.$catListTb.find('.cancel-edit-category').click();
-        $secondParent.hide();
-        $secondParent.after(result);
-      };
-      view.render('admin/templates/portfolio/category/edit', data, callback);
+      template = require('admin/templates/portfolio/category/edit.tpl');
+      html = template.fetch(data);
+      self.$catListTb.find('.cancel-edit-category').click();
+      $secondParent.hide();
+      $secondParent.after(html);
+      //view.render('admin/templates/portfolio/category/edit', data, callback);
     });
   };
 

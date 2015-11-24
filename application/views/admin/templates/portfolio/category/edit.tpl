@@ -1,19 +1,19 @@
-<tr class="tg-jh46" data-id="<?=$id?>">
+<tr class="tg-jh46" data-id="{$id}">
   <td colspan="6" class="colspanchange">
     <fieldset>
       <div class="inline-edit-col">
         <h4>Свойства</h4>
         <label>
           <span class="title">Название</span>
-          <span class="input-text-wrap"><input type="text" name="name" class="ptitle input-edit tg-name" value="<?=$name?>"></span>
+          <span class="input-text-wrap"><input type="text" name="name" class="ptitle input-edit tg-name" value="{$name}"></span>
           </label>
         <label>
           <span class="title">Описание</span>
-          <span class="input-text-wrap"><input type="text" name="desc" class="ptitle input-edit tg-desc" value="<?=$desc?>"></span>
+          <span class="input-text-wrap"><input type="text" name="desc" class="ptitle input-edit tg-desc" value="{$desc}"></span>
           </label>
         <label>
           <span class="title">Ярлык</span>
-          <span class="input-text-wrap"><input type="text" name="slug" class="ptitle input-edit tg-slug" value="<?=$slug?>"></span>
+          <span class="input-text-wrap"><input type="text" name="slug" class="ptitle input-edit tg-slug" value="{$slug}"></span>
           </label>
         </div>
     </fieldset>
