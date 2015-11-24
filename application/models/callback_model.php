@@ -9,7 +9,7 @@ class Callback_model extends CI_Model
     $query = $this->db->query($sql);
     $result = $query->result();
     if (!$result) {
-      return false;
+      return [];
     }
     return $result;
   }

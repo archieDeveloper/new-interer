@@ -25,14 +25,14 @@ class Home extends CI_Controller
 
   public function index()
   {
-    $this->data['page_title'] = $this->page_title;
-    $this->data['page_controller'] = $this->controller;
-    $this->data['page_action'] = $this->action;
-    $this->data['include_js'] = $this->include_js;
-    $this->data['include_css'] = $this->include_css;
+    $this->smarty->assign('page_title', $this->page_title);
+    $this->smarty->assign('page_controller', $this->controller);
+    $this->smarty->assign('page_action', $this->action);
+    $this->smarty->assign('include_js', $this->include_js);
+    $this->smarty->assign('include_css', $this->include_css);
 
-    $this->load->view('admin/templates/up', $this->data);
-    $this->load->view('admin/home', $this->data);
-    $this->load->view('admin/templates/down', $this->data);
+    $this->smarty->display('admin/templates/up.tpl');
+    $this->smarty->display('admin/home.tpl');
+    $this->smarty->display('admin/templates/down.tpl');
   }
 }

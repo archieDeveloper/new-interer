@@ -2,10 +2,10 @@
 
 class Login extends CI_Controller {
 
-  var $data = array();
+  var $data = [];
 
   public function index() {
-    $this->load->view('admin/login_form', $this->data);
+    $this->smarty->display('admin/login.tpl');
   }
 
   /*public function reg(){

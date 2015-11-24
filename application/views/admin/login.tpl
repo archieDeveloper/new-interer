@@ -19,11 +19,11 @@
     <div class="header-form">
       <h1>Админ-панель</h1>
     </div>
-    <?php if(isset($log_in['login_errors']) && isset($errors)):
-      foreach($log_in['login_errors'] as $error):
-        echo '<div class="error">'.$errors[$error].'</div>';
-      endforeach;
-    endif; ?>
+    {if isset($log_in['login_errors']) && isset($errors)}
+      {foreach from=$log_in['login_errors'] item="error"}
+        <div class="error">{$errors[$error]}</div>
+      {/foreach}
+    {/if}
     <form class="login-form" action="" method="POST">
       <input type="text" name="login" placeholder="Логин">
       <input type="password" name="password" placeholder="Пароль">

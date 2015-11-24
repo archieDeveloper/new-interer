@@ -2,13 +2,12 @@
 
 class Contacts extends CI_Controller
 {
-
-  var $data = array(),
+  var $data = [],
     $controller,
     $action,
     $page_title = 'Настройка контактной информации',
-    $include_js = array(),
-    $include_css = array();
+    $include_js = [],
+    $include_css = [];
 
   function __construct()
   {
@@ -25,15 +24,15 @@ class Contacts extends CI_Controller
 
   public function index()
   {
-    $this->data['page_title'] = $this->page_title;
-
     $this->load->model('contacts_model');
-    $this->data['contacts'] = $this->contacts_model->get_contacts();
-    $this->data['include_js'] = $this->include_js;
-    $this->data['include_css'] = $this->include_css;
 
-    $this->load->view('admin/templates/up', $this->data);
-    $this->load->view('admin/contacts', $this->data);
-    $this->load->view('admin/templates/down', $this->data);
+    $this->smarty->assign('page_title', $this->page_title);
+    $this->smarty->assign('contacts', $this->contacts_model->get_contacts());
+    $this->smarty->assign('include_js', $this->include_js);
+    $this->smarty->assign('include_css', $this->include_css);
+
+    $this->smarty->display('admin/templates/up.tpl');
+    $this->smarty->display('admin/contacts.tpl');
+    $this->smarty->display('admin/templates/down.tpl');
   }
 }

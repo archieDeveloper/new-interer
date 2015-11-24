@@ -3,12 +3,12 @@
 class Feedback extends CI_Controller
 {
 
-  var $data = array(),
+  var $data = [],
     $controller,
     $action,
     $page_title = 'Обратная связь',
-    $include_js = array(),
-    $include_css = array();
+    $include_js = [],
+    $include_css = [];
 
   function __construct()
   {
@@ -25,15 +25,15 @@ class Feedback extends CI_Controller
 
   public function index()
   {
-    $this->data['page_title'] = $this->page_title;
-    $this->data['include_js'] = $this->include_js;
-    $this->data['include_css'] = $this->include_css;
     $this->load->model('callback_model');
 
-    $this->data['feedback_list'] = $this->callback_model->get();
+    $this->smarty->assign('page_title', $this->page_title);
+    $this->smarty->assign('feedback_list', $this->callback_model->get());
+    $this->smarty->assign('include_js', $this->include_js);
+    $this->smarty->assign('include_css', $this->include_css);
 
-    $this->load->view('admin/templates/up', $this->data);
-    $this->load->view('admin/feedback', $this->data);
-    $this->load->view('admin/templates/down', $this->data);
+    $this->smarty->display('admin/templates/up.tpl');
+    $this->smarty->display('admin/feedback.tpl');
+    $this->smarty->display('admin/templates/down.tpl');
   }
 }

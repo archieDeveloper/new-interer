@@ -25,15 +25,15 @@ class Pages extends CI_Controller
 
   public function index()
   {
-    $this->data['page_title'] = $this->page_title;
-
     $this->load->model('page_model');
-    $this->data['pages_list'] = $this->page_model->get_pages_list();
-    $this->data['include_js'] = $this->include_js;
-    $this->data['include_css'] = $this->include_css;
 
-    $this->load->view('admin/templates/up', $this->data);
-    $this->load->view('admin/pages', $this->data);
-    $this->load->view('admin/templates/down', $this->data);
+    $this->smarty->assign('page_title', $this->page_title);
+    $this->smarty->assign('pages_list', $this->page_model->get_pages_list());
+    $this->smarty->assign('include_js', $this->include_js);
+    $this->smarty->assign('include_css', $this->include_css);
+
+    $this->smarty->display('admin/templates/up.tpl');
+    $this->smarty->display('admin/pages.tpl');
+    $this->smarty->display('admin/templates/down.tpl');
   }
 }
