@@ -10,7 +10,6 @@ class Category_model extends CI_Model
             ON (`portfolio`.`category_id`=`category_portfolio`.`id` AND `portfolio`.`trash` = 0)
             GROUP BY `category_portfolio`.`id`
             ORDER BY `category_portfolio`.`position`";
-
     $query = $this->db->query($sql);
     $result = $query->result();
     return $result;
@@ -27,7 +26,7 @@ class Category_model extends CI_Model
 
   public function position_rewrite($data_id)
   {
-    $strArr = array();
+    $strArr = [];
     foreach ($data_id as $position => $id) {
       $strArr[] = '(' . $id . ',' . $position . ')';
     }
@@ -40,7 +39,6 @@ class Category_model extends CI_Model
     $sql = "SELECT `id`, `name`, `description`, `link` FROM `category_portfolio` WHERE (`link` = ? OR `name` = ?) AND (`id` != ?) LIMIT 1";
     $data = array($slug, $name, $id);
     $query = $this->db->query($sql, $data);
-
     if (!$query->num_rows()) {
       $sql = "UPDATE `category_portfolio` SET `name` =  ?, `description` = ?, `link` = ? WHERE `id` = ? LIMIT 1";
       $data = array($name, $desc, $slug, $id);
@@ -49,7 +47,6 @@ class Category_model extends CI_Model
       }
       return 1; //неизвесная ошибка
     }
-
     $row = $query->row();
     if ($row->name == $name) {
       return 2; //ошибка совпадает имя
@@ -61,14 +58,13 @@ class Category_model extends CI_Model
 
   public function add($name, $desc, $slug)
   {
-    $data_result = array('error' => 0, 'result' => null);
+    $data_result = ['error' => 0, 'result' => null];
     $sql = "SELECT `id`, `name`, `description`, `link` FROM `category_portfolio` WHERE `link` = ? OR `name` = ? LIMIT 1";
     $data = array($slug, $name);
     $query = $this->db->query($sql, $data);
-
     if (!$query->num_rows()) {
       $sql = "UPDATE `category_portfolio` SET `position` = `position`+1";
-      $data = array($name, $desc, $slug);
+      $data = [$name, $desc, $slug];
       $this->db->query($sql, $data);
 
       $sql = "INSERT INTO `category_portfolio` (`link`, `name`, `description`, `position`) VALUES (?, ?, ?, 0)";
@@ -81,7 +77,6 @@ class Category_model extends CI_Model
       $data_result['error'] = 1;
       return $data_result; //неизвесная ошибка
     }
-
     $row = $query->row();
     if ($row->name == $name) {
       $data_result['error'] = 2;
@@ -98,7 +93,7 @@ class Category_model extends CI_Model
   {
     if ($id == 1) return;
     $sql = "DELETE FROM `category_portfolio` WHERE `id` = ?";
-    $data = array($id);
+    $data = [$id];
     return $this->db->query($sql, $data);
   }
 }

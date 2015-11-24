@@ -13,7 +13,7 @@
       </div>
       <span>
         <b>Заголовок: </b><br>
-        <input class="input-edit" type="text" value="{$value->title}" size="60" data-id="{$value->id}" placeholder="Без заголовка">
+        <input class="input-edit js-portfolio-title" type="text" value="{$value->title}" size="60" data-id="{$value->id}" placeholder="Без заголовка">
         <span>
           <span class="status-field-edit"><i class="flaticon-edit4"></i> Редактирование...</span>
           <span class="status-field-save"><i class="flaticon-upload8"></i> Сохранение...</span>

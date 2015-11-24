@@ -79,16 +79,16 @@ var Portfolio = (function() {
   };
 
   Portfolio.prototype.title = function() {
-    $document.on('keypress', '.input-edit', function(e) {
+    $document.on('keypress', '.js-portfolio-title', function(e) {
       if(e.keyCode == 13) $(this).blur();
     });
-    $document.on('focus', '.input-edit', function() {
+    $document.on('focus', '.js-portfolio-title', function() {
       var $this;
       $this = $(this);
       text = $this.val();
       $this.next().find('.status-field-edit').show();
     });
-    $document.on('blur', '.input-edit', function() {
+    $document.on('blur', '.js-portfolio-title', function() {
       inputBlur($(this));
     });
   };
