@@ -55,11 +55,15 @@ class Portfolio extends CI_Controller
       show_404();
     }
     $this->smarty->assign('page', $page);
-    $this->smarty->assign('portfolio', $this->portfolio_model->get(null, $page));
+    $this->smarty->assign(
+      'portfolio', $this->portfolio_model->get(null, $page)
+    );
     $this->smarty->assign('num_pages', $this->portfolio_model->get_num());
 
     $this->load->model('category_model');
-    $this->smarty->assign('list_category_portfolio', $this->category_model->get_list());
+    $this->smarty->assign(
+      'list_category_portfolio',$this->category_model->get_list()
+    );
 
     $this->smarty->display('admin/templates/up.tpl');
     $this->smarty->display('admin/portfolio/index.tpl');
@@ -84,7 +88,9 @@ class Portfolio extends CI_Controller
     ]);
 
     $this->load->model('category_model');
-    $this->smarty->assign('list_category_portfolio', $this->category_model->get_list());
+    $this->smarty->assign(
+      'list_category_portfolio', $this->category_model->get_list()
+    );
 
     $this->smarty->display('admin/templates/up.tpl');
     $this->smarty->display('admin/portfolio/add.tpl');
@@ -100,7 +106,9 @@ class Portfolio extends CI_Controller
     $this->smarty->assign('include_css', $this->include_css);
 
     $this->load->model('category_model');
-    $this->smarty->assign('list_category_portfolio', $this->category_model->get_list());
+    $this->smarty->assign(
+      'list_category_portfolio', $this->category_model->get_list()
+    );
 
     $this->smarty->display('admin/templates/up.tpl');
     $this->smarty->display('admin/portfolio/categories.tpl');
@@ -121,7 +129,9 @@ class Portfolio extends CI_Controller
     $this->load->model('portfolio_model');
     $this->portfolio_model->trash($_POST['id']);
     $this->data['id'] = $_POST['id'];
-    $response['html'] = $this->load->view('admin/templates/portfolio/trash', $this->data, true);
+    $response['html'] = $this->load->view(
+      'admin/templates/portfolio/trash', $this->data, true
+    );
     $response['data'] = $this->data;
     echo json_encode($response);
   }
@@ -140,7 +150,9 @@ class Portfolio extends CI_Controller
     $this->load->model('portfolio_model');
     $this->portfolio_model->restore($_POST['id']);
     $this->data['id'] = $_POST['id'];
-    $response['html'] = $this->load->view('admin/templates/portfolio/trash', $this->data, true);
+    $response['html'] = $this->load->view(
+      'admin/templates/portfolio/trash', $this->data, true
+    );
     $response['data'] = $this->data;
     echo json_encode($response);
   }

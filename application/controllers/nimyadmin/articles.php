@@ -7,8 +7,8 @@ class Articles extends CI_Controller
     $controller,
     $action,
     $page_title = 'Настройка статей',
-    $include_js = array('admin/articles'),
-    $include_css = array('lib/jquery.fileupload');
+    $include_js = ['admin/articles'],
+    $include_css = ['lib/jquery.fileupload'];
 
   function __construct()
   {
@@ -37,7 +37,6 @@ class Articles extends CI_Controller
     if (isset($_POST['id']) && isset($_POST['no_trash'])) {
       $this->_no_trash_new($_POST['id']);
     }
-    $this->data['page_title'] = $this->page_title;
 
     if (!isset($_GET['page'])) {
       $_GET['page'] = 1;
@@ -47,16 +46,19 @@ class Articles extends CI_Controller
       show_404();
     }
     $this->load->model('articles_model');
-    $this->data['articles'] = $this->articles_model->get_news($page);
-    $this->data['num_pages'] = $this->articles_model->get_num_news();
-    $this->data['page_controller'] = $this->controller;
-    $this->data['page_action'] = $this->action;
-    $this->data['include_js'] = $this->include_js;
-    $this->data['include_css'] = $this->include_css;
 
-    $this->load->view('admin/templates/up', $this->data);
-    $this->load->view('admin/articles/index', $this->data);
-    $this->load->view('admin/templates/down', $this->data);
+    $this->smarty->assign('page_title', $this->page_title);
+    $this->smarty->assign('page', $page);
+    $this->smarty->assign('articles', $this->articles_model->get_news($page));
+    $this->smarty->assign('num_pages', $this->articles_model->get_num_news());
+    $this->smarty->assign('page_controller', $this->controller);
+    $this->smarty->assign('page_action', $this->action);
+    $this->smarty->assign('include_js', $this->include_js);
+    $this->smarty->assign('include_css', $this->include_css);
+
+    $this->smarty->display('admin/templates/up.tpl');
+    $this->smarty->display('admin/articles/index.tpl');
+    $this->smarty->display('admin/templates/down.tpl');
   }
 
   public function add()
@@ -73,7 +75,6 @@ class Articles extends CI_Controller
     if (isset($_POST['id']) && isset($_POST['no_trash'])) {
       $this->_no_trash_new($_POST['id']);
     }
-    $this->data['page_title'] = $this->page_title;
 
     if (!isset($_GET['page'])) {
       $_GET['page'] = 1;
@@ -83,16 +84,19 @@ class Articles extends CI_Controller
       show_404();
     }
     $this->load->model('articles_model');
-    $this->data['articles'] = $this->articles_model->get_news($page);
-    $this->data['num_pages'] = $this->articles_model->get_num_news();
-    $this->data['page_controller'] = $this->controller;
-    $this->data['page_action'] = $this->action;
-    $this->data['include_js'] = $this->include_js;
-    $this->data['include_css'] = $this->include_css;
 
-    $this->load->view('admin/templates/up', $this->data);
-    $this->load->view('admin/articles/add', $this->data);
-    $this->load->view('admin/templates/down', $this->data);
+    $this->smarty->assign('page_title', $this->page_title);
+    $this->smarty->assign('page', $page);
+    $this->smarty->assign('articles', $this->articles_model->get_news($page));
+    $this->smarty->assign('num_pages', $this->articles_model->get_num_news());
+    $this->smarty->assign('page_controller', $this->controller);
+    $this->smarty->assign('page_action', $this->action);
+    $this->smarty->assign('include_js', $this->include_js);
+    $this->smarty->assign('include_css', $this->include_css);
+
+    $this->smarty->display('admin/templates/up.tpl');
+    $this->smarty->display('admin/articles/add.tpl');
+    $this->smarty->display('admin/templates/down.tpl');
   }
 
   public function _add_new($title, $date, $text)
