@@ -1,7 +1,6 @@
 var controller, view, Category;
 
 controller = require('helpers/controller');
-view = require('helpers/view');
 
 Category = (function() {
 
@@ -71,7 +70,6 @@ Category = (function() {
       self.$catListTb.find('.cancel-edit-category').click();
       $secondParent.hide();
       $secondParent.after(html);
-      //view.render('admin/templates/portfolio/category/edit', data, callback);
     });
   };
 

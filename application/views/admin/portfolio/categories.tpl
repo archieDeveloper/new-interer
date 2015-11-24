@@ -1,5 +1,4 @@
-<?php if (isset($page_title)) { echo '<h2>'.$page_title.'</h2>'; } ?>
-
+{if isset($page_title)}<h2>{$page_title}</h2>{/if}
 <div class="form-wrap">
   <h3>Добавить новую категорию</h3>
   <form id="addcat" method="post" action="/nimyadmin/portfolio.html" class="validate">
@@ -25,7 +24,6 @@
     </p>
   </form>
 </div>
-
 <div class="table-wrap">
   <table class="tg">
     <thead>
@@ -39,23 +37,24 @@
     </tr>
     </thead>
     <tbody id="cat-list-tb">
-    <?php $trKey = false; $trClass = array("tg-4eph","tg-031e");
-    foreach ($list_category_portfolio as $current_field) :
-      $trKey = !$trKey; ?>
-      <tr class="<?=$trClass[$trKey]?>" data-id="<?=$current_field->id?>">
-        <td class="tg-checkbox"><input type="checkbox" name="selected[]" value="<?=$current_field->id?>"/></td>
-        <td class="tg-name"><?=$current_field->name?></td>
-        <td class="tg-desc"><?=$current_field->description?></td>
-        <td class="tg-slug"><?=$current_field->link?></td>
-        <td class="tg-num"><?=$current_field->amount?></td>
+    {assign var='trKey' value=false}
+    {assign var='trClass' value=['tg-4eph', 'tg-031e']}
+    {foreach from=$list_category_portfolio item="current_field"}
+      {$trKey = !$trKey}
+      <tr class="{$trClass[$trKey]}" data-id="{$current_field->id}">
+        <td class="tg-checkbox"><input type="checkbox" name="selected[]" value="{$current_field->id}"/></td>
+        <td class="tg-name">{$current_field->name}</td>
+        <td class="tg-desc">{$current_field->description}</td>
+        <td class="tg-slug">{$current_field->link}</td>
+        <td class="tg-num">{$current_field->amount}</td>
         <td class="tg-tools">
-          <?php if($current_field->link != 'no-category'): ?>
-          <a class="button blue edit-category" href="#" data-id="<?=$current_field->id?>"><i class="flaticon-edit4"></i></a>
-          <a class="button delete-category" href="#" data-id="<?=$current_field->id?>"><i class="flaticon-trash3"></i></a>
-          <?php endif; ?>
+          {if $current_field->link != 'no-category'}
+            <a class="button blue edit-category" href="#" data-id="{$current_field->id}"><i class="flaticon-edit4"></i></a>
+            <a class="button delete-category" href="#" data-id="{$current_field->id}"><i class="flaticon-trash3"></i></a>
+          {/if}
         </td>
       </tr>
-    <?php endforeach;?>
+    {/foreach}
     </tbody>
     <tfoot>
     <tr>
@@ -76,7 +75,6 @@
     <li>Изменить сортировку списка категорий можно обычным перетаскиванием элементов списка.</li>
   </ul>
 </div>
-
 <div class="model-delete-category" title="Вы абсолютно уверены?">
   <p>Это действие <strong>не может</strong> быть отменено. Оно навсегда удалит категорию <strong>«<span class="tg-name"></span>»</strong>.
     Удаление категории <strong>не приведет</strong> к удалению выполненных работ из этой категории. Вместо этого выполненные работы из удалённой категории будут перемещены в категорию <strong>«Без категории»</strong>.</p>

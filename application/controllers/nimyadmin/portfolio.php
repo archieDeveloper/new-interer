@@ -40,11 +40,11 @@ class Portfolio extends CI_Controller
     if (isset($_POST['delete_category_portfolio'])) $this->_delete_category_portfolio($_POST['id']);
     if (isset($_POST['data_id'])) $this->_position_rewrite($_POST['data_id']);
 
-    $this->data['page_title'] = $this->page_title;
-    $this->data['page_controller'] = $this->controller;
-    $this->data['page_action'] = $this->action;
-    $this->data['include_js'] = $this->include_js;
-    $this->data['include_css'] = $this->include_css;
+    $this->smarty->assign('page_title', $this->page_title);
+    $this->smarty->assign('page_controller', $this->controller);
+    $this->smarty->assign('page_action', $this->action);
+    $this->smarty->assign('include_js', $this->include_js);
+    $this->smarty->assign('include_css', $this->include_css);
 
     $this->load->model('portfolio_model');
     if (!isset($_GET['page'])) {
@@ -54,55 +54,57 @@ class Portfolio extends CI_Controller
     if (!$page) {
       show_404();
     }
-    $this->data['portfolio'] = $this->portfolio_model->get(null, $page);
-
-    $this->data['num_pages'] = $this->portfolio_model->get_num();
+    $this->smarty->assign('page', $page);
+    $this->smarty->assign('portfolio', $this->portfolio_model->get(null, $page));
+    $this->smarty->assign('num_pages', $this->portfolio_model->get_num());
 
     $this->load->model('category_model');
-    $this->data['list_category_portfolio'] = $this->category_model->get_list();
+    $this->smarty->assign('list_category_portfolio', $this->category_model->get_list());
 
-    $this->load->view('admin/templates/up', $this->data);
-    $this->load->view('admin/portfolio/index', $this->data);
-    $this->load->view('admin/templates/down', $this->data);
+    $this->smarty->display('admin/templates/up.tpl');
+    $this->smarty->display('admin/portfolio/index.tpl');
+    $this->smarty->display('admin/templates/down.tpl');
   }
 
   public function add()
   {
-    $this->data['page_title'] = 'Добавить работу';
-    $this->data['page_controller'] = $this->controller;
-    $this->data['page_action'] = $this->action;
-    $this->data['include_js'] = [
+    $this->smarty->assign('page_title', 'Добавить работу');
+    $this->smarty->assign('page_controller', $this->controller);
+    $this->smarty->assign('page_action', $this->action);
+    $this->smarty->assign('include_js', [
       'lib/jquery.fileupload',
       'lib/jquery.fileupload-process',
       'lib/jquery.iframe-transport',
       'lib/jquery.imgareaselect.min',
-      'uploads'];
-    $this->data['include_css'] = [
+      'uploads'
+    ]);
+    $this->smarty->assign('include_css', [
       'lib/jquery.fileupload',
-      'lib/imgareaselect/imgareaselect-animated'];
+      'lib/imgareaselect/imgareaselect-animated'
+    ]);
 
     $this->load->model('category_model');
-    $this->data['list_category_portfolio'] = $this->category_model->get_list();
+    $this->smarty->assign('list_category_portfolio', $this->category_model->get_list());
 
-    $this->load->view('admin/templates/up', $this->data);
-    $this->load->view('admin/portfolio/add', $this->data);
-    $this->load->view('admin/templates/down', $this->data);
+    $this->smarty->display('admin/templates/up.tpl');
+    $this->smarty->display('admin/portfolio/add.tpl');
+    $this->smarty->display('admin/templates/down.tpl');
   }
 
   public function categories()
   {
-    $this->data['page_title'] = 'Категории';
-    $this->data['page_controller'] = $this->controller;
-    $this->data['page_action'] = $this->action;
-    $this->data['include_js'] = $this->include_js;
-    $this->data['include_css'] = $this->include_css;
+    $this->smarty->assign('page_title', 'Категории');
+    $this->smarty->assign('page_controller', $this->controller);
+    $this->smarty->assign('page_action', $this->action);
+    $this->smarty->assign('include_js', $this->include_js);
+    $this->smarty->assign('include_css', $this->include_css);
 
     $this->load->model('category_model');
-    $this->data['list_category_portfolio'] = $this->category_model->get_list();
+    $this->smarty->assign('list_category_portfolio', $this->category_model->get_list());
 
-    $this->load->view('admin/templates/up', $this->data);
-    $this->load->view('admin/portfolio/categories', $this->data);
-    $this->load->view('admin/templates/down', $this->data);
+    $this->smarty->display('admin/templates/up.tpl');
+    $this->smarty->display('admin/portfolio/categories.tpl');
+    $this->smarty->display('admin/templates/down.tpl');
   }
 
   /**

@@ -9,7 +9,6 @@ class CI_Smarty extends Smarty
   {
     parent::__construct();
     $applicationDir = $_SERVER['DOCUMENT_ROOT'] . '/application/';
-    $this->caching = 1;
     $this->setTemplateDir( $applicationDir . 'views' );
     $this->setCompileDir( $applicationDir . 'third_party/smarty/templates_c' );
     $this->setConfigDir( $applicationDir . 'third_party/smarty/configs' );
