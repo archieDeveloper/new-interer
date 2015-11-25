@@ -82,23 +82,19 @@ class Category
       callback = (result) ->
         resultData = result.data
         switch resultData.error
-          case: 0
+          when 0
             $row = $editForm.prev()
             $row.find('.tg-name').text data.name
             $row.find('.tg-desc').text data.desc
             $row.find('.tg-slug').text data.slug
             $row.fadeIn 300
             $editForm.remove()
-            break
-          case: 1
+          when 1
             $editForm.find('.error').show().text 'Неизвестная ошибка, попробуйте повторить попытку позже!'
-            break
-          case: 2
+          when 2
             $editForm.find('.error').show().text 'Название «' + data.name + '» уже используется другой категорией'
-            break
-          case: 3
+          when 3
             $editForm.find('.error').show().text 'Ярлык «' + data.slug + '» уже используется другой категорией'
-            break
       controller.call 'nimyadmin/portfolio/save_category', data, callback
 
   addCategory: ->
@@ -119,7 +115,7 @@ class Category
         resultData = result.data
         $this.prop 'disabled', false
         switch resultData.error
-          case: 0
+          when 0
             $inputName.val ''
             $inputDesc.val ''
             $inputSlug.val ''
@@ -139,15 +135,11 @@ class Category
               $this = $ @
               $this.removeClass()
               $this.addClass trClass[trKey ? 1 : 0]
-            break;
-          case: 1
-            break;
-          case: 2
+          when 1 then
+          when 2
             $form.find('.addcat-name .error').text 'Название «' + data.name + '» уже используется другой категорией'
-            break;
-          case: 3
+          when 3
             $form.find('.addcat-slug .error').text 'Ярлык «' + data.slug + '» уже используется другой категорией'
-            break;
       controller.call 'nimyadmin/portfolio/add_category', data, callback
 
   removeCategory: ->
