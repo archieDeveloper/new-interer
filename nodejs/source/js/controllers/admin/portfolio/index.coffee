@@ -3,22 +3,12 @@ controller = require 'helpers/controller'
 class Portfolio
 
   $document = $ document
-  inputBlur = ($this_i) ->
-    $this_i.next().find('.status-field-edit').hide()
-    false if text == $this_i.val()
-    $this_i.prop 'disabled', true
-    $next = $this_i.next()
-    $next.find('.status-field-edit').hide()
-    $next.find('.status-field-save').show()
-    data = 
-      id: $this_i.attr 'data-id',
-      title: $this_i.val()
-    callback = () ->
-      $this_i.next().find('.status-field-save').hide()
-      $this_i.prop 'disabled', false
-    controller.call 'nimyadmin/portfolio/title', data, callback
+  text = ''
 
   constructor: ->
+    @items = '.js-portfolio-item'
+    @field =
+      title: '.js-portfolio-title'
     @trash()
     @title()
     @category()
@@ -28,10 +18,9 @@ class Portfolio
     $document.on 'click', '.trash', (e) ->
       do e.preventDefault
       $this = $ @
-      id = $this.attr 'data-id'
       $this.prop 'disabled', true
       data = 
-        id: id
+        id: $this.attr('data-id')
       callback = (result) ->
         $this.prop 'disabled', false
         $secondParent = $this.parent().parent()
@@ -45,7 +34,7 @@ class Portfolio
       $this = $ @
       $this.prop 'disabled', true
       data = 
-        id: $this.attr 'data-id'
+        id: $this.attr('data-id')
       callback = ->
         $this.prop 'disabled', false
         $parent = $this.parent()
@@ -58,15 +47,28 @@ class Portfolio
       $parent.next().remove()
       $parent.remove()
 
-  title: ->
-    $document.on 'keypress', '.js-portfolio-title', (e) ->
+  title: ()->
+    $(@items).on 'keypress', @field.title, (e) ->
       if e.keyCode == 13 then $(@).blur()
-    $document.on 'focus', '.js-portfolio-title', ->
+    $(@items).on 'focus', @field.title, ->
       $this = $ @
       text = $this.val()
       $this.next().find('.status-field-edit').show()
-    $document.on 'blur', '.js-portfolio-title', ->
-      inputBlur $ @
+    $(@items).on 'blur', @field.title, ->
+      $this_i = $ @
+      $this_i.next().find('.status-field-edit').hide()
+      return if text == $this_i.val()
+      $this_i.prop 'disabled', true
+      $next = $this_i.next()
+      $next.find('.status-field-edit').hide()
+      $next.find('.status-field-save').show()
+      data =
+        id: $this_i.attr('data-id'),
+        title: $this_i.val()
+      callback = () ->
+        $this_i.next().find('.status-field-save').hide()
+        $this_i.prop 'disabled', false
+      controller.call 'nimyadmin/portfolio/title', data, callback
 
   category: ->
     $document.on 'click', '.slct', (e) ->
@@ -97,7 +99,7 @@ class Portfolio
       $dropLi = $ '.drop li'
       $dropLi.prop 'disabled', true
       data = 
-        id: $parent.attr 'data-id',
+        id: $parent.attr('data-id'),
         category_link: $this.text()
       callback = ->
         $save.hide()

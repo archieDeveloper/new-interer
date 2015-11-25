@@ -4,7 +4,7 @@ path    = require('path');
 webpack = require('webpack');
 
 module.exports = {
-  entry: './source/js/admin.js',
+  entry: './source/js/admin.coffee',
   output: {
     path: path.join(__dirname, '../js/'),
     filename: 'admin.js'
@@ -29,6 +29,6 @@ module.exports = {
     extensions: ['', '.coffee', '.js']
   },
   plugins: [
-    new webpack.optimize.UglifyJsPlugin
+    //new webpack.optimize.UglifyJsPlugin
   ]
 };
