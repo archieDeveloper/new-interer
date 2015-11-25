@@ -10,17 +10,23 @@ module.exports = {
     filename: 'admin.js'
   },
   module: {
-    loaders: [ {
-      test: /\.tpl$|.smarty$/,
-      loader: 'smarty'
-    } ]
+    loaders: [
+      {
+        test: /\.tpl$|.smarty$/,
+        loader: 'smarty'
+      },
+      {
+        test: /\.coffee$/,
+        loader: 'coffee-loader'
+      }
+    ]
   },
   resolve: {
     root: [
       path.resolve(__dirname, './source/js'),
       path.resolve(__dirname, '../application/views')
     ],
-    extensions: ['', '.js']
+    extensions: ['', '.coffee', '.js']
   },
   plugins: [
     new webpack.optimize.UglifyJsPlugin
