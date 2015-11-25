@@ -12,6 +12,9 @@ Articles = (function() {
     this.cancelEdit();
     this.save();
     this.toggleText();
+    this.remove();
+    this.create();
+    this.restore();
   };
 
   Articles.prototype.edit = function() {
