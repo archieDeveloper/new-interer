@@ -28,7 +28,7 @@ class Login extends CI_Controller
       $this->smarty->assign('log_in', $this->auth->login($login, $password));
     }
     // если админ вошел, то перекидывать на главную админки
-    if ($this->auth->root()) {
+    if ($this->auth->isAdmin()) {
       header("Location: /nimyadmin.html");
       exit();
     }

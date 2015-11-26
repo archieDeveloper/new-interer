@@ -17,7 +17,7 @@ class Feedback extends CI_Controller
     $this->action = $this->uri->segment(2);
 
     $this->load->library('auth');
-    if (!$this->auth->root()) {
+    if (!$this->auth->isAdmin()) {
       header("Location: /nimyadmin/login.html");
       exit();
     }

@@ -25,7 +25,7 @@ class Portfolio extends CI_Controller
     $this->action = $this->uri->segment(3);
 
     $this->load->library('auth');
-    if (!$this->auth->root()) {
+    if (!$this->auth->isAdmin()) {
       header("Location: /nimyadmin/login.html");
       exit();
     }
@@ -42,7 +42,6 @@ class Portfolio extends CI_Controller
     $this->smarty->assign('include_js', $this->include_js);
     $this->smarty->assign('include_css', $this->include_css);
 
-    $this->load->model('portfolio_model');
     if (!isset($_GET['page'])) {
       $_GET['page'] = 1;
     }
@@ -51,11 +50,11 @@ class Portfolio extends CI_Controller
       show_404();
     }
     $this->smarty->assign('page', $page);
+    $this->load->model('portfolio_model');
     $this->smarty->assign(
       'portfolio', $this->portfolio_model->get(null, $page)
     );
     $this->smarty->assign('num_pages', $this->portfolio_model->get_num());
-
     $this->load->model('category_model');
     $this->smarty->assign(
       'list_category_portfolio',$this->category_model->get_list()
@@ -82,12 +81,10 @@ class Portfolio extends CI_Controller
       'lib/jquery.fileupload',
       'lib/imgareaselect/imgareaselect-animated'
     ]);
-
     $this->load->model('category_model');
     $this->smarty->assign(
       'list_category_portfolio', $this->category_model->get_list()
     );
-
     $this->smarty->display('admin/templates/up.tpl');
     $this->smarty->display('admin/portfolio/add.tpl');
     $this->smarty->display('admin/templates/down.tpl');
@@ -100,12 +97,10 @@ class Portfolio extends CI_Controller
     $this->smarty->assign('page_action', $this->action);
     $this->smarty->assign('include_js', $this->include_js);
     $this->smarty->assign('include_css', $this->include_css);
-
     $this->load->model('category_model');
     $this->smarty->assign(
       'list_category_portfolio', $this->category_model->get_list()
     );
-
     $this->smarty->display('admin/templates/up.tpl');
     $this->smarty->display('admin/portfolio/categories.tpl');
     $this->smarty->display('admin/templates/down.tpl');
