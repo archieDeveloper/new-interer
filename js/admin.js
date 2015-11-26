@@ -45,9 +45,15 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	$(document).ready(function() {
-	  __webpack_require__(1);
-	  __webpack_require__(3);
-	  return __webpack_require__(8);
+	  var requireControllerIndex, requireControllers;
+	  requireControllerIndex = {};
+	  $('[data-controller]').each(function(index, elem) {
+	    return requireControllerIndex[$(elem).attr('data-controller')] = true;
+	  });
+	  requireControllers = Object.keys(requireControllerIndex);
+	  return requireControllers.forEach(function(controllerPath, index, thisList) {
+	    return __webpack_require__(1)("./" + controllerPath);
+	  });
 	});
 
 
@@ -55,30 +61,133 @@
 /* 1 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var Portfolio, controller;
+	var map = {
+		"./admin/portfolio/articles": 2,
+		"./admin/portfolio/articles.coffee": 2,
+		"./admin/portfolio/category": 4,
+		"./admin/portfolio/category.coffee": 4,
+		"./admin/portfolio/list": 9,
+		"./admin/portfolio/list.coffee": 9
+	};
+	function webpackContext(req) {
+		return __webpack_require__(webpackContextResolve(req));
+	};
+	function webpackContextResolve(req) {
+		return map[req] || (function() { throw new Error("Cannot find module '" + req + "'.") }());
+	};
+	webpackContext.keys = function webpackContextKeys() {
+		return Object.keys(map);
+	};
+	webpackContext.resolve = webpackContextResolve;
+	module.exports = webpackContext;
+	webpackContext.id = 1;
 
-	controller = __webpack_require__(2);
 
-	Portfolio = (function() {
-	  var $document, text;
+/***/ },
+/* 2 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var Articles, controller;
+
+	controller = __webpack_require__(3);
+
+	Articles = (function() {
+	  var $document;
 
 	  $document = $(document);
 
-	  text = '';
-
-	  function Portfolio() {
-	    this.items = '.js-portfolio-item';
-	    this.field = {
-	      title: '.js-portfolio-title'
-	    };
-	    this.trash();
-	    this.title();
-	    this.category();
+	  function Articles() {
+	    this.edit();
+	    this.cancelEdit();
+	    this.save();
+	    this.toggleText();
+	    this.remove();
+	    this.create();
 	    this.restore();
 	  }
 
-	  Portfolio.prototype.trash = function() {
-	    return $document.on('click', '.trash', function(e) {
+	  Articles.prototype.edit = function() {
+	    return $document.on('click', '.edit-art', function(e) {
+	      var $parent, date, text, title;
+	      e.preventDefault();
+	      $parent = $(this).parent().parent();
+	      $parent.find('.art-nav-1').hide();
+	      $parent.find('.art-nav-2').show();
+	      title = $parent.find('.title-art').hide().html();
+	      date = $parent.find('.date-art').hide().attr('data-date');
+	      $parent.find('.text-art').hide();
+	      if ($parent.find('.text-art .fulltext-art').html() != null) {
+	        text = $parent.find('.text-art .desc-art').html() + '<!--more-->' + $parent.find('.text-art .fulltext-art').html();
+	      } else {
+	        text = $parent.find('.text-art .desc-art').html();
+	      }
+	      $parent.find('.edit-title-art').show().find('.input-edit').val(title);
+	      $parent.find('.edit-date-art').show().find('.input-edit').val(date);
+	      return $parent.find('.edit-text-art').show().find('.input-edit').val(text);
+	    });
+	  };
+
+	  Articles.prototype.cancelEdit = function() {
+	    return $document.on('click', '.no-edit-art', function(e) {
+	      var $parent;
+	      e.preventDefault();
+	      $parent = $(this).parent().parent();
+	      $parent.find('.art-nav-1').show();
+	      $parent.find('.art-nav-2').hide();
+	      $parent.find('.title-art').show();
+	      $parent.find('.date-art').show();
+	      $parent.find('.text-art').show();
+	      $parent.find('.edit-title-art').hide().val('');
+	      $parent.find('.edit-date-art').hide().val('');
+	      return $parent.find('.edit-text-art').hide().val('');
+	    });
+	  };
+
+	  Articles.prototype.save = function() {
+	    return $document.on('click', '.save-edit-art', function(e) {
+	      var $parent, callback, data;
+	      e.preventDefault();
+	      $parent = $(this).parent().parent();
+	      data = {
+	        id: $(this).attr('data-id', {
+	          title: $parent.find('.edit-title-art .input-edit').val(),
+	          date: $parent.find('.edit-date-art .input-edit').val(),
+	          text: $parent.find('.edit-text-art .input-edit').val()
+	        })
+	      };
+	      callback = function(result) {
+	        $parent.find('.art-nav-1').show();
+	        $parent.find('.art-nav-2').hide();
+	        $parent.find('.title-art').show().html(result.title);
+	        $parent.find('.date-art').show().html(result.date_rus).attr('data-date', result.date);
+	        $parent.find('.text-art').show().find('.desc-art').html(result.text);
+	        $parent.find('.edit-title-art').hide().val('');
+	        $parent.find('.edit-date-art').hide().val('');
+	        return $parent.find('.edit-text-art').hide().val('');
+	      };
+	      return controller.call('nimyadmin/articles/save', data, callback);
+	    });
+	  };
+
+	  Articles.prototype.toggleText = function() {
+	    $document.on('click', '.show-all-text', function(e) {
+	      var $this;
+	      e.preventDefault();
+	      $this = $(this);
+	      $this.hide();
+	      return $this.next().show();
+	    });
+	    return $document.on('click', '.hide-all-text', function(e) {
+	      var $parent;
+	      e.preventDefault();
+	      $parent = $(this).parent();
+	      $parent.prev().show();
+	      return $parent.hide();
+	    });
+	  };
+
+	  Articles.prototype.remove = function() {
+	    return $document.on('click', '.del-art', function(e) {
 	      var $this, callback, data;
 	      e.preventDefault();
 	      $this = $(this);
@@ -90,14 +199,14 @@
 	        var $secondParent;
 	        $this.prop('disabled', false);
 	        $secondParent = $this.parent().parent();
-	        $secondParent.before(result.html);
+	        $secondParent.before('<li class="news-trash">' + 'Статья удалена.' + '<a href="#" class="no-trash" data-id="' + $id + '">Восстановить</a>' + '<a class="button close-no-trash" href="#"><i class="flaticon-cross5"></i></a>' + '</li>');
 	        return $secondParent.slideUp(200);
 	      };
-	      return controller.call('nimyadmin/portfolio/trash', data, callback);
+	      return controller.call('nimyadmin/articles/remove', data, callback);
 	    });
 	  };
 
-	  Portfolio.prototype.restore = function() {
+	  Articles.prototype.restore = function() {
 	    $document.on('click', '.no-trash', function(e) {
 	      var $this, callback, data;
 	      e.preventDefault();
@@ -113,7 +222,7 @@
 	        $parent.next().slideDown(200);
 	        return $parent.remove();
 	      };
-	      return controller.call('nimyadmin/portfolio/restore', data, callback);
+	      return controller.call('nimyadmin/articles/restore', data, callback);
 	    });
 	    return $document.on('click', '.close-no-trash', function(e) {
 	      var $parent;
@@ -124,94 +233,40 @@
 	    });
 	  };
 
-	  Portfolio.prototype.title = function() {
-	    $(this.items).on('keypress', this.field.title, function(e) {
-	      if (e.keyCode === 13) {
-	        return $(this).blur();
-	      }
-	    });
-	    $(this.items).on('focus', this.field.title, function() {
-	      var $this;
-	      $this = $(this);
-	      text = $this.val();
-	      return $this.next().find('.status-field-edit').show();
-	    });
-	    return $(this.items).on('blur', this.field.title, function() {
-	      var $next, $this_i, callback, data;
-	      $this_i = $(this);
-	      $this_i.next().find('.status-field-edit').hide();
-	      if (text === $this_i.val()) {
-	        return;
-	      }
-	      $this_i.prop('disabled', true);
-	      $next = $this_i.next();
-	      $next.find('.status-field-edit').hide();
-	      $next.find('.status-field-save').show();
-	      data = {
-	        id: $this_i.attr('data-id'),
-	        title: $this_i.val()
-	      };
-	      callback = function() {
-	        $this_i.next().find('.status-field-save').hide();
-	        return $this_i.prop('disabled', false);
-	      };
-	      return controller.call('nimyadmin/portfolio/title', data, callback);
-	    });
-	  };
-
-	  Portfolio.prototype.category = function() {
-	    $document.on('click', '.slct', function(e) {
-	      var $this, dropBlock;
+	  Articles.prototype.create = function() {
+	    return $document.on('click', '.btn-publised-new', function(e) {
+	      var callback, data;
 	      e.preventDefault();
-	      $this = $(this);
-	      dropBlock = $this.parent().find('.drop');
-	      if (dropBlock.is(':hidden')) {
-	        dropBlock.slideDown(200);
-	        $this.addClass('active');
-	        return $this.next().find('.status-field-edit').show();
-	      } else {
-	        dropBlock.slideUp(200);
-	        $this.removeClass('active');
-	        return $this.next().find('.status-field-edit').hide();
-	      }
-	    });
-	    return $document.on('click', '.drop li', function() {
-	      var $drop, $dropLi, $parent, $parentPrev, $save, $this, callback, data, selectResult;
-	      $this = $(this);
-	      $parent = $this.parent();
-	      $parentPrev = $parent.prev();
-	      $parentPrev.find('.status-field-edit').hide();
-	      $save = $parentPrev.find('.status-field-save');
-	      $save.show();
-	      $drop = $('.drop');
-	      $drop.find('li').removeClass('active');
-	      $this.addClass('active');
-	      selectResult = $this.html();
-	      $parent.parent().find('.slct').removeClass('active').html(selectResult + '<i class="flaticon-chevron8"></i>');
-	      $drop.slideUp(200);
-	      $dropLi = $('.drop li');
-	      $dropLi.prop('disabled', true);
 	      data = {
-	        id: $parent.attr('data-id'),
-	        category_link: $this.text()
+	        title: $('#title-new').val(),
+	        date: $('#date-new').val(),
+	        text: $('#text-new').val()
 	      };
-	      callback = function() {
-	        $save.hide();
-	        return $dropLi.prop('disabled', false);
+	      callback = function(result) {
+	        var $elem;
+	        $elem = $('.ajax-pre li').last().prependTo('.ajax-pre');
+	        $elem.find('.title-art').html(result.title);
+	        $elem.find('.date-art').html(result.date);
+	        $elem.find('.text-art').html(result.text);
+	        $elem.find('.edit-art').attr('data-id', result.id);
+	        $elem.find('.del-art').attr('data-id', result.id);
+	        $('#title-new').val('');
+	        $('#date-new').val('');
+	        return $('#text-new').val('');
 	      };
-	      return controller.call('nimyadmin/portfolio/category', data, callback);
+	      return controller.call('nimyadmin/articles/create', data, callback);
 	    });
 	  };
 
-	  return Portfolio;
+	  return Articles;
 
 	})();
 
-	module.exports = new Portfolio;
+	module.exports = new Articles;
 
 
 /***/ },
-/* 2 */
+/* 3 */
 /***/ function(module, exports) {
 
 	var Controller;
@@ -237,12 +292,12 @@
 
 
 /***/ },
-/* 3 */
+/* 4 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var Category, controller;
 
-	controller = __webpack_require__(2);
+	controller = __webpack_require__(3);
 
 	Category = (function() {
 	  var $document;
@@ -313,7 +368,7 @@
 	          slug: $secondParent.find('.tg-slug').text()
 	        })
 	      };
-	      template = __webpack_require__(4);
+	      template = __webpack_require__(5);
 	      html = template.fetch(data);
 	      self.$catListTb.find('.cancel-edit-category').click();
 	      $secondParent.hide();
@@ -404,7 +459,7 @@
 	              desc: data.desc,
 	              slug: data.slug
 	            };
-	            template = __webpack_require__(7);
+	            template = __webpack_require__(8);
 	            html = template.fetch(dataTemplate);
 	            self.$catListTb.prepend(html);
 	            $tr = self.$catListTb.find('tr');
@@ -509,14 +564,14 @@
 
 
 /***/ },
-/* 4 */
+/* 5 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var J = __webpack_require__(5);
+	var J = __webpack_require__(6);
 	module.exports = new J("<tr class=\"tg-jh46\" data-id=\"{$id}\">\n  <td colspan=\"6\" class=\"colspanchange\">\n    <fieldset>\n      <div class=\"inline-edit-col\">\n        <h4>Свойства</h4>\n        <label>\n          <span class=\"title\">Название</span>\n          <span class=\"input-text-wrap\"><input type=\"text\" name=\"name\" class=\"ptitle input-edit tg-name\" value=\"{$name}\"></span>\n          </label>\n        <label>\n          <span class=\"title\">Описание</span>\n          <span class=\"input-text-wrap\"><input type=\"text\" name=\"desc\" class=\"ptitle input-edit tg-desc\" value=\"{$desc}\"></span>\n          </label>\n        <label>\n          <span class=\"title\">Ярлык</span>\n          <span class=\"input-text-wrap\"><input type=\"text\" name=\"slug\" class=\"ptitle input-edit tg-slug\" value=\"{$slug}\"></span>\n          </label>\n        </div>\n    </fieldset>\n    <p class=\"inline-edit-save submit\">\n      <a href=\"#inline-edit\" class=\"button cancel-edit-category right green\"><i class=\"flaticon-cross5\"></i> Отменить</a>\n      <a href=\"#inline-edit\" class=\"button save-edit-category left blue\"><i class=\"flaticon-checkmark2\"></i> Обновить категорию</a>\n      <span class=\"error\" style=\"display:none;\"></span>\n    </p>\n  </td>\n</tr>");
 
 /***/ },
-/* 5 */
+/* 6 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process, global) {/*!
@@ -3942,10 +3997,10 @@
 	    module.exports = jSmart;
 	})();
 
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6), (function() { return this; }())))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(7), (function() { return this; }())))
 
 /***/ },
-/* 6 */
+/* 7 */
 /***/ function(module, exports) {
 
 	// shim for using process in browser
@@ -4042,192 +4097,177 @@
 
 
 /***/ },
-/* 7 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var J = __webpack_require__(5);
-	module.exports = new J("<tr class=\"tg-031e\" data-id=\"{$id}\">\n  <td class=\"tg-checkbox\"><input type=\"checkbox\" name=\"selected[]\" value=\"{$id}\"></td>\n  <td class=\"tg-name\">{$name}</td>\n  <td class=\"tg-desc\">{$desc}</td>\n  <td class=\"tg-slug\">{$slug}</td>\n  <td class=\"tg-num\">0</td>\n  <td class=\"tg-tools\">\n    <a class=\"button blue edit-category\" href=\"#\" data-id=\"{$id}\"><i class=\"flaticon-edit4\"></i></a>\n    <a class=\"button delete-category\" href=\"#\" data-id=\"{$id}\"><i class=\"flaticon-trash3\"></i></a>\n  </td>\n</tr>");
-
-/***/ },
 /* 8 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var Articles, controller;
+	var J = __webpack_require__(6);
+	module.exports = new J("<tr class=\"tg-031e\" data-id=\"{$id}\">\n  <td class=\"tg-checkbox\"><input type=\"checkbox\" name=\"selected[]\" value=\"{$id}\"></td>\n  <td class=\"tg-name\">{$name}</td>\n  <td class=\"tg-desc\">{$desc}</td>\n  <td class=\"tg-slug\">{$slug}</td>\n  <td class=\"tg-num\">0</td>\n  <td class=\"tg-tools\">\n    <a class=\"button blue edit-category\" href=\"#\" data-id=\"{$id}\"><i class=\"flaticon-edit4\"></i></a>\n    <a class=\"button delete-category\" href=\"#\" data-id=\"{$id}\"><i class=\"flaticon-trash3\"></i></a>\n  </td>\n</tr>");
 
-	controller = __webpack_require__(2);
+/***/ },
+/* 9 */
+/***/ function(module, exports, __webpack_require__) {
 
-	Articles = (function() {
-	  var $document;
+	var List, controller;
+
+	controller = __webpack_require__(3);
+
+	List = (function() {
+	  var $document, text;
 
 	  $document = $(document);
 
-	  function Articles() {
-	    this.edit();
-	    this.cancelEdit();
-	    this.save();
-	    this.toggleText();
-	    this.remove();
-	    this.create();
-	    this.restore();
+	  text = '';
+
+	  function List() {
+	    this.portfolioList = $('.js-portfolio-list');
+	    this.initEvent();
 	  }
 
-	  Articles.prototype.edit = function() {
-	    return $document.on('click', '.edit-art', function(e) {
-	      var $parent, date, text, title;
-	      e.preventDefault();
-	      $parent = $(this).parent().parent();
-	      $parent.find('.art-nav-1').hide();
-	      $parent.find('.art-nav-2').show();
-	      title = $parent.find('.title-art').hide().html();
-	      date = $parent.find('.date-art').hide().attr('data-date');
-	      $parent.find('.text-art').hide();
-	      if ($parent.find('.text-art .fulltext-art').html() != null) {
-	        text = $parent.find('.text-art .desc-art').html() + '<!--more-->' + $parent.find('.text-art .fulltext-art').html();
-	      } else {
-	        text = $parent.find('.text-art .desc-art').html();
-	      }
-	      $parent.find('.edit-title-art').show().find('.input-edit').val(title);
-	      $parent.find('.edit-date-art').show().find('.input-edit').val(date);
-	      return $parent.find('.edit-text-art').show().find('.input-edit').val(text);
-	    });
+	  List.prototype.initEvent = function() {
+	    this.portfolioList.on('click', '.js-trash', this.trash);
+	    this.portfolioList.on('click', '.js-restore', this.restore);
+	    this.portfolioList.on('click', '.js-close-restore', this.closeRestore);
+	    this.portfolioList.on('keypress', '.js-title', this.titleBlur);
+	    this.portfolioList.on('focus', '.js-title', this.titleEdit);
+	    this.portfolioList.on('blur', '.js-title', this.titleSave);
+	    this.portfolioList.on('click', '.js-select', this.toggleCategoryList);
+	    return this.portfolioList.on('click', '.js-select-list li', this.categorySave);
 	  };
 
-	  Articles.prototype.cancelEdit = function() {
-	    return $document.on('click', '.no-edit-art', function(e) {
-	      var $parent;
-	      e.preventDefault();
-	      $parent = $(this).parent().parent();
-	      $parent.find('.art-nav-1').show();
-	      $parent.find('.art-nav-2').hide();
-	      $parent.find('.title-art').show();
-	      $parent.find('.date-art').show();
-	      $parent.find('.text-art').show();
-	      $parent.find('.edit-title-art').hide().val('');
-	      $parent.find('.edit-date-art').hide().val('');
-	      return $parent.find('.edit-text-art').hide().val('');
-	    });
+	  List.prototype.trash = function(e) {
+	    var $buttonTrash, $portfolioItem, callback, data;
+	    e.preventDefault();
+	    $buttonTrash = $(this);
+	    $portfolioItem = $buttonTrash.parents('.js-item');
+	    $buttonTrash.prop('disabled', true);
+	    data = {
+	      id: $portfolioItem.attr('data-id')
+	    };
+	    callback = function(result) {
+	      $buttonTrash.prop('disabled', false);
+	      $portfolioItem.before(result.html);
+	      return $portfolioItem.slideUp(200);
+	    };
+	    return controller.call('nimyadmin/portfolio/trash', data, callback);
 	  };
 
-	  Articles.prototype.save = function() {
-	    return $document.on('click', '.save-edit-art', function(e) {
-	      var $parent, callback, data;
-	      e.preventDefault();
-	      $parent = $(this).parent().parent();
-	      data = {
-	        id: $(this).attr('data-id', {
-	          title: $parent.find('.edit-title-art .input-edit').val(),
-	          date: $parent.find('.edit-date-art .input-edit').val(),
-	          text: $parent.find('.edit-text-art .input-edit').val()
-	        })
-	      };
-	      callback = function(result) {
-	        $parent.find('.art-nav-1').show();
-	        $parent.find('.art-nav-2').hide();
-	        $parent.find('.title-art').show().html(result.title);
-	        $parent.find('.date-art').show().html(result.date_rus).attr('data-date', result.date);
-	        $parent.find('.text-art').show().find('.desc-art').html(result.text);
-	        $parent.find('.edit-title-art').hide().val('');
-	        $parent.find('.edit-date-art').hide().val('');
-	        return $parent.find('.edit-text-art').hide().val('');
-	      };
-	      return controller.call('nimyadmin/articles/save', data, callback);
-	    });
+	  List.prototype.restore = function(e) {
+	    var $buttonRestore, $restoreNotification, callback, data;
+	    e.preventDefault();
+	    $buttonRestore = $(this);
+	    $buttonRestore.prop('disabled', true);
+	    $restoreNotification = $buttonRestore.parents('.js-restore-notification');
+	    data = {
+	      id: $restoreNotification.attr('data-id')
+	    };
+	    callback = function() {
+	      var $portfolioItem;
+	      $buttonRestore.prop('disabled', false);
+	      $restoreNotification.remove();
+	      $portfolioItem = $('.js-item[data-id=' + data.id + ']');
+	      return $portfolioItem.slideDown(200);
+	    };
+	    return controller.call('nimyadmin/portfolio/restore', data, callback);
 	  };
 
-	  Articles.prototype.toggleText = function() {
-	    $document.on('click', '.show-all-text', function(e) {
-	      var $this;
-	      e.preventDefault();
-	      $this = $(this);
-	      $this.hide();
-	      return $this.next().show();
-	    });
-	    return $document.on('click', '.hide-all-text', function(e) {
-	      var $parent;
-	      e.preventDefault();
-	      $parent = $(this).parent();
-	      $parent.prev().show();
-	      return $parent.hide();
-	    });
+	  List.prototype.closeRestore = function(e) {
+	    var $buttonCloseRestore, $portfolioItem, $restoreNotification;
+	    e.preventDefault();
+	    $buttonCloseRestore = $(this);
+	    $restoreNotification = $buttonCloseRestore.parents('.js-restore-notification');
+	    $portfolioItem = $('.js-item[data-id=' + $restoreNotification.attr('data-id') + ']');
+	    $portfolioItem.remove();
+	    return $restoreNotification.remove();
 	  };
 
-	  Articles.prototype.remove = function() {
-	    return $document.on('click', '.del-art', function(e) {
-	      var $this, callback, data;
-	      e.preventDefault();
-	      $this = $(this);
-	      $this.prop('disabled', true);
-	      data = {
-	        id: $this.attr('data-id')
-	      };
-	      callback = function(result) {
-	        var $secondParent;
-	        $this.prop('disabled', false);
-	        $secondParent = $this.parent().parent();
-	        $secondParent.before('<li class="news-trash">' + 'Статья удалена.' + '<a href="#" class="no-trash" data-id="' + $id + '">Восстановить</a>' + '<a class="button close-no-trash" href="#"><i class="flaticon-cross5"></i></a>' + '</li>');
-	        return $secondParent.slideUp(200);
-	      };
-	      return controller.call('nimyadmin/articles/remove', data, callback);
-	    });
+	  List.prototype.titleBlur = function(e) {
+	    if (e.keyCode === 13) {
+	      return $(this).blur();
+	    }
 	  };
 
-	  Articles.prototype.restore = function() {
-	    $document.on('click', '.no-trash', function(e) {
-	      var $this, callback, data;
-	      e.preventDefault();
-	      $this = $(this);
-	      $this.prop('disabled', true);
-	      data = {
-	        id: $this.attr('data-id')
-	      };
-	      callback = function() {
-	        var $parent;
-	        $this.prop('disabled', false);
-	        $parent = $this.parent();
-	        $parent.next().slideDown(200);
-	        return $parent.remove();
-	      };
-	      return controller.call('nimyadmin/articles/restore', data, callback);
-	    });
-	    return $document.on('click', '.close-no-trash', function(e) {
-	      var $parent;
-	      e.preventDefault();
-	      $parent = $(this).parent();
-	      $parent.next().remove();
-	      return $parent.remove();
-	    });
+	  List.prototype.titleEdit = function() {
+	    var $portfolioItem, $title;
+	    $title = $(this);
+	    $portfolioItem = $title.parents('.js-item');
+	    text = $title.val();
+	    return $portfolioItem.find('.js-title-status-edit').show();
 	  };
 
-	  Articles.prototype.create = function() {
-	    return $document.on('click', '.btn-publised-new', function(e) {
-	      var callback, data;
-	      e.preventDefault();
-	      data = {
-	        title: $('#title-new').val(),
-	        date: $('#date-new').val(),
-	        text: $('#text-new').val()
-	      };
-	      callback = function(result) {
-	        var $elem;
-	        $elem = $('.ajax-pre li').last().prependTo('.ajax-pre');
-	        $elem.find('.title-art').html(result.title);
-	        $elem.find('.date-art').html(result.date);
-	        $elem.find('.text-art').html(result.text);
-	        $elem.find('.edit-art').attr('data-id', result.id);
-	        $elem.find('.del-art').attr('data-id', result.id);
-	        $('#title-new').val('');
-	        $('#date-new').val('');
-	        return $('#text-new').val('');
-	      };
-	      return controller.call('nimyadmin/articles/create', data, callback);
-	    });
+	  List.prototype.titleSave = function() {
+	    var $portfolioItem, $title, $titleStatusEdit, $titleStatusSave, callback, data;
+	    $title = $(this);
+	    if (text === $title.val()) {
+	      return;
+	    }
+	    $portfolioItem = $title.parents('.js-item');
+	    $titleStatusEdit = $portfolioItem.find('.js-title-status-edit');
+	    $titleStatusSave = $portfolioItem.find('.js-title-status-save');
+	    $titleStatusEdit.hide();
+	    $titleStatusSave.show();
+	    $title.prop('disabled', true);
+	    data = {
+	      id: $portfolioItem.attr('data-id'),
+	      title: $title.val()
+	    };
+	    callback = function() {
+	      $titleStatusSave.hide();
+	      return $title.prop('disabled', false);
+	    };
+	    return controller.call('nimyadmin/portfolio/title', data, callback);
 	  };
 
-	  return Articles;
+	  List.prototype.toggleCategoryList = function(e) {
+	    var $portfolioItem, $select, $selectList, $selectStatusEdit;
+	    e.preventDefault();
+	    $select = $(this);
+	    $portfolioItem = $select.parents('.js-item');
+	    $selectList = $portfolioItem.find('.js-select-list');
+	    $selectStatusEdit = $portfolioItem.find('.js-select-status-edit');
+	    if ($selectList.is(':hidden')) {
+	      $selectList.slideDown(200);
+	      $select.addClass('active');
+	      return $selectStatusEdit.show();
+	    } else {
+	      $selectList.slideUp(200);
+	      $select.removeClass('active');
+	      return $selectStatusEdit.hide();
+	    }
+	  };
+
+	  List.prototype.categorySave = function() {
+	    var $portfolioItem, $select, $selectList, $selectListElement, $selectListElements, $selectStatusEdit, $selectStatusSave, callback, data, selectResult;
+	    $selectListElement = $(this);
+	    $portfolioItem = $selectListElement.parents('.js-item');
+	    $selectList = $portfolioItem.find('.js-select-list');
+	    $select = $portfolioItem.find('.js-select');
+	    $selectStatusEdit = $portfolioItem.find('.js-select-status-edit');
+	    $selectStatusEdit.hide();
+	    $selectStatusSave = $portfolioItem.find('.js-select-status-save');
+	    $selectStatusSave.show();
+	    $selectListElements = $selectList.find('li');
+	    $selectListElements.removeClass('active');
+	    $selectListElement.addClass('active');
+	    selectResult = $selectListElement.html();
+	    $select.removeClass('active').html(selectResult + '<i class="flaticon-chevron8"></i>');
+	    $selectList.slideUp(200);
+	    $selectListElements.prop('disabled', true);
+	    data = {
+	      id: $portfolioItem.attr('data-id'),
+	      category_link: $selectListElement.text()
+	    };
+	    callback = function() {
+	      $selectStatusSave.hide();
+	      return $selectListElements.prop('disabled', false);
+	    };
+	    return controller.call('nimyadmin/portfolio/category', data, callback);
+	  };
+
+	  return List;
 
 	})();
 
-	module.exports = new Articles;
+	module.exports = new List;
 
 
 /***/ }

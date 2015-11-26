@@ -1,7 +1,7 @@
 {if isset($page_title)}<h2>{$page_title}</h2>{/if}
 <a href="/nimyadmin/portfolio/add.html" class="button green"><i class="flaticon-plus13"></i> Добавить работу</a>
 {include file="admin/templates/pagination.tpl"}
-{include file="./index/list.tpl"}
+{include file="./portfolio/list.tpl"}
 {include file="admin/templates/pagination.tpl"}
 <div class="model-delete-category" title="Выбор фотографии">
   <div class="js-list-page" id="js-list-page">

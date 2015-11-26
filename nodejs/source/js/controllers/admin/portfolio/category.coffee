@@ -119,7 +119,7 @@ class Category
             $inputName.val ''
             $inputDesc.val ''
             $inputSlug.val ''
-            dataTemplate = 
+            dataTemplate =
               id: resultData.result,
               name: data.name,
               desc: data.desc,
@@ -135,7 +135,7 @@ class Category
               $this = $ @
               $this.removeClass()
               $this.addClass trClass[trKey ? 1 : 0]
-          when 1 then
+          when 1 then break
           when 2
             $form.find('.addcat-name .error').text 'Название «' + data.name + '» уже используется другой категорией'
           when 3

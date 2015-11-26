@@ -62,7 +62,7 @@ class Portfolio extends CI_Controller
     );
 
     $this->smarty->display('admin/templates/up.tpl');
-    $this->smarty->display('admin/portfolio/index.tpl');
+    $this->smarty->display('admin/portfolio.tpl');
     $this->smarty->display('admin/templates/down.tpl');
   }
 
@@ -121,11 +121,8 @@ class Portfolio extends CI_Controller
     header('Content-type: application/json');
     $this->load->model('portfolio_model');
     $this->portfolio_model->trash($_POST['id']);
-    $this->data['id'] = $_POST['id'];
-    $response['html'] = $this->load->view(
-      'admin/templates/portfolio/trash', $this->data, true
-    );
-    $response['data'] = $this->data;
+    $this->smarty->assign('id', $_POST['id']);
+    $response['html'] = $this->smarty->fetch('admin/templates/portfolio/trash.tpl');
     echo json_encode($response);
   }
 
@@ -143,11 +140,7 @@ class Portfolio extends CI_Controller
     header('Content-type: application/json');
     $this->load->model('portfolio_model');
     $this->portfolio_model->restore($_POST['id']);
-    $this->data['id'] = $_POST['id'];
-    $response['html'] = $this->load->view(
-      'admin/templates/portfolio/trash', $this->data, true
-    );
-    $response['data'] = $this->data;
+    $response = [];
     echo json_encode($response);
   }
 
@@ -165,9 +158,7 @@ class Portfolio extends CI_Controller
     header('Content-type: application/json');
     $this->load->model('portfolio_model');
     $this->portfolio_model->edit_title($_POST['id'], $_POST['title']);
-    $this->data['id'] = $_POST['id'];
-    $this->data['title'] = $_POST['title'];
-    $response['data'] = $this->data;
+    $response = [];
     echo json_encode($response);
   }
 
@@ -186,9 +177,7 @@ class Portfolio extends CI_Controller
     header('Content-type: application/json');
     $this->load->model('portfolio_model');
     $this->portfolio_model->edit_category($_POST['id'], $_POST['category_link']);
-    $this->data['id'] = $_POST['id'];
-    $this->data['category_link'] = $_POST['category_link'];
-    $response['data'] = $this->data;
+    $response = [];
     echo json_encode($response);
   }
 
@@ -205,10 +194,10 @@ class Portfolio extends CI_Controller
     }
     header('Content-type: application/json');
     $this->load->model('category_model');
-    $this->data['error'] = $this->category_model->update(
+    $response = [];
+    $response['data'] = $this->category_model->update(
       $_POST['id'], $_POST['name'], $_POST['desc'], $_POST['slug']
     );
-    $response['data'] = $this->data;
     echo json_encode($response);
   }
 
@@ -225,10 +214,10 @@ class Portfolio extends CI_Controller
     }
     header('Content-type: application/json');
     $this->load->model('category_model');
-    $this->data = $this->category_model->add(
+    $response = [];
+    $response['data'] = $this->category_model->add(
       $_POST['name'], $_POST['desc'], $_POST['slug']
     );
-    $response['data'] = $this->data;
     echo json_encode($response);
   }
 
@@ -245,8 +234,8 @@ class Portfolio extends CI_Controller
     }
     header('Content-type: application/json');
     $this->load->model('category_model');
-    $this->data = $this->category_model->delete($_POST['id']);
-    $response['data'] = $this->data;
+    $this->category_model->delete($_POST['id']);
+    $response = [];
     echo json_encode($response);
   }
 
@@ -264,7 +253,7 @@ class Portfolio extends CI_Controller
     header('Content-type: application/json');
     $this->load->model('category_model');
     $this->category_model->position_rewrite($_POST['data_id']);
-    $response['data'] = 'OK';
+    $response = [];
     echo json_encode($response);
   }
 

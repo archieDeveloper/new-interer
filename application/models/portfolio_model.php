@@ -21,7 +21,7 @@ class Portfolio_model extends CI_Model
   public function trash($id)
   {
     $sql = "UPDATE `portfolio` SET `trash` = 1 WHERE `id` = ?";
-    $data = array($id);
+    $data = [$id];
     $this->db->query($sql, $data);
   }
 
