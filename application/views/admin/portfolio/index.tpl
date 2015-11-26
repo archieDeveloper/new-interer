@@ -3,11 +3,7 @@
   {pagination($page, $num_pages, '<i class="flaticon-thin6"></i>', '<i class="flaticon-thin2"></i>')}
   <div class="cleaner"></div>
 </ul>
-<ul class="list-page">
-  {foreach from=$portfolio item="value" key="key"}
-    {include file="./index/item.tpl"}
-  {/foreach}
-</ul>
+{include file="./index/list.tpl"}
 <ul class="pagination">
   {pagination($page, $num_pages, '<i class="flaticon-thin6"></i>', '<i class="flaticon-thin2"></i>')}
   <div class="cleaner"></div>
