@@ -1,13 +1,8 @@
-{if isset($page_title)}<h2>{$page_title}<a href="/nimyadmin/portfolio/add.html" class="button green"><i class="flaticon-plus13"></i> Добавить работу</a></h2>{/if}
-<ul class="pagination">
-  {pagination($page, $num_pages, '<i class="flaticon-thin6"></i>', '<i class="flaticon-thin2"></i>')}
-  <div class="cleaner"></div>
-</ul>
+{if isset($page_title)}<h2>{$page_title}</h2>{/if}
+<a href="/nimyadmin/portfolio/add.html" class="button green"><i class="flaticon-plus13"></i> Добавить работу</a>
+{include file="admin/templates/pagination.tpl"}
 {include file="./index/list.tpl"}
-<ul class="pagination">
-  {pagination($page, $num_pages, '<i class="flaticon-thin6"></i>', '<i class="flaticon-thin2"></i>')}
-  <div class="cleaner"></div>
-</ul>
+{include file="admin/templates/pagination.tpl"}
 <div class="model-delete-category" title="Выбор фотографии">
   <div class="js-list-page" id="js-list-page">
     <div>

@@ -8,13 +8,7 @@
 <body>
   <div class="wrap-login-form">
     <div class="wrap-color-line">
-      <div class="wcl-item-1"></div>
-      <div class="wcl-item-2"></div>
-      <div class="wcl-item-3"></div>
-      <div class="wcl-item-4"></div>
-      <div class="wcl-item-5"></div>
-      <div class="wcl-item-6"></div>
-      <div class="wcl-item-7"></div>
+      {for $wclItem=1 to 7}<div class="wcl-item-{$wclItem}}"></div>{/for}
     </div>
     <div class="header-form">
       <h1>Админ-панель</h1>
