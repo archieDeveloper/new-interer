@@ -18,6 +18,7 @@ class Portfolio extends CI_Controller
       'lib/jquery.fileupload'
     ];
 
+
   function __construct()
   {
     parent::__construct();

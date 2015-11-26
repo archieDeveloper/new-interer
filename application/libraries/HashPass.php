@@ -26,7 +26,7 @@
 
 if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class HashPass
+class CI_HashPass
 {
 
   public function enhash($pass, $salt = null)

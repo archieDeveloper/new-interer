@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Admin_auth_model extends CI_Model {
+class Auth_model extends CI_Model {
 
   public function login($login, $pass) {
     $sql = "SELECT `id`,`hash_password`,`salt` FROM `admin` WHERE `login` = ?";
@@ -12,7 +12,7 @@ class Admin_auth_model extends CI_Model {
       return false;
     }
     foreach ($query->result() as $row) {
-      $user_data = $this->hashPass->enhash($pass, $row->salt);
+      $user_data = $this->hashpass->enhash($pass, $row->salt);
       if($user_data['hash_pass'] != $row->hash_password) {
         return false;
       }

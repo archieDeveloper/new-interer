@@ -26,6 +26,17 @@
  * @category	Libraries
  * @author		ExpressionEngine Dev Team
  * @link		http://codeigniter.com/user_guide/general/controllers.html
+ *
+ * @property CI_Loader load
+ * @property CI_Auth auth
+ * @property CI_URI uri
+ * @property CI_Smarty smarty
+ * @property CI_Request request
+ * @property CI_Image_lib image_lib
+ * @property CI_Upload upload
+ *
+ * @property Portfolio_model portfolio_model
+ * @property Category_model category_model
  */
 class CI_Controller {
 

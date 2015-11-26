@@ -32,7 +32,7 @@ class CI_Auth
   {
     $isLogin = $this->isLogin();
     $isAdmin = $this->CI->session->userdata('privileges') === 'admin';
-    return ($isLogin && $isAdmin)
+    return ($isLogin && $isAdmin);
   }
 
   public function isLogin()
@@ -52,8 +52,8 @@ class CI_Auth
     if (!empty($errors)) {
       return $errors;
     }
-    $this->CI->load->model('admin/admin_auth_model');
-    $user_id = $this->CI->admin_auth_model->login($login, $password);
+    $this->CI->load->model('admin/auth_model');
+    $user_id = $this->CI->auth_model->login($login, $password);
     if (!$user_id) {
       $errors['login_errors'][] = 2;
     }
@@ -70,7 +70,7 @@ class CI_Auth
 
   public function logout()
   {
-    if ($this->login_it()) {
+    if ($this->isLogin()) {
       $this->CI->session->unset_userdata([
         'id' => '',
         'logged_in' => '',
