@@ -9,7 +9,6 @@ class Category
     @editCategory()
     @cancelEditCategory()
     @saveEditCategory()
-    @addCategory()
     @removeCategory()
 
   $catListTb: $ '#cat-list-tb'

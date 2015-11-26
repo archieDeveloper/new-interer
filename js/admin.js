@@ -64,10 +64,12 @@
 	var map = {
 		"./admin/portfolio/articles": 2,
 		"./admin/portfolio/articles.coffee": 2,
-		"./admin/portfolio/category": 4,
-		"./admin/portfolio/category.coffee": 4,
-		"./admin/portfolio/list": 9,
-		"./admin/portfolio/list.coffee": 9
+		"./admin/portfolio/categories/add": 4,
+		"./admin/portfolio/categories/add.coffee": 4,
+		"./admin/portfolio/category": 5,
+		"./admin/portfolio/category.coffee": 5,
+		"./admin/portfolio/list": 10,
+		"./admin/portfolio/list.coffee": 10
 	};
 	function webpackContext(req) {
 		return __webpack_require__(webpackContextResolve(req));
@@ -295,6 +297,75 @@
 /* 4 */
 /***/ function(module, exports, __webpack_require__) {
 
+	var Add, controller;
+
+	controller = __webpack_require__(3);
+
+	Add = (function() {
+	  var $document;
+
+	  $document = $(document);
+
+	  function Add() {
+	    this.$categoryAddForm = $('.js-category-add-form');
+	    this.initEvent();
+	  }
+
+	  Add.prototype.initEvent = function() {
+	    return this.$categoryAddForm.on('click', '.js-button-add', this.addCategory);
+	  };
+
+	  Add.prototype.addCategory = function(e) {
+	    var $buttonAdd, $form, $inputDesc, $inputName, $inputSlug, callback, data;
+	    e.preventDefault();
+	    $buttonAdd = $(this);
+	    $buttonAdd.prop('disabled', true);
+	    $form = $buttonAdd.parents('.js-category-add-form');
+	    $inputName = $form.find('.js-name');
+	    $inputDesc = $form.find('.js-description');
+	    $inputSlug = $form.find('.js-slug');
+	    data = {
+	      name: $inputName.val(),
+	      desc: $inputDesc.val(),
+	      slug: $inputSlug.val()
+	    };
+	    callback = function(result) {
+	      var resultData;
+	      resultData = result.data;
+	      $buttonAdd.prop('disabled', false);
+	      switch (resultData.error) {
+	        case 0:
+	          $inputName.val('');
+	          $inputDesc.val('');
+	          $inputSlug.val('');
+	          return $form.trigger('portfolioCategoryAdd', {
+	            id: resultData.result,
+	            name: data.name,
+	            desc: data.desc,
+	            slug: data.slug
+	          });
+	        case 1:
+	          break;
+	        case 2:
+	          return $form.find('.js-name-error').text('Название «' + data.name + '» уже используется другой категорией');
+	        case 3:
+	          return $form.find('.js-slug-error').text('Ярлык «' + data.slug + '» уже используется другой категорией');
+	      }
+	    };
+	    return controller.call('nimyadmin/portfolio/add_category', data, callback);
+	  };
+
+	  return Add;
+
+	})();
+
+	module.exports = new Add;
+
+
+/***/ },
+/* 5 */
+/***/ function(module, exports, __webpack_require__) {
+
 	var Category, controller;
 
 	controller = __webpack_require__(3);
@@ -309,7 +380,6 @@
 	    this.editCategory();
 	    this.cancelEditCategory();
 	    this.saveEditCategory();
-	    this.addCategory();
 	    this.removeCategory();
 	  }
 
@@ -368,7 +438,7 @@
 	          slug: $secondParent.find('.tg-slug').text()
 	        })
 	      };
-	      template = __webpack_require__(5);
+	      template = __webpack_require__(6);
 	      html = template.fetch(data);
 	      self.$catListTb.find('.cancel-edit-category').click();
 	      $secondParent.hide();
@@ -459,7 +529,7 @@
 	              desc: data.desc,
 	              slug: data.slug
 	            };
-	            template = __webpack_require__(8);
+	            template = __webpack_require__(9);
 	            html = template.fetch(dataTemplate);
 	            self.$catListTb.prepend(html);
 	            $tr = self.$catListTb.find('tr');
@@ -564,14 +634,14 @@
 
 
 /***/ },
-/* 5 */
+/* 6 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var J = __webpack_require__(6);
+	var J = __webpack_require__(7);
 	module.exports = new J("<tr class=\"tg-jh46\" data-id=\"{$id}\">\n  <td colspan=\"6\" class=\"colspanchange\">\n    <fieldset>\n      <div class=\"inline-edit-col\">\n        <h4>Свойства</h4>\n        <label>\n          <span class=\"title\">Название</span>\n          <span class=\"input-text-wrap\"><input type=\"text\" name=\"name\" class=\"ptitle input-edit tg-name\" value=\"{$name}\"></span>\n          </label>\n        <label>\n          <span class=\"title\">Описание</span>\n          <span class=\"input-text-wrap\"><input type=\"text\" name=\"desc\" class=\"ptitle input-edit tg-desc\" value=\"{$desc}\"></span>\n          </label>\n        <label>\n          <span class=\"title\">Ярлык</span>\n          <span class=\"input-text-wrap\"><input type=\"text\" name=\"slug\" class=\"ptitle input-edit tg-slug\" value=\"{$slug}\"></span>\n          </label>\n        </div>\n    </fieldset>\n    <p class=\"inline-edit-save submit\">\n      <a href=\"#inline-edit\" class=\"button cancel-edit-category right green\"><i class=\"flaticon-cross5\"></i> Отменить</a>\n      <a href=\"#inline-edit\" class=\"button save-edit-category left blue\"><i class=\"flaticon-checkmark2\"></i> Обновить категорию</a>\n      <span class=\"error\" style=\"display:none;\"></span>\n    </p>\n  </td>\n</tr>");
 
 /***/ },
-/* 6 */
+/* 7 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process, global) {/*!
@@ -3997,10 +4067,10 @@
 	    module.exports = jSmart;
 	})();
 
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(7), (function() { return this; }())))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8), (function() { return this; }())))
 
 /***/ },
-/* 7 */
+/* 8 */
 /***/ function(module, exports) {
 
 	// shim for using process in browser
@@ -4097,14 +4167,14 @@
 
 
 /***/ },
-/* 8 */
+/* 9 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var J = __webpack_require__(6);
+	var J = __webpack_require__(7);
 	module.exports = new J("<tr class=\"tg-031e\" data-id=\"{$id}\">\n  <td class=\"tg-checkbox\"><input type=\"checkbox\" name=\"selected[]\" value=\"{$id}\"></td>\n  <td class=\"tg-name\">{$name}</td>\n  <td class=\"tg-desc\">{$desc}</td>\n  <td class=\"tg-slug\">{$slug}</td>\n  <td class=\"tg-num\">0</td>\n  <td class=\"tg-tools\">\n    <a class=\"button blue edit-category\" href=\"#\" data-id=\"{$id}\"><i class=\"flaticon-edit4\"></i></a>\n    <a class=\"button delete-category\" href=\"#\" data-id=\"{$id}\"><i class=\"flaticon-trash3\"></i></a>\n  </td>\n</tr>");
 
 /***/ },
-/* 9 */
+/* 10 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var List, controller;
@@ -4112,9 +4182,7 @@
 	controller = __webpack_require__(3);
 
 	List = (function() {
-	  var $document, text;
-
-	  $document = $(document);
+	  var text;
 
 	  text = '';
 

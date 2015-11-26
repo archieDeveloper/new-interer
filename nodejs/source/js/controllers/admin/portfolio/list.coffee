@@ -2,7 +2,6 @@ controller = require 'helpers/controller'
 
 class List
 
-  $document = $ document
   text = ''
 
   constructor: ->
