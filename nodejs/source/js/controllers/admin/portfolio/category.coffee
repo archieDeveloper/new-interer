@@ -5,16 +5,27 @@ class Category
   $document = $ document
 
   constructor: ()->
-    @sortable()
-    @editCategory()
-    @cancelEditCategory()
-    @saveEditCategory()
-    @removeCategory()
+    @$catListTb = $ '#cat-list-tb'
+    @sortable(@$catListTb)
+    @initEvent()
+    # @sortable()
+    # @editCategory()
+    # @cancelEditCategory()
+    # @saveEditCategory()
+    # @removeCategory()
 
-  $catListTb: $ '#cat-list-tb'
+  initEvent: ->
+    @$catListTb.on 'portfolioCategoryEdit', ->
+      $(@).sortable 'disable'
+    @$catListTb.on 'portfolioCategoryCancelEdit', ->
+      $(@).sortable 'enable'
 
-  sortable: ->
-    this.$catListTb.sortable(
+    @$catListTb.on 'click', '.js-button-edit', @editCategory
+    @$catListTb.on 'click', '.js-button-cancel-edit', @cancelEditCategory
+    @$catListTb.on 'click', '.js-button-save', @saveEditCategory
+
+  sortable: (sortableElement)->
+    sortableElement.sortable(
       placeholder: "ui-state-highlight",
       start: (e, elem) ->
         $item = $ elem.item
@@ -39,107 +50,70 @@ class Category
         controller.call 'nimyadmin/portfolio/sortable_category', data, callback
     )
 
-  editCategory: ->
-    self = @
-    $document.on 'click', '.edit-category', (e) ->
-      do e.preventDefault
-      $this = $ @
-      self.$catListTb.sortable 'disable'
-      $secondParent = $this.parent().parent()
-      data = 
-        id: $secondParent.attr 'data-id',
-        name: $secondParent.find('.tg-name').text(),
-        desc: $secondParent.find('.tg-desc').text(),
-        slug: $secondParent.find('.tg-slug').text()
-      template = require 'admin/templates/portfolio/category/edit.tpl'
-      html = template.fetch data
-      self.$catListTb.find('.cancel-edit-category').click()
-      $secondParent.hide()
-      $secondParent.after html
+  editCategory: (e)->
+    do e.preventDefault
+    $buttonCategoryEdit = $ @
+    $categoryItem = $buttonCategoryEdit.parents('.js-category-item')
+    $categoryItem.trigger('portfolioCategoryEdit')
+    data = 
+      id: $categoryItem.attr 'data-id',
+      name: $categoryItem.find('.js-name').text(),
+      desc: $categoryItem.find('.js-description').text(),
+      slug: $categoryItem.find('.js-slug').text()
+    template = require 'admin/templates/portfolio/category/edit.tpl'
+    html = template.fetch data
+    $categoryItem.hide()
+    $categoryItem.after html
 
   cancelEditCategory: ->
-    self = @
-    $document.on 'click', '.cancel-edit-category', (e) ->
-      do e.preventDefault
-      self.$catListTb.sortable 'enable'
-      $editForm = $(this).parent().parent().parent()
-      $editForm.prev().show()
-      $editForm.remove()
+    do e.preventDefault
+    $buttonCancelEdit = $ @
+    $buttonCancelEdit.trigger('portfolioCategoryCancelEdit')
+    $editForm = $buttonCancelEdit.parent().parent().parent()
+    $editForm.prev().show()
+    $editForm.remove()
 
   saveEditCategory: ->
-    $document.on 'click', '.save-edit-category', (e) ->
-      do e.preventDefault
-      $this = $ @
-      $parent = $this.parent()
-      $editForm = $parent.parent().parent()
-      $secondParent = $parent.prev()
-      data = 
-        id: $editForm.attr 'data-id',
-        name: $secondParent.find('.tg-name').val(),
-        desc: $secondParent.find('.tg-desc').val(),
-        slug: $secondParent.find('.tg-slug').val()
-      callback = (result) ->
-        resultData = result.data
-        switch resultData.error
-          when 0
-            $row = $editForm.prev()
-            $row.find('.tg-name').text data.name
-            $row.find('.tg-desc').text data.desc
-            $row.find('.tg-slug').text data.slug
-            $row.fadeIn 300
-            $editForm.remove()
-          when 1
-            $editForm.find('.error').show().text 'Неизвестная ошибка, попробуйте повторить попытку позже!'
-          when 2
-            $editForm.find('.error').show().text 'Название «' + data.name + '» уже используется другой категорией'
-          when 3
-            $editForm.find('.error').show().text 'Ярлык «' + data.slug + '» уже используется другой категорией'
-      controller.call 'nimyadmin/portfolio/save_category', data, callback
+    do e.preventDefault
+    $this = $ @
+    $parent = $this.parent()
+    $editForm = $parent.parent().parent()
+    $secondParent = $parent.prev()
+    data = 
+      id: $editForm.attr 'data-id',
+      name: $secondParent.find('.tg-name').val(),
+      desc: $secondParent.find('.tg-desc').val(),
+      slug: $secondParent.find('.tg-slug').val()
+    callback = (result) ->
+      resultData = result.data
+      switch resultData.error
+        when 0
+          $row = $editForm.prev()
+          $row.find('.tg-name').text data.name
+          $row.find('.tg-desc').text data.desc
+          $row.find('.tg-slug').text data.slug
+          $row.fadeIn 300
+          $editForm.remove()
+        when 1
+          $editForm.find('.error').show().text 'Неизвестная ошибка, попробуйте повторить попытку позже!'
+        when 2
+          $editForm.find('.error').show().text 'Название «' + data.name + '» уже используется другой категорией'
+        when 3
+          $editForm.find('.error').show().text 'Ярлык «' + data.slug + '» уже используется другой категорией'
+    controller.call 'nimyadmin/portfolio/save_category', data, callback
 
-  addCategory: ->
-    self = @
-    $document.on 'click', '#add-category-portfolio', (e) ->
-      do e.preventDefault
+  addCategory: (e, data)->
+    template = require 'admin/templates/portfolio/category/item.tpl'
+    html = template.fetch data
+    self.$catListTb.prepend html
+    $tr = self.$catListTb.find 'tr'
+    trClass = ['tg-4eph','tg-031e']
+    trKey = false
+    $tr.each ->
+      trKey = !trKey
       $this = $ @
-      $this.prop 'disabled', true
-      $form = $ '#addcat'
-      $inputName = $form.find '#tag-name'
-      $inputDesc = $form.find '#tag-description'
-      $inputSlug = $form.find '#tag-slug'
-      data = 
-        name: $inputName.val(),
-        desc: $inputDesc.val(),
-        slug: $inputSlug.val()
-      callback = (result) ->
-        resultData = result.data
-        $this.prop 'disabled', false
-        switch resultData.error
-          when 0
-            $inputName.val ''
-            $inputDesc.val ''
-            $inputSlug.val ''
-            dataTemplate =
-              id: resultData.result,
-              name: data.name,
-              desc: data.desc,
-              slug: data.slug
-            template = require 'admin/templates/portfolio/category/item.tpl'
-            html = template.fetch dataTemplate
-            self.$catListTb.prepend html
-            $tr = self.$catListTb.find 'tr'
-            trClass = ['tg-4eph','tg-031e']
-            trKey = false
-            $tr.each ->
-              trKey = !trKey
-              $this = $ @
-              $this.removeClass()
-              $this.addClass trClass[trKey ? 1 : 0]
-          when 1 then break
-          when 2
-            $form.find('.addcat-name .error').text 'Название «' + data.name + '» уже используется другой категорией'
-          when 3
-            $form.find('.addcat-slug .error').text 'Ярлык «' + data.slug + '» уже используется другой категорией'
-      controller.call 'nimyadmin/portfolio/add_category', data, callback
+      $this.removeClass()
+      $this.addClass trClass[trKey ? 1 : 0]
 
   removeCategory: ->
     self = @
