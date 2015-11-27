@@ -105,6 +105,7 @@ class Category
   addCategory: (e, data)->
     template = require 'admin/templates/portfolio/category/item.tpl'
     html = template.fetch data
+    $categoryItem = $ '.js-category-item[data-id='+data.id+']'
     self.$catListTb.prepend html
     $tr = self.$catListTb.find 'tr'
     trClass = ['tg-4eph','tg-031e']
