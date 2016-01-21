@@ -1,41 +1,36 @@
 controller = require 'helpers/controller'
+Model = require 'class/model'
 
 class Add
 
-  $document = $ document
-
   constructor: ()->
     @$categoryAddForm = $ '.js-category-add-form'
-    @initEvent()
+    @categoryModel = new Model {
+      model: @$categoryAddForm,
+      actions: {
+        insert: @addCategory
+      }
+    }
 
-  initEvent: ->
-    @$categoryAddForm.on 'click', '.js-button-add', @addCategory
-
-  addCategory: (e) ->
+  addCategory: (e) =>
     do e.preventDefault
-    $buttonAdd = $ @
+    categoryModel = @categoryModel
+    $form = @$categoryAddForm
+    $buttonAdd = $ e.currentTarget
     $buttonAdd.prop 'disabled', true
-    $form = $buttonAdd.parents('.js-category-add-form')
-    $inputName = $form.find '.js-name'
-    $inputDesc = $form.find '.js-description'
-    $inputSlug = $form.find '.js-slug'
-    data =
-      name: $inputName.val(),
-      desc: $inputDesc.val(),
-      slug: $inputSlug.val()
+    data = categoryModel.raw()
     callback = (result) ->
       resultData = result.data
       $buttonAdd.prop 'disabled', false
       switch resultData.error
         when 0
-          $inputName.val ''
-          $inputDesc.val ''
-          $inputSlug.val ''
+          categoryModel.clear()
           $form.trigger('portfolioCategoryAdd', {
             id: resultData.result,
             name: data.name,
-            desc: data.desc,
-            slug: data.slug
+            description: data.desc,
+            link: data.slug
+            amount: 0
           })
         when 1 then break
         when 2

@@ -66,10 +66,10 @@
 		"./admin/portfolio/articles.coffee": 2,
 		"./admin/portfolio/categories/add": 4,
 		"./admin/portfolio/categories/add.coffee": 4,
-		"./admin/portfolio/category": 5,
-		"./admin/portfolio/category.coffee": 5,
-		"./admin/portfolio/list": 10,
-		"./admin/portfolio/list.coffee": 10
+		"./admin/portfolio/category": 6,
+		"./admin/portfolio/category.coffee": 6,
+		"./admin/portfolio/list": 13,
+		"./admin/portfolio/list.coffee": 13
 	};
 	function webpackContext(req) {
 		return __webpack_require__(webpackContextResolve(req));
@@ -297,52 +297,46 @@
 /* 4 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var Add, controller;
+	var Add, Model, controller,
+	  bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
 
 	controller = __webpack_require__(3);
 
+	Model = __webpack_require__(5);
+
 	Add = (function() {
-	  var $document;
-
-	  $document = $(document);
-
 	  function Add() {
+	    this.addCategory = bind(this.addCategory, this);
 	    this.$categoryAddForm = $('.js-category-add-form');
-	    this.initEvent();
+	    this.categoryModel = new Model({
+	      model: this.$categoryAddForm,
+	      actions: {
+	        insert: this.addCategory
+	      }
+	    });
 	  }
 
-	  Add.prototype.initEvent = function() {
-	    return this.$categoryAddForm.on('click', '.js-button-add', this.addCategory);
-	  };
-
 	  Add.prototype.addCategory = function(e) {
-	    var $buttonAdd, $form, $inputDesc, $inputName, $inputSlug, callback, data;
+	    var $buttonAdd, $form, callback, categoryModel, data;
 	    e.preventDefault();
-	    $buttonAdd = $(this);
+	    categoryModel = this.categoryModel;
+	    $form = this.$categoryAddForm;
+	    $buttonAdd = $(e.currentTarget);
 	    $buttonAdd.prop('disabled', true);
-	    $form = $buttonAdd.parents('.js-category-add-form');
-	    $inputName = $form.find('.js-name');
-	    $inputDesc = $form.find('.js-description');
-	    $inputSlug = $form.find('.js-slug');
-	    data = {
-	      name: $inputName.val(),
-	      desc: $inputDesc.val(),
-	      slug: $inputSlug.val()
-	    };
+	    data = categoryModel.raw();
 	    callback = function(result) {
 	      var resultData;
 	      resultData = result.data;
 	      $buttonAdd.prop('disabled', false);
 	      switch (resultData.error) {
 	        case 0:
-	          $inputName.val('');
-	          $inputDesc.val('');
-	          $inputSlug.val('');
+	          categoryModel.clear();
 	          return $form.trigger('portfolioCategoryAdd', {
 	            id: resultData.result,
 	            name: data.name,
-	            desc: data.desc,
-	            slug: data.slug
+	            description: data.desc,
+	            link: data.slug,
+	            amount: 0
 	          });
 	        case 1:
 	          break;
@@ -364,29 +358,154 @@
 
 /***/ },
 /* 5 */
+/***/ function(module, exports) {
+
+	var Model;
+
+	Model = (function() {
+	  Model.prototype._modelId = 0;
+
+	  Model.prototype._$fields = {};
+
+	  Model.prototype._actions = {};
+
+	  function Model(options) {
+	    var $actions, $fields, $model, actions, model, modelId, self;
+	    model = options.model, actions = options.actions;
+	    $model = $(model);
+	    self = this;
+	    self._actions = actions;
+	    modelId = $model.attr('data-id');
+	    if (modelId != null) {
+	      self._modelId = modelId;
+	    }
+	    $fields = $model.find('[data-field]');
+	    $fields.each(function(index, field) {
+	      var $field, fieldName;
+	      $field = $(field);
+	      fieldName = $field.attr('data-field');
+	      return self._$fields[fieldName] = $field;
+	    });
+	    $actions = $model.find('[data-action]');
+	    $actions.each(function(index, element) {
+	      var $element, action, event;
+	      $element = $(element);
+	      event = $element.attr('data-event') || 'click';
+	      action = $element.attr('data-action');
+	      return $element.on(event, self._actions[action]);
+	    });
+	  }
+
+	  Model.prototype.set = function(fieldName, fieldValue) {
+	    var $field, self;
+	    self = this;
+	    $field = self._$fields[fieldName];
+	    if ($field != null) {
+	      return $field.val(fieldValue);
+	    }
+	  };
+
+	  Model.prototype.get = function(fieldName) {
+	    var $field, self;
+	    self = this;
+	    $field = self._$fields[fieldName];
+	    if ($field != null) {
+	      return $field.val();
+	    }
+	  };
+
+	  Model.prototype.raw = function() {
+	    var $field, name, ref, result, self;
+	    self = this;
+	    result = {
+	      id: self._modelId
+	    };
+	    ref = self._$fields;
+	    for (name in ref) {
+	      $field = ref[name];
+	      result[name] = $field.val();
+	    }
+	    return result;
+	  };
+
+	  Model.prototype.clear = function() {
+	    var $field, name, ref, results, self;
+	    self = this;
+	    ref = self._$fields;
+	    results = [];
+	    for (name in ref) {
+	      $field = ref[name];
+	      results.push($field.val(''));
+	    }
+	    return results;
+	  };
+
+	  return Model;
+
+	})();
+
+	module.exports = Model;
+
+
+/***/ },
+/* 6 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var Category, controller;
+	var Category, Window, controller,
+	  bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
 
 	controller = __webpack_require__(3);
 
+	Window = __webpack_require__(7);
+
 	Category = (function() {
-	  var $document;
-
-	  $document = $(document);
-
 	  function Category() {
-	    this.sortable();
-	    this.editCategory();
-	    this.cancelEditCategory();
-	    this.saveEditCategory();
-	    this.removeCategory();
+	    this.removeCategory = bind(this.removeCategory, this);
+	    this.openWindowRemoveCategory = bind(this.openWindowRemoveCategory, this);
+	    var templateWindowDeleteCategory;
+	    this.$catListTb = $('#cat-list-tb');
+	    templateWindowDeleteCategory = __webpack_require__(8);
+	    this.$helperWindowDeleteCategory = new Window({
+	      template: templateWindowDeleteCategory,
+	      buttons: {
+	        remove: function() {
+	          return console.log('remove category');
+	        }
+	      },
+	      data: {}
+	    });
+	    this.sortable(this.$catListTb);
+	    this.initEvent();
 	  }
 
-	  Category.prototype.$catListTb = $('#cat-list-tb');
+	  Category.prototype.initEvent = function() {
+	    var $form, $windowDeleteCategory;
+	    this.$catListTb.on('portfolioCategoryEdit', this.disableSortable);
+	    this.$catListTb.on('portfolioCategoryCancelEdit', this.enableSortable);
+	    this.$catListTb.on('click', '.js-button-edit', this.editCategory);
+	    this.$catListTb.on('click', '.js-button-cancel-edit', this.cancelEditCategory);
+	    this.$catListTb.on('click', '.js-button-save', this.saveEditCategory);
+	    this.$catListTb.on('click', '.js-button-remove', this.openWindowRemoveCategory);
+	    $windowDeleteCategory = this.$helperWindowDeleteCategory.get();
+	    $windowDeleteCategory.on('click', '#delete-category-portfolio', this.removeCategory);
+	    $form = $('.js-category-add-form');
+	    return $form.on('portfolioCategoryAdd', this.addCategory);
+	  };
 
-	  Category.prototype.sortable = function() {
-	    return this.$catListTb.sortable({
+	  Category.prototype.enableSortable = function() {
+	    return $(this).sortable('enable');
+	  };
+
+	  Category.prototype.disableSortable = function() {
+	    var $buttonCancelEdit, $catListTb;
+	    $catListTb = $(this);
+	    $buttonCancelEdit = $catListTb.find('.js-button-cancel-edit');
+	    $buttonCancelEdit.click();
+	    return $catListTb.sortable('disable');
+	  };
+
+	  Category.prototype.sortable = function(sortableElement) {
+	    return sortableElement.sortable({
 	      placeholder: "ui-state-highlight",
 	      start: function(e, elem) {
 	        var $item;
@@ -396,7 +515,7 @@
 	        });
 	      },
 	      stop: function(e, elem) {
-	        var $item, $tr, arrayMenu, callback, data, trClass, trKey;
+	        var $item, $tr, arrayMenu, data, trClass, trKey;
 	        $item = $(elem.item);
 	        $item.removeAttr('style');
 	        $tr = $(this).find('tr');
@@ -407,223 +526,165 @@
 	          var $this;
 	          $this = $(this);
 	          trKey = !trKey;
-	          $this.removeClass();
-	          $this.addClass(trClass[trKey != null ? trKey : {
-	            1: 0
-	          }]);
+	          $this.removeClass('tg-4eph');
+	          $this.removeClass('tg-031e');
+	          $this.addClass(trClass[trKey ? 1 : 0]);
 	          return arrayMenu.push($this.attr('data-id'));
 	        });
 	        data = {
 	          data_id: arrayMenu
 	        };
-	        callback = function() {};
-	        return controller.call('nimyadmin/portfolio/sortable_category', data, callback);
+	        return controller.call('nimyadmin/portfolio/sortable_category', data, function() {});
 	      }
 	    });
 	  };
 
-	  Category.prototype.editCategory = function() {
-	    var self;
-	    self = this;
-	    return $document.on('click', '.edit-category', function(e) {
-	      var $secondParent, $this, data, html, template;
-	      e.preventDefault();
+	  Category.prototype.editCategory = function(e) {
+	    var $buttonCategoryEdit, $categoryItem, data, html, template;
+	    e.preventDefault();
+	    $buttonCategoryEdit = $(this);
+	    $categoryItem = $buttonCategoryEdit.parents('.js-category-item');
+	    $categoryItem.trigger('portfolioCategoryEdit');
+	    data = {
+	      id: $categoryItem.attr('data-id'),
+	      name: $categoryItem.find('.js-name').text(),
+	      desc: $categoryItem.find('.js-description').text(),
+	      slug: $categoryItem.find('.js-slug').text()
+	    };
+	    template = __webpack_require__(11);
+	    html = template.fetch(data);
+	    $categoryItem.hide();
+	    return $categoryItem.after(html);
+	  };
+
+	  Category.prototype.cancelEditCategory = function(e) {
+	    var $buttonCancelEdit, $categoryItem, $editForm;
+	    e.preventDefault();
+	    $buttonCancelEdit = $(this);
+	    $buttonCancelEdit.trigger('portfolioCategoryCancelEdit');
+	    $editForm = $buttonCancelEdit.parents('.js-edit-form');
+	    $categoryItem = $buttonCancelEdit.parents('#cat-list-tb').find('.js-category-item[data-id=' + $editForm.attr('data-id') + ']');
+	    $categoryItem.show();
+	    return $editForm.remove();
+	  };
+
+	  Category.prototype.saveEditCategory = function(e) {
+	    var $buttonSave, $categoryItem, $editForm, $fieldSet, $tools, callback, data;
+	    e.preventDefault();
+	    $buttonSave = $(this);
+	    $tools = $buttonSave.parents('.js-tools');
+	    $editForm = $tools.parents('.js-edit-form');
+	    $categoryItem = $buttonSave.parents('#cat-list-tb').find('.js-category-item[data-id=' + $editForm.attr('data-id') + ']');
+	    $fieldSet = $editForm.find('.js-fieldset');
+	    data = {
+	      id: $editForm.attr('data-id'),
+	      name: $fieldSet.find('.js-name').val(),
+	      desc: $fieldSet.find('.js-description').val(),
+	      slug: $fieldSet.find('.js-slug').val()
+	    };
+	    callback = function(result) {
+	      var $error, error;
+	      error = result.data;
+	      $error = $editForm.find('.js-error');
+	      switch (error) {
+	        case 0:
+	          $categoryItem.trigger('portfolioCategoryCancelEdit');
+	          $categoryItem.find('.js-name').text(data.name);
+	          $categoryItem.find('.js-description').text(data.desc);
+	          $categoryItem.find('.js-slug').text(data.slug);
+	          $categoryItem.fadeIn(300);
+	          return $editForm.remove();
+	        case 1:
+	          return $error.show().text('Неизвестная ошибка, попробуйте повторить попытку позже!');
+	        case 2:
+	          return $error.show().text('Название «' + data.name + '» уже используется другой категорией');
+	        case 3:
+	          return $error.show().text('Ярлык «' + data.slug + '» уже используется другой категорией');
+	      }
+	    };
+	    return controller.call('nimyadmin/portfolio/save_category', data, callback);
+	  };
+
+	  Category.prototype.addCategory = function(e, data) {
+	    var $catListTb, $tr, dataTemplate, html, template, trClass, trKey;
+	    dataTemplate = {
+	      current_field: data
+	    };
+	    template = __webpack_require__(12);
+	    html = template.fetch(dataTemplate);
+	    $catListTb = $('#cat-list-tb');
+	    $catListTb.prepend(html);
+	    $tr = $catListTb.find('tr');
+	    trClass = ['tg-4eph', 'tg-031e'];
+	    trKey = false;
+	    return $tr.each(function() {
+	      var $this;
+	      trKey = !trKey;
 	      $this = $(this);
-	      self.$catListTb.sortable('disable');
-	      $secondParent = $this.parent().parent();
-	      data = {
-	        id: $secondParent.attr('data-id', {
-	          name: $secondParent.find('.tg-name').text(),
-	          desc: $secondParent.find('.tg-desc').text(),
-	          slug: $secondParent.find('.tg-slug').text()
-	        })
-	      };
-	      template = __webpack_require__(6);
-	      html = template.fetch(data);
-	      self.$catListTb.find('.cancel-edit-category').click();
-	      $secondParent.hide();
-	      return $secondParent.after(html);
+	      $this.removeClass('tg-4eph');
+	      $this.removeClass('tg-031e');
+	      return $this.addClass(trClass[trKey ? 1 : 0]);
 	    });
 	  };
 
-	  Category.prototype.cancelEditCategory = function() {
-	    var self;
-	    self = this;
-	    return $document.on('click', '.cancel-edit-category', function(e) {
-	      var $editForm;
-	      e.preventDefault();
-	      self.$catListTb.sortable('enable');
-	      $editForm = $(this).parent().parent().parent();
-	      $editForm.prev().show();
-	      return $editForm.remove();
-	    });
-	  };
-
-	  Category.prototype.saveEditCategory = function() {
-	    return $document.on('click', '.save-edit-category', function(e) {
-	      var $editForm, $parent, $secondParent, $this, callback, data;
-	      e.preventDefault();
-	      $this = $(this);
-	      $parent = $this.parent();
-	      $editForm = $parent.parent().parent();
-	      $secondParent = $parent.prev();
-	      data = {
-	        id: $editForm.attr('data-id', {
-	          name: $secondParent.find('.tg-name').val(),
-	          desc: $secondParent.find('.tg-desc').val(),
-	          slug: $secondParent.find('.tg-slug').val()
-	        })
-	      };
-	      callback = function(result) {
-	        var $row, resultData;
-	        resultData = result.data;
-	        switch (resultData.error) {
-	          case 0:
-	            $row = $editForm.prev();
-	            $row.find('.tg-name').text(data.name);
-	            $row.find('.tg-desc').text(data.desc);
-	            $row.find('.tg-slug').text(data.slug);
-	            $row.fadeIn(300);
-	            return $editForm.remove();
-	          case 1:
-	            return $editForm.find('.error').show().text('Неизвестная ошибка, попробуйте повторить попытку позже!');
-	          case 2:
-	            return $editForm.find('.error').show().text('Название «' + data.name + '» уже используется другой категорией');
-	          case 3:
-	            return $editForm.find('.error').show().text('Ярлык «' + data.slug + '» уже используется другой категорией');
-	        }
-	      };
-	      return controller.call('nimyadmin/portfolio/save_category', data, callback);
-	    });
-	  };
-
-	  Category.prototype.addCategory = function() {
-	    var self;
-	    self = this;
-	    return $document.on('click', '#add-category-portfolio', function(e) {
-	      var $form, $inputDesc, $inputName, $inputSlug, $this, callback, data;
-	      e.preventDefault();
-	      $this = $(this);
-	      $this.prop('disabled', true);
-	      $form = $('#addcat');
-	      $inputName = $form.find('#tag-name');
-	      $inputDesc = $form.find('#tag-description');
-	      $inputSlug = $form.find('#tag-slug');
-	      data = {
-	        name: $inputName.val(),
-	        desc: $inputDesc.val(),
-	        slug: $inputSlug.val()
-	      };
-	      callback = function(result) {
-	        var $tr, dataTemplate, html, resultData, template, trClass, trKey;
-	        resultData = result.data;
-	        $this.prop('disabled', false);
-	        switch (resultData.error) {
-	          case 0:
-	            $inputName.val('');
-	            $inputDesc.val('');
-	            $inputSlug.val('');
-	            dataTemplate = {
-	              id: resultData.result,
-	              name: data.name,
-	              desc: data.desc,
-	              slug: data.slug
-	            };
-	            template = __webpack_require__(9);
-	            html = template.fetch(dataTemplate);
-	            self.$catListTb.prepend(html);
-	            $tr = self.$catListTb.find('tr');
-	            trClass = ['tg-4eph', 'tg-031e'];
-	            trKey = false;
-	            return $tr.each(function() {
-	              trKey = !trKey;
-	              $this = $(this);
-	              $this.removeClass();
-	              return $this.addClass(trClass[trKey != null ? trKey : {
-	                1: 0
-	              }]);
-	            });
-	          case 1:
-	            break;
-	          case 2:
-	            return $form.find('.addcat-name .error').text('Название «' + data.name + '» уже используется другой категорией');
-	          case 3:
-	            return $form.find('.addcat-slug .error').text('Ярлык «' + data.slug + '» уже используется другой категорией');
-	        }
-	      };
-	      return controller.call('nimyadmin/portfolio/add_category', data, callback);
-	    });
-	  };
-
-	  Category.prototype.removeCategory = function() {
-	    var $modelWindow, self;
-	    self = this;
-	    $modelWindow = $('.model-delete-category');
-	    $modelWindow.dialog({
-	      autoOpen: false,
-	      draggable: false,
-	      resizable: false,
-	      modal: true,
-	      minWidth: 460,
-	      closeText: '<i class="flaticon-cross5"></i>'
-	    });
-	    $document.on('click', '.ui-widget-overlay', function(e) {
-	      return $modelWindow.dialog("close");
-	    });
-	    $document.on('click', '.delete-category', function(e) {
-	      var $deleteCategoryPortfolio, $input, $modelWindowInput, $modelWindowSpan, $row, $this, id, name;
-	      e.preventDefault();
-	      $deleteCategoryPortfolio = $('#delete-category-portfolio');
+	  Category.prototype.openWindowRemoveCategory = function(e) {
+	    var $categoryItem, $deleteCategoryPortfolio, $input, $inputName, $modelWindowInput, $modelWindowSpan, $windowDeleteCategory, data;
+	    e.preventDefault();
+	    $deleteCategoryPortfolio = $('#delete-category-portfolio');
+	    $deleteCategoryPortfolio.prop('disabled', true);
+	    $inputName = $(e.currentTarget);
+	    $categoryItem = $inputName.parents('.js-category-item');
+	    data = {
+	      name: $categoryItem.find('td.tg-name').text(),
+	      id: $categoryItem.attr('data-id')
+	    };
+	    $windowDeleteCategory = this.$helperWindowDeleteCategory.get();
+	    $modelWindowSpan = $windowDeleteCategory.find('span.tg-name');
+	    $modelWindowInput = $windowDeleteCategory.find('#tag-id');
+	    $modelWindowSpan.text(data.name);
+	    $modelWindowInput.val(data.id);
+	    $modelWindowInput.attr('placeholder', data.name);
+	    $input = $windowDeleteCategory.find('#delete-category #tag-name');
+	    $input.focus().val('');
+	    this.$helperWindowDeleteCategory.open();
+	    return $windowDeleteCategory.off('keyup', '#delete-category .input-edit').on('keyup', '#delete-category .input-edit', function() {
+	      $inputName = $(this);
 	      $deleteCategoryPortfolio.prop('disabled', true);
-	      $this = $(this);
-	      $row = $this.parent().parent();
-	      name = $row.find('td.tg-name').text();
-	      id = $this.attr('data-id');
-	      $modelWindowSpan = $modelWindow.find('span.tg-name');
-	      $modelWindowInput = $modelWindow.find('#tag-id');
-	      $modelWindowSpan.text(name);
-	      $modelWindowInput.val(id);
-	      $input = $('#delete-category #tag-name');
-	      $input.focus().val('');
-	      $modelWindow.dialog("open");
-	      return $document.off('keyup', '#delete-category .input-edit').on('keyup', '#delete-category .input-edit', function(e) {
+	      if ($inputName.val() === data.name) {
+	        return $deleteCategoryPortfolio.prop('disabled', false);
+	      }
+	    });
+	  };
+
+	  Category.prototype.removeCategory = function(e) {
+	    var $form, $inputId, $this, callback, data;
+	    e.preventDefault();
+	    $this = $(e.currentTarget);
+	    $form = $this.parent().parent();
+	    $inputId = $form.find('#tag-id');
+	    $this.prop('disabled', true);
+	    data = {
+	      id: $inputId.val()
+	    };
+	    callback = function() {
+	      var $tr, $trDelete, trClass, trKey;
+	      $this.prop('disabled', false);
+	      $trDelete = this.$catListTb.find('tr[data-id=' + data.id + ']');
+	      $trDelete.remove();
+	      $tr = this.$catListTb.find('tr');
+	      trClass = ['tg-4eph', 'tg-031e'];
+	      trKey = false;
+	      $tr.each(function() {
+	        trKey = !trKey;
 	        $this = $(this);
-	        $deleteCategoryPortfolio.prop('disabled', true);
-	        if ($this.val() === name) {
-	          return $deleteCategoryPortfolio.prop('disabled', false);
-	        }
+	        $this.removeClass();
+	        return $this.addClass(trClass[trKey != null ? trKey : {
+	          1: 0
+	        }]);
 	      });
-	    });
-	    return $document.on('click', '#delete-category-portfolio', function(e) {
-	      var $form, $inputId, $this, callback, data;
-	      e.preventDefault();
-	      $this = $(this);
-	      $form = $this.parent().parent();
-	      $inputId = $form.find('#tag-id');
-	      $this.prop('disabled', true);
-	      data = {
-	        id: $inputId.val()
-	      };
-	      callback = function() {
-	        var $tr, $trDelete, trClass, trKey;
-	        $this.prop('disabled', false);
-	        $trDelete = self.$catListTb.find('tr[data-id=' + data.id + ']');
-	        $trDelete.remove();
-	        $tr = self.$catListTb.find('tr');
-	        trClass = ['tg-4eph', 'tg-031e'];
-	        trKey = false;
-	        $tr.each(function() {
-	          trKey = !trKey;
-	          $this = $(this);
-	          $this.removeClass();
-	          return $this.addClass(trClass[trKey != null ? trKey : {
-	            1: 0
-	          }]);
-	        });
-	        return $modelWindow.dialog("close");
-	      };
-	      return controller.call('nimyadmin/portfolio/remove_category', data, callback);
-	    });
+	      return this.$helperWindowDeleteCategory.close();
+	    };
+	    return controller.call('nimyadmin/portfolio/remove_category', data, callback);
 	  };
 
 	  return Category;
@@ -634,14 +695,57 @@
 
 
 /***/ },
-/* 6 */
-/***/ function(module, exports, __webpack_require__) {
+/* 7 */
+/***/ function(module, exports) {
 
-	var J = __webpack_require__(7);
-	module.exports = new J("<tr class=\"tg-jh46\" data-id=\"{$id}\">\n  <td colspan=\"6\" class=\"colspanchange\">\n    <fieldset>\n      <div class=\"inline-edit-col\">\n        <h4>Свойства</h4>\n        <label>\n          <span class=\"title\">Название</span>\n          <span class=\"input-text-wrap\"><input type=\"text\" name=\"name\" class=\"ptitle input-edit tg-name\" value=\"{$name}\"></span>\n          </label>\n        <label>\n          <span class=\"title\">Описание</span>\n          <span class=\"input-text-wrap\"><input type=\"text\" name=\"desc\" class=\"ptitle input-edit tg-desc\" value=\"{$desc}\"></span>\n          </label>\n        <label>\n          <span class=\"title\">Ярлык</span>\n          <span class=\"input-text-wrap\"><input type=\"text\" name=\"slug\" class=\"ptitle input-edit tg-slug\" value=\"{$slug}\"></span>\n          </label>\n        </div>\n    </fieldset>\n    <p class=\"inline-edit-save submit\">\n      <a href=\"#inline-edit\" class=\"button cancel-edit-category right green\"><i class=\"flaticon-cross5\"></i> Отменить</a>\n      <a href=\"#inline-edit\" class=\"button save-edit-category left blue\"><i class=\"flaticon-checkmark2\"></i> Обновить категорию</a>\n      <span class=\"error\" style=\"display:none;\"></span>\n    </p>\n  </td>\n</tr>");
+	var Window;
+
+	Window = (function() {
+	  function Window(template, buttons) {
+	    var $window, html;
+	    html = template.fetch();
+	    this._$window = $window = $(html);
+	    $window.dialog({
+	      autoOpen: false,
+	      draggable: false,
+	      resizable: false,
+	      modal: true,
+	      minWidth: 460,
+	      closeText: '<i class="flaticon-cross5"></i>'
+	    });
+	    $('body').on('click', '.ui-widget-overlay', function(e) {
+	      return $window.dialog("close");
+	    });
+	  }
+
+	  Window.prototype.open = function() {
+	    return this._$window.dialog('open');
+	  };
+
+	  Window.prototype.close = function() {
+	    return this._$window.dialog('close');
+	  };
+
+	  Window.prototype.get = function() {
+	    return this._$window;
+	  };
+
+	  return Window;
+
+	})();
+
+	module.exports = Window;
+
 
 /***/ },
-/* 7 */
+/* 8 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var J = __webpack_require__(9);
+	module.exports = new J("<div class=\"model-delete-category\" title=\"Вы абсолютно уверены?\">\n  <p>\n    Это действие <strong>не может</strong> быть отменено. Оно навсегда удалит\n    категорию <strong>«<span class=\"tg-name\">{$category->name}</span>»</strong>.\n    Удаление категории <strong>не приведет</strong> к удалению выполненных работ\n    из этой категории. Вместо этого выполненные работы из удалённой категории\n    будут перемещены в категорию <strong>«Без категории»</strong>.\n  </p>\n  <p>Пожалуйста, введите имя категории для подтверждения.</p>\n  <form id=\"delete-category\" method=\"post\" class=\"validate\">\n    <div class=\"form-field addcat-name\">\n      <input class=\"input-edit\" name=\"tag-name\" id=\"tag-name\" type=\"text\"\n             size=\"30\" aria-required=\"true\" required>\n      <input id=\"tag-id\" name=\"tag-id\" type=\"hidden\" aria-required=\"true\"\n             required value=\"{$category->id}\">\n      <p class=\"error\"></p>\n    </div>\n    <p class=\"submit\">\n      <button name=\"submit\" id=\"delete-category-portfolio\" class=\"button left js-button-remove\"\n              disabled>\n        <i class=\"flaticon-trash3\"></i> Я понимаю последствия, удалить эту категорию\n      </button>\n    </p>\n  </form>\n</div>");
+
+/***/ },
+/* 9 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process, global) {/*!
@@ -4067,10 +4171,10 @@
 	    module.exports = jSmart;
 	})();
 
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8), (function() { return this; }())))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10), (function() { return this; }())))
 
 /***/ },
-/* 8 */
+/* 10 */
 /***/ function(module, exports) {
 
 	// shim for using process in browser
@@ -4167,14 +4271,21 @@
 
 
 /***/ },
-/* 9 */
+/* 11 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var J = __webpack_require__(7);
-	module.exports = new J("<tr class=\"tg-031e\" data-id=\"{$id}\">\n  <td class=\"tg-checkbox\"><input type=\"checkbox\" name=\"selected[]\" value=\"{$id}\"></td>\n  <td class=\"tg-name\">{$name}</td>\n  <td class=\"tg-desc\">{$desc}</td>\n  <td class=\"tg-slug\">{$slug}</td>\n  <td class=\"tg-num\">0</td>\n  <td class=\"tg-tools\">\n    <a class=\"button blue edit-category\" href=\"#\" data-id=\"{$id}\"><i class=\"flaticon-edit4\"></i></a>\n    <a class=\"button delete-category\" href=\"#\" data-id=\"{$id}\"><i class=\"flaticon-trash3\"></i></a>\n  </td>\n</tr>");
+	var J = __webpack_require__(9);
+	module.exports = new J("<tr class=\"tg-jh46 js-edit-form\" data-id=\"{$id}\">\n  <td colspan=\"6\" class=\"colspanchange\">\n    <fieldset class=\"js-fieldset\">\n      <div class=\"inline-edit-col\">\n        <h4>Свойства</h4>\n        <label>\n          <span class=\"title\">Название</span>\n          <span class=\"input-text-wrap\"><input type=\"text\" name=\"name\" class=\"ptitle input-edit tg-name js-name\" value=\"{$name}\"></span>\n          </label>\n        <label>\n          <span class=\"title\">Описание</span>\n          <span class=\"input-text-wrap\"><input type=\"text\" name=\"desc\" class=\"ptitle input-edit tg-desc js-description\" value=\"{$desc}\"></span>\n          </label>\n        <label>\n          <span class=\"title\">Ярлык</span>\n          <span class=\"input-text-wrap\"><input type=\"text\" name=\"slug\" class=\"ptitle input-edit tg-slug js-slug\" value=\"{$slug}\"></span>\n          </label>\n        </div>\n    </fieldset>\n    <p class=\"inline-edit-save submit js-tools\">\n      <a href=\"#inline-edit\" class=\"button cancel-edit-category right green js-button-cancel-edit\"><i class=\"flaticon-cross5\"></i> Отменить</a>\n      <a href=\"#inline-edit\" class=\"button save-edit-category left blue js-button-save\"><i class=\"flaticon-checkmark2\"></i> Обновить категорию</a>\n      <span class=\"error js-error\" style=\"display:none;\"></span>\n    </p>\n  </td>\n</tr>");
 
 /***/ },
-/* 10 */
+/* 12 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var J = __webpack_require__(9);
+	module.exports = new J("<tr class=\"{$trClass[$trKey]} js-category-item\" data-id=\"{$current_field->id}\" data-model=\"category\">\n  <td class=\"tg-checkbox js-checkbox\"><input type=\"checkbox\" name=\"selected[]\" value=\"{$current_field->id}\"/></td>\n  <td class=\"tg-name js-name\" data-field=\"name\">{$current_field->name}</td>\n  <td class=\"tg-desc js-description\" data-field=\"description\">{$current_field->description}</td>\n  <td class=\"tg-slug js-slug\" data-field=\"slug\">{$current_field->link}</td>\n  <td class=\"tg-num js-amount\" data-field=\"amount\">{$current_field->amount}</td>\n  <td class=\"tg-tools js-tools\">\n    {if $current_field->link != 'no-category'}\n      <a class=\"button blue edit-category js-button-edit\" href=\"#\"><i class=\"flaticon-edit4\"></i></a>\n      <a class=\"button delete-category js-button-remove\" href=\"#\"><i class=\"flaticon-trash3\"></i></a>\n    {/if}\n  </td>\n</tr>");
+
+/***/ },
+/* 13 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var List, controller;

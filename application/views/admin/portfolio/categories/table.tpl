@@ -1,4 +1,4 @@
-<div class="table-wrap" data-controller="admin/portfolio/category">
+<div class="table-wrap" {*data-controller="admin/portfolio/category"*}>
   <table class="tg">
     <thead>
     <tr>
